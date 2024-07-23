@@ -1,19 +1,31 @@
-import ActivityCardPreview from "./AcivityCardPreview";
+import ActivityCardPreview from "./ActivityCardPreview";
 import activities from "../../assets/activities";
+import styled from "styled-components";
+
+export const StyledUl = styled.ul`
+  list-style: none;
+  padding: 0;
+`;
+
+const StyledListItem = styled.li`
+  border: 1px solid black;
+  margin: 20px;
+`;
+
 export default function ActivitiesList() {
   return (
     <>
-      <h1>Activity List</h1>
-      <ul>
+      <StyledUl>
         {activities.map((activity) => (
-          <li key={activity.id}>
+          <StyledListItem key={activity.id}>
             <ActivityCardPreview
               title={activity.title}
+              img={activity.imageUrl}
               categories={activity.categories}
             />
-          </li>
+          </StyledListItem>
         ))}
-      </ul>
+      </StyledUl>
     </>
   );
 }
