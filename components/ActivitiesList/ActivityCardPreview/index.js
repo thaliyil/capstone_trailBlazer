@@ -15,17 +15,20 @@ const StyledCategory = styled.li`
   border-radius: 5px;
   margin: 10px 0px;
 `;
-
+const StyledImage = styled(Image)`
+  width: auto;
+  height: auto;
+`;
 export default function ActivityCardPreview({ activity }) {
   const { id, title, categories, imageUrl } = activity;
   return (
     <>
       <h2>{title}</h2>
-      <Image
+      <StyledImage
         src={imageUrl}
         layout="responsive"
         width={400}
-        height={400}
+        height={360}
         alt={title}
       />
 
