@@ -12,6 +12,7 @@ const StyledListItem = styled.li`
   margin: 20px;
 `;
 
+
 export default function ActivitiesList() {
   return (
     <StyledUl>
