@@ -14,18 +14,12 @@ const StyledListItem = styled.li`
 
 export default function ActivitiesList() {
   return (
-    <>
-      <StyledUl>
-        {activities.map((activity) => (
-          <StyledListItem key={activity.id}>
-            <ActivityCardPreview
-              title={activity.title}
-              img={activity.imageUrl}
-              categories={activity.categories}
-            />
-          </StyledListItem>
-        ))}
-      </StyledUl>
-    </>
+    <StyledUl>
+      {activities.map((activity) => (
+        <StyledListItem key={activity.id}>
+          <ActivityCardPreview activity={activity} />
+        </StyledListItem>
+      ))}
+    </StyledUl>
   );
 }

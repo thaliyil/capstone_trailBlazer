@@ -13,22 +13,22 @@ const StyledCategory = styled.li`
   border: 1px solid grey;
   padding: 5px;
   border-radius: 5px;
-  margin-bottom: 10px;
+  margin: 10px 0px;
 `;
 
-export default function ActivityCardPreview({ title, categories, id, img }) {
+export default function ActivityCardPreview({ activity }) {
+  const { id, title, categories, imageUrl } = activity;
   return (
     <>
       <h2>{title}</h2>
       <Image
-        src={img}
+        src={imageUrl}
+        layout="responsive"
         width={400}
         height={400}
-        style={{ width: "auto", height: "auto" }}
         alt={title}
-        layout="responsive"
       />
-      <h3>Categories:</h3>
+
       <StyledCateogriesUl>
         {categories.map((category) => (
           <StyledCategory key={id}>{category}</StyledCategory>
