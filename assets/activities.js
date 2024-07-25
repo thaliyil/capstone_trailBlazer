@@ -2,7 +2,7 @@ const activities = [
   {
     id: "1",
     title: "Surfing",
-    categories: ["Outdoor", "Sport", "Water"],
+    categoryIds: ["111", "112", "113"],
     area: "Soorts-Hossegor",
     country: "France",
     description:
@@ -13,7 +13,7 @@ const activities = [
   {
     id: "2",
     title: "Hiking",
-    categories: ["Outdoor", "Nature", "Adventure"],
+    categoryIds: ["111", "114", "115"],
     area: "Garmisch-Partenkirchen",
     country: "Germany",
     description:
@@ -24,7 +24,7 @@ const activities = [
   {
     id: "3",
     title: "Kayaking",
-    categories: ["Outdoor", "Sport", "Water"],
+    categoryIds: ["111", "112", "113"],
     area: "Phang Nga Bay",
     country: "Thailand",
     description:
@@ -35,7 +35,7 @@ const activities = [
   {
     id: "4",
     title: "Biking",
-    categories: ["Outdoor", "Sport", "Nature"],
+    categoryIds: ["111", "112", "114"],
     area: "Onomichi",
     country: "Japan",
     description:
@@ -46,7 +46,7 @@ const activities = [
   {
     id: "5",
     title: "Hot Air Ballooning",
-    categories: ["Outdoor", "Adventure"],
+    categoryIds: ["111", "115"],
     area: "Cappadocia",
     country: "Turkey",
     description:
@@ -57,7 +57,7 @@ const activities = [
   {
     id: "6",
     title: "Sailing",
-    categories: ["Outdoor", "Water", "Adventure"],
+    categoryIds: ["111", "115", "113"],
     area: "Fiji",
     country: "Fiji",
     description:
@@ -68,7 +68,7 @@ const activities = [
   {
     id: "7",
     title: "Rock Climbing",
-    categories: ["Outdoor", "Sport", "Adventure"],
+    categoryIds: ["111", "112", "115"],
     area: "Yosemite National Park",
     country: "USA",
     description:
@@ -79,7 +79,7 @@ const activities = [
   {
     id: "8",
     title: "Scuba Diving",
-    categories: ["Outdoor", "Water", "Sport"],
+    categoryIds: ["111", "113", "112"],
     area: "Great Barrier Reef",
     country: "Australia",
     description:
@@ -90,7 +90,7 @@ const activities = [
   {
     id: "9",
     title: "Skiing",
-    categories: ["Outdoor", "Sport", "Winter"],
+    categoryIds: ["111", "116", "112"],
     area: "Zermatt",
     country: "Switzerland",
     description:
@@ -101,7 +101,7 @@ const activities = [
   {
     id: "10",
     title: "Paragliding",
-    categories: ["Outdoor", "Sport", "Adventure"],
+    categoryIds: ["111", "112", "115"],
     area: "Interlaken",
     country: "Switzerland",
     description:
@@ -112,7 +112,7 @@ const activities = [
   {
     id: "11",
     title: "Mountain Biking",
-    categories: ["Outdoor", "Sport", "Adventure"],
+    categoryIds: ["111", "112", "115"],
     area: "Whistler",
     country: "Canada",
     description:
@@ -123,7 +123,7 @@ const activities = [
   {
     id: "12",
     title: "Snorkeling",
-    categories: ["Outdoor", "Water", "Nature"],
+    categoryIds: ["111", "113", "114"],
     area: "Molokini Crater",
     country: "USA",
     description:
@@ -134,7 +134,7 @@ const activities = [
   {
     id: "13",
     title: "Skydiving",
-    categories: ["Outdoor", "Sport", "Adventure"],
+    categoryIds: ["111", "112", "115"],
     area: "Queenstown",
     country: "New Zealand",
     description:
@@ -145,7 +145,7 @@ const activities = [
   {
     id: "14",
     title: "Caving",
-    categories: ["Outdoor", "Adventure", "Nature"],
+    categoryIds: ["111", "115", "114"],
     area: "Waitomo Caves",
     country: "New Zealand",
     description:
@@ -156,7 +156,7 @@ const activities = [
   {
     id: "15",
     title: "White Water Rafting",
-    categories: ["Outdoor", "Water", "Adventure"],
+    categoryIds: ["111", "113", "115"],
     area: "Zambezi River",
     country: "Zambia",
     description:

@@ -1,4 +1,4 @@
-import ActivityCardPreview from "./ActivityCardPreview";
+import ActivityCardPreview from "../ActivityCardPreview";
 import activities from "../../assets/activities";
 import styled from "styled-components";
 
@@ -11,7 +11,6 @@ const StyledListItem = styled.li`
   border: 1px solid black;
   margin: 20px;
 `;
-
 
 export default function ActivitiesList() {
   return (

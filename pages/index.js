@@ -1,9 +1,10 @@
 import ActivitiesList from "@/components/ActivitiesList";
-export default function HomePage() {
+
+export default function HomePage({}) {
   return (
-    <div>
+    <section>
       <h1>TrailBlazer</h1>
       <ActivitiesList />
-    </div>
+    </section>
   );
 }
