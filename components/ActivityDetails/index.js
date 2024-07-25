@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { StyledCategory } from "../ActivitiesList/ActivityCardPreview";
 import { StyledCateogriesUl } from "../ActivitiesList/ActivityCardPreview";
-
+import getFilteredCategories from "@/utils/filterCategories";
 export default function ActivityDetails({ activity }) {
-  const { title, categories, imageUrl, area, country, description } = activity;
-
+  console.log("activity from detais", activity);
+  const { title, categoryIds, imageUrl, area, country, description } = activity;
+  const filteredCategories = getFilteredCategories(categoryIds);
   return (
     <>
       <h2>{title}</h2>
@@ -20,8 +21,8 @@ export default function ActivityDetails({ activity }) {
       </h3>
       <p>{description}</p>
       <StyledCateogriesUl>
-        {categories.map((category) => (
-          <StyledCategory key={activity.id}>{category}</StyledCategory>
+        {filteredCategories.map((category) => (
+          <StyledCategory key={category.id}>{category.name}</StyledCategory>
         ))}
       </StyledCateogriesUl>
     </>

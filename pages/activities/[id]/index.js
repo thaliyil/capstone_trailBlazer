@@ -7,17 +7,15 @@ export default function ActivityDetailsPage() {
   const router = useRouter();
   const { id } = router.query;
 
-
+  console.log("id from detailspage is", id);
 
   const selectedActivity = activities.find((activity) => activity.id === id);
 
-
-
- return(
-  <>
-   <h1>TrailBlazer</h1>
-  <Link href={"/"}>Go back</Link>
-    <ActivityDetails activity={selectedActivity}/>
- </>
-);
+  return (
+    <>
+      <h1>TrailBlazer</h1>
+      <Link href={"/"}>Go back</Link>
+      <ActivityDetails activity={selectedActivity} />
+    </>
+  );
 }
