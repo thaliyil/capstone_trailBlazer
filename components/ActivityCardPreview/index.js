@@ -1,6 +1,5 @@
 import Image from "next/image";
 import styled from "styled-components";
-import Link from "next/link";
 import getFilteredCategories from "@/utils/filterCategories";
 
 export const StyledCateogriesUl = styled.ul`
@@ -17,10 +16,12 @@ export const StyledCategory = styled.li`
   border-radius: 5px;
   margin: 10px 0px;
 `;
+
 const StyledImage = styled(Image)`
   width: auto;
   height: auto;
 `;
+
 export default function ActivityCardPreview({ activity }) {
   const { title, categoryIds, imageUrl } = activity;
   const filterCategories = getFilteredCategories(categoryIds);

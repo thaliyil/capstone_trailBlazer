@@ -1,7 +1,8 @@
-import ActivityCardPreview from "./ActivityCardPreview";
+import ActivityCardPreview from "../ActivityCardPreview";
 import activities from "../../assets/activities";
 import styled from "styled-components";
 import Link from "next/link";
+
 export const StyledUl = styled.ul`
   list-style: none;
   padding: 0;
@@ -18,7 +19,8 @@ export default function ActivitiesList() {
       {activities.map((activity) => (
         <StyledListItem key={activity.id}>
           <Link href={`activities/${activity.id}`}>
-          <ActivityCardPreview activity={activity} /></Link>
+            <ActivityCardPreview activity={activity} />
+          </Link>
         </StyledListItem>
       ))}
     </StyledUl>

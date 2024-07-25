@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { StyledCategory } from "../ActivitiesList/ActivityCardPreview";
-import { StyledCateogriesUl } from "../ActivitiesList/ActivityCardPreview";
+import { StyledCategory } from "../ActivityCardPreview";
+import { StyledCateogriesUl } from "../ActivityCardPreview";
 import getFilteredCategories from "@/utils/filterCategories";
+
 export default function ActivityDetails({ activity }) {
-  console.log("activity from detais", activity);
   const { title, categoryIds, imageUrl, area, country, description } = activity;
   const filteredCategories = getFilteredCategories(categoryIds);
   return (

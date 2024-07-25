@@ -3,13 +3,15 @@ import ActivityDetails from "@/components/ActivityDetails";
 import activities from "@/assets/activities";
 import Link from "next/link";
 
-export default function ActivityDetailsPage() {
+export default function ActivityDetailsPage1() {
   const router = useRouter();
+
   const { id } = router.query;
 
-  console.log("id from detailspage is", id);
-
   const selectedActivity = activities.find((activity) => activity.id === id);
+  if (!selectedActivity) {
+    return null;
+  }
 
   return (
     <>
