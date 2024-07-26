@@ -1,7 +1,8 @@
 import Image from "next/image";
 import styled from "styled-components";
+import getFilteredCategories from "@/utils/filterCategories";
 
-const StyledCateogriesUl = styled.ul`
+export const StyledCateogriesUl = styled.ul`
   list-style: none;
   padding: 5px;
   display: flex;
@@ -9,18 +10,21 @@ const StyledCateogriesUl = styled.ul`
   gap: 10px;
 `;
 
-const StyledCategory = styled.li`
+export const StyledCategory = styled.li`
   border: 1px solid grey;
   padding: 5px;
   border-radius: 5px;
   margin: 10px 0px;
 `;
+
 const StyledImage = styled(Image)`
   width: auto;
   height: auto;
 `;
+
 export default function ActivityCardPreview({ activity }) {
-  const { id, title, categories, imageUrl } = activity;
+  const { title, categoryIds, imageUrl } = activity;
+  const filterCategories = getFilteredCategories(categoryIds);
   return (
     <>
       <h2>{title}</h2>
@@ -33,8 +37,8 @@ export default function ActivityCardPreview({ activity }) {
       />
 
       <StyledCateogriesUl>
-        {categories.map((category) => (
-          <StyledCategory key={id}>{category}</StyledCategory>
+        {filterCategories.map((category) => (
+          <StyledCategory key={category.id}>{category.name}</StyledCategory>
         ))}
       </StyledCateogriesUl>
     </>
