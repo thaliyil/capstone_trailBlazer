@@ -1,15 +1,19 @@
 import GlobalStyle from "../styles";
-import { useState } from "react";
+import useLocalStorageState from "use-local-storage-state";
+
 import activities from "@/assets/activities";
 
 export default function App({ Component, pageProps }) {
   const initialActivities = activities.map((activity) => ({
     ...activity,
     id: activity.id,
-    isBookmarked: "false",
+    isBookmarked: false,
   }));
 
-  const [activitiesInfo, setActivitiesInfo] = useState(initialActivities);
+  const [activitiesInfo, setActivitiesInfo] = useLocalStorageState(
+    "activitiesInfo",
+    { defaultValue: initialActivities }
+  );
 
   function handleToggleBookmark(id) {
     const activity = activitiesInfo.find(

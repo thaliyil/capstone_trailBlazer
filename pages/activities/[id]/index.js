@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import ActivityDetails from "@/components/ActivityDetails";
 import Link from "next/link";
+import Navigation from "@/components/Navigation";
 
 export default function ActivityDetailsPage({
   activitiesInfo,
@@ -29,6 +30,7 @@ export default function ActivityDetailsPage({
         }
         onToggleBookmark={() => onToggleBookmark(selectedActivity.id)}
       />
+      <Navigation />
     </>
   );
 }

@@ -2,7 +2,9 @@ import Heart from "../../assets/heart.svg";
 import styled from "styled-components";
 
 const StyledButton = styled.button`
-  background-color: ${({ $isBookmarked }) => ($isBookmarked ? "red" : "white")};
+  background-color: ${({ $isBookmarked }) =>
+    $isBookmarked ? "orange" : "white"};
+  border-radius: 5px;
 `;
 
 export default function BookmarkButton({ onToggleBookmark, isBookmarked }) {
