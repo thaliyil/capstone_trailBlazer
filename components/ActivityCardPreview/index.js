@@ -3,21 +3,7 @@ import styled from "styled-components";
 import getFilteredCategories from "@/utils/filterCategories";
 import Link from "next/link";
 import BookmarkButton from "../BookmarkButton";
-
-export const StyledCateogriesUl = styled.ul`
-  list-style: none;
-  padding: 5px;
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-`;
-
-export const StyledCategory = styled.li`
-  border: 1px solid grey;
-  padding: 5px;
-  border-radius: 5px;
-  margin: 10px 0px;
-`;
+import { StyledCategory, StyledCateogriesUl } from "../StyledList";
 
 const StyledImage = styled(Image)`
   width: auto;

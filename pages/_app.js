@@ -1,12 +1,11 @@
 import GlobalStyle from "../styles";
 import useLocalStorageState from "use-local-storage-state";
-
 import activities from "@/assets/activities";
+import Layout from "@/components/Layout";
 
 export default function App({ Component, pageProps }) {
   const initialActivities = activities.map((activity) => ({
     ...activity,
-    id: activity.id,
     isBookmarked: false,
   }));
 
@@ -30,7 +29,7 @@ export default function App({ Component, pageProps }) {
     }
   }
   return (
-    <>
+    <Layout>
       <GlobalStyle />
       <Component
         {...pageProps}
@@ -38,6 +37,6 @@ export default function App({ Component, pageProps }) {
         onToggleBookmark={handleToggleBookmark}
         activitiesInfo={activitiesInfo}
       />
-    </>
+    </Layout>
   );
 }

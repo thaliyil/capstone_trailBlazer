@@ -1,5 +1,4 @@
 import ActivitiesList from "@/components/ActivitiesList";
-import Navigation from "@/components/Navigation";
 
 export default function HomePage({
   activitiesInfo,
@@ -8,13 +7,11 @@ export default function HomePage({
 }) {
   return (
     <section>
-      <h1>TrailBlazer</h1>
       <ActivitiesList
         activities={activities}
         activitiesInfo={activitiesInfo}
         onToggleBookmark={onToggleBookmark}
       />
-      <Navigation />
     </section>
   );
 }

@@ -1,7 +1,6 @@
 import { useRouter } from "next/router";
 import ActivityDetails from "@/components/ActivityDetails";
 import Link from "next/link";
-import Navigation from "@/components/Navigation";
 
 export default function ActivityDetailsPage({
   activitiesInfo,
@@ -19,7 +18,6 @@ export default function ActivityDetailsPage({
 
   return (
     <>
-      <h1>TrailBlazer</h1>
       <Link href={"/"}>Go back</Link>
       <ActivityDetails
         activity={selectedActivity}
@@ -30,7 +28,6 @@ export default function ActivityDetailsPage({
         }
         onToggleBookmark={() => onToggleBookmark(selectedActivity.id)}
       />
-      <Navigation />
     </>
   );
 }

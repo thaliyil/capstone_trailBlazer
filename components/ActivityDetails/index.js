@@ -1,6 +1,5 @@
 import Image from "next/image";
-import { StyledCategory } from "../ActivityCardPreview";
-import { StyledCateogriesUl } from "../ActivityCardPreview";
+import { StyledCategory, StyledCateogriesUl } from "../StyledList";
 import getFilteredCategories from "@/utils/filterCategories";
 import BookmarkButton from "../BookmarkButton";
 

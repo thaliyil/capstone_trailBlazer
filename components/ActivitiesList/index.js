@@ -1,15 +1,5 @@
 import ActivityCardPreview from "../ActivityCardPreview";
-import styled from "styled-components";
-
-export const StyledUl = styled.ul`
-  list-style: none;
-  padding: 0;
-`;
-
-export const StyledListItem = styled.li`
-  border: 1px solid black;
-  margin: 20px;
-`;
+import { StyledUl, StyledListItem } from "../StyledList";
 
 export default function ActivitiesList({
   activitiesInfo,
@@ -27,7 +17,6 @@ export default function ActivitiesList({
                 (activityInfo) => activityInfo.id === activity.id
               )?.isBookmarked
             }
-            activitiesInfo={activitiesInfo}
             onToggleBookmark={() => onToggleBookmark(activity.id)}
           />
         </StyledListItem>
