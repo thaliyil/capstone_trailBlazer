@@ -6,6 +6,7 @@ export const StyledCateogriesUl = styled.ul`
   display: flex;
   justify-content: center;
   gap: 10px;
+  padding-bottom: 20px;
 `;
 
 export const StyledCategory = styled.li`
