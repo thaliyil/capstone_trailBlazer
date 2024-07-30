@@ -1,9 +1,17 @@
 import ActivitiesList from "@/components/ActivitiesList";
-export default function HomePage() {
+
+export default function HomePage({
+  activitiesInfo,
+  activities,
+  onToggleBookmark,
+}) {
   return (
-    <div>
-      <h1>TrailBlazer</h1>
-      <ActivitiesList />
-    </div>
+    <section>
+      <ActivitiesList
+        activities={activities}
+        activitiesInfo={activitiesInfo}
+        onToggleBookmark={onToggleBookmark}
+      />
+    </section>
   );
 }
