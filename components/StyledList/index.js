@@ -18,6 +18,7 @@ export const StyledCategory = styled.li`
 export const StyledUl = styled.ul`
   list-style: none;
   padding: 0;
+  padding-bottom: 20px;
 `;
 
 export const StyledListItem = styled.li`
