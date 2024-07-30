@@ -2,6 +2,7 @@ import GlobalStyle from "../styles";
 import useLocalStorageState from "use-local-storage-state";
 import activities from "@/assets/activities";
 import Layout from "@/components/Layout";
+import { uid } from "uid";
 
 export default function App({ Component, pageProps }) {
   const initialActivities = activities.map((activity) => ({
@@ -28,6 +29,12 @@ export default function App({ Component, pageProps }) {
       );
     }
   }
+
+  function handleAddActivity(newActivity) {
+    setActivitiesInfo([...activitiesInfo, { ...newActivity, id: uid() }]);
+    console.log("hello", newActivity.id);
+  }
+
   return (
     <Layout>
       <GlobalStyle />
@@ -36,6 +43,7 @@ export default function App({ Component, pageProps }) {
         activities={activities}
         onToggleBookmark={handleToggleBookmark}
         activitiesInfo={activitiesInfo}
+        onAddActivity={handleAddActivity}
       />
     </Layout>
   );
