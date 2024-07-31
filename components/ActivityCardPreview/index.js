@@ -4,6 +4,7 @@ import getFilteredCategories from "@/utils/filterCategories";
 import Link from "next/link";
 import BookmarkButton from "../BookmarkButton";
 import { StyledCategory, StyledCateogriesUl } from "../StyledList";
+import categories from "@/assets/categories";
 
 const StyledImage = styled(Image)`
   width: auto;
@@ -16,6 +17,13 @@ export default function ActivityCardPreview({
   onToggleBookmark,
 }) {
   const { title, categoryIds, imageUrl } = activity;
+
+  function getFilteredCategories(categoryIds) {
+    const filteredCategories = categories.filter((category) =>
+      categoryIds.includes(category.id)
+    );
+    return filteredCategories;
+  }
   const filterCategories = getFilteredCategories(categoryIds);
   return (
     <>

@@ -1,4 +1,5 @@
 import ActivitiesList from "@/components/ActivitiesList";
+import TestForm from "@/components/Test";
 import Link from "next/link";
 
 export default function HomePage({
@@ -16,6 +17,7 @@ export default function HomePage({
         activitiesInfo={activitiesInfo}
         onToggleBookmark={onToggleBookmark}
       />
+      {/* <TestForm activitiesInfo={activitiesInfo} /> */}
     </section>
   );
 }

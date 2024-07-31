@@ -6,6 +6,7 @@ export default function ActivitiesList({
   activities,
   onToggleBookmark,
 }) {
+  console.log("from ActivitiesList", activitiesInfo);
   return (
     <StyledUl>
       {activities.map((activity) => (

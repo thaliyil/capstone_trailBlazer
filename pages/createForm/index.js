@@ -1,11 +1,39 @@
 import ActivityForm from "@/components/ActivityForm";
+import TestForm from "@/components/Test";
 import Link from "next/link";
+import styled from "styled-components";
 
-export default function CreateForm({ onAddActivity }) {
+const StyledAddLink = styled(Link)`
+  background-color: orange;
+  text-decoration: none;
+  color: black;
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 5px;
+`;
+
+const StyledFieldset = styled.fieldset`
+  margin: 20px 30px 50px;
+`;
+
+const StyledLegend = styled.legend`
+  display: flex;
+  flex-direction: row;
+`;
+
+export default function CreateForm({
+  onAddActivity,
+  activity,
+  activitiesInfo,
+}) {
   return (
     <>
-      <Link href={"/"}>Go back</Link>
-      <ActivityForm onSubmit={onAddActivity} />
+      <StyledAddLink href={"/"}>Go back</StyledAddLink>
+      <StyledFieldset>
+        <StyledLegend>Add new Activity</StyledLegend>
+        <ActivityForm onSubmit={onAddActivity} />
+      </StyledFieldset>
+      {/* <TestForm activity={activity} /> */}
     </>
   );
 }
