@@ -32,13 +32,10 @@ export default function App({ Component, pageProps }) {
 
   function handleAddActivity(newActivity) {
     setActivitiesInfo((activitiesInfo) => [
+      { id: uid(), ...newActivity },
       ...activitiesInfo,
-      { ...newActivity, id: uid() },
     ]);
-    const newAct = newActivity;
   }
-  // setActivities((prevActivities) => [...prevActivities, { ...newActivity }]);
-
   return (
     <Layout>
       <GlobalStyle />
@@ -48,7 +45,6 @@ export default function App({ Component, pageProps }) {
         onToggleBookmark={handleToggleBookmark}
         activitiesInfo={activitiesInfo}
         onAddActivity={handleAddActivity}
-        // activity={newActivity}
       />
     </Layout>
   );

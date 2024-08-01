@@ -4,14 +4,15 @@ import Link from "next/link";
 
 export default function ActivityDetailsPage({
   activitiesInfo,
-  activities,
   onToggleBookmark,
 }) {
   const router = useRouter();
 
   const { id } = router.query;
 
-  const selectedActivity = activities.find((activity) => activity.id === id);
+  const selectedActivity = activitiesInfo.find(
+    (activity) => activity.id === id
+  );
   if (!selectedActivity) {
     return null;
   }

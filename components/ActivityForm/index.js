@@ -7,8 +7,13 @@ const StyledForm = styled.form`
   margin: 15px;
 `;
 
-const StyledUlForm = styled.ul``;
-
+const StyledUlForm = styled.ul`
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 0px;
+  padding: 0px;
+`;
 const StyledListForm = styled.li`
   list-style: none;
   padding: 0px;
@@ -24,16 +29,14 @@ const StyledTextarea = styled.textarea`
   padding: 10px;
   margin: 10px;
 `;
-
 export default function ActivityForm({ onSubmit }) {
   function handleSubmit(event) {
     event.preventDefault();
     const formElements = new FormData(event.target);
     const newActivity = Object.fromEntries(formElements);
-
     newActivity.categoryIds = formElements.getAll("categoryIds");
-
-    onSubmit(newActivity);
+    const categoryIds = newActivity.categoryIds;
+    onSubmit(newActivity, categoryIds);
   }
 
   return (
@@ -51,24 +54,32 @@ export default function ActivityForm({ onSubmit }) {
         <StyledTextarea
           id="description"
           name="description"
-          type="text"
           placeholder="Please choose description.."
-          cols="10"
         ></StyledTextarea>
         <button type="button">Please select categories</button>
         <StyledUlForm>
           <StyledListForm>
-            <input type="checkbox" id="water" name="categoryIds" value="113" />
+            <input
+              type="checkbox"
+              id="categoryIds.length"
+              name="categoryIds"
+              value="113"
+            />
             <label htmlFor="water">Water</label>
           </StyledListForm>
           <StyledListForm>
-            <input type="checkbox" id="nature" name="categoryIds" value="114" />
+            <input
+              type="checkbox"
+              id="categoryIds.length"
+              name="categoryIds"
+              value="114"
+            />
             <label htmlFor="nature">Nature</label>
           </StyledListForm>
           <StyledListForm>
             <input
               type="checkbox"
-              id="outdoor"
+              id="categoryIds.length"
               name="categoryIds"
               value="111"
             />
@@ -81,14 +92,19 @@ export default function ActivityForm({ onSubmit }) {
           <StyledListForm>
             <input
               type="checkbox"
-              id="adventure"
+              id="categoryIds.length"
               name="categoryIds"
               value="115"
             />
             <label htmlFor="adventure">Adventure</label>
           </StyledListForm>
           <StyledListForm>
-            <input type="checkbox" id="sport" name="categoryIds" value="112" />
+            <input
+              type="checkbox"
+              id="categoryIds.length"
+              name="categoryIds"
+              value="112"
+            />
             <label htmlFor="sport">Sport</label>
           </StyledListForm>
         </StyledUlForm>
@@ -107,7 +123,6 @@ export default function ActivityForm({ onSubmit }) {
           placeholder="Please choose a country.."
         ></StyledInputs>
         <button type="submit">Submit</button>
-        <button type="button">Cancel</button>
       </StyledForm>
     </>
   );

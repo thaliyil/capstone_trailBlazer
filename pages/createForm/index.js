@@ -1,5 +1,4 @@
 import ActivityForm from "@/components/ActivityForm";
-import TestForm from "@/components/Test";
 import Link from "next/link";
 import styled from "styled-components";
 
@@ -21,19 +20,14 @@ const StyledLegend = styled.legend`
   flex-direction: row;
 `;
 
-export default function CreateForm({
-  onAddActivity,
-  activity,
-  activitiesInfo,
-}) {
+export default function CreateForm({ onAddActivity, categoryIds }) {
   return (
     <>
       <StyledAddLink href={"/"}>Go back</StyledAddLink>
       <StyledFieldset>
         <StyledLegend>Add new Activity</StyledLegend>
-        <ActivityForm onSubmit={onAddActivity} />
+        <ActivityForm onSubmit={onAddActivity} categoryIds={categoryIds} />
       </StyledFieldset>
-      {/* <TestForm activity={activity} /> */}
     </>
   );
 }

@@ -1,15 +1,10 @@
 import ActivityCardPreview from "../ActivityCardPreview";
 import { StyledUl, StyledListItem } from "../StyledList";
 
-export default function ActivitiesList({
-  activitiesInfo,
-  activities,
-  onToggleBookmark,
-}) {
-  console.log("from ActivitiesList", activitiesInfo);
+export default function ActivitiesList({ activitiesInfo, onToggleBookmark }) {
   return (
     <StyledUl>
-      {activities.map((activity) => (
+      {activitiesInfo.map((activity) => (
         <StyledListItem key={activity.id}>
           <ActivityCardPreview
             activity={activity}
