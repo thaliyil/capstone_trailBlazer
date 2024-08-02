@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 const StyledForm = styled.form`
   display: flex;
@@ -7,17 +8,12 @@ const StyledForm = styled.form`
   margin: 15px;
 `;
 
-const StyledUlForm = styled.ul`
+const StyledFieldset = styled.fieldset`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   margin: 0px;
-  padding: 0px;
-`;
-const StyledListForm = styled.li`
-  list-style: none;
-  padding: 0px;
-  margin: 0px;
+  padding: 30px;
 `;
 
 const StyledInputs = styled.input`
@@ -30,13 +26,19 @@ const StyledTextarea = styled.textarea`
   margin: 10px;
 `;
 export default function ActivityForm({ onSubmit }) {
+  const router = useRouter();
   function handleSubmit(event) {
     event.preventDefault();
     const formElements = new FormData(event.target);
     const newActivity = Object.fromEntries(formElements);
     newActivity.categoryIds = formElements.getAll("categoryIds");
-    const categoryIds = newActivity.categoryIds;
-    onSubmit(newActivity, categoryIds);
+
+    if (newActivity.categoryIds.length === 0) {
+      alert("please select at least one category.. ");
+      return false;
+    }
+    onSubmit(newActivity);
+    router.push("/");
   }
 
   return (
@@ -56,58 +58,43 @@ export default function ActivityForm({ onSubmit }) {
           name="description"
           placeholder="Please choose description.."
         ></StyledTextarea>
-        <button type="button">Please select categories</button>
-        <StyledUlForm>
-          <StyledListForm>
-            <input
-              type="checkbox"
-              id="categoryIds.length"
-              name="categoryIds"
-              value="113"
-            />
+        <StyledFieldset>
+          <legend>Please select your categories</legend>
+          <section>
+            <input type="checkbox" id="water" name="categoryIds" value="113" />
             <label htmlFor="water">Water</label>
-          </StyledListForm>
-          <StyledListForm>
-            <input
-              type="checkbox"
-              id="categoryIds.length"
-              name="categoryIds"
-              value="114"
-            />
+          </section>
+          <section>
+            <input type="checkbox" id="nature" name="categoryIds" value="114" />
             <label htmlFor="nature">Nature</label>
-          </StyledListForm>
-          <StyledListForm>
+          </section>
+          <section>
             <input
               type="checkbox"
-              id="categoryIds.length"
+              id="outdoor"
               name="categoryIds"
               value="111"
             />
             <label htmlFor="outdoor">Outdoor</label>
-          </StyledListForm>
-          <StyledListForm>
-            <input type="checkbox" id="winter" name="categoryIds" value="116" />
+          </section>
+          <section>
+            <input type="checkbox" id="winter" name="winter" value="116" />
             <label htmlFor="winter">Winter</label>
-          </StyledListForm>
-          <StyledListForm>
+          </section>
+          <section>
             <input
               type="checkbox"
-              id="categoryIds.length"
-              name="categoryIds"
+              id="adventure"
+              name="adventure"
               value="115"
             />
             <label htmlFor="adventure">Adventure</label>
-          </StyledListForm>
-          <StyledListForm>
-            <input
-              type="checkbox"
-              id="categoryIds.length"
-              name="categoryIds"
-              value="112"
-            />
-            <label htmlFor="sport">Sport</label>
-          </StyledListForm>
-        </StyledUlForm>
+          </section>
+          <section>
+            <input type="checkbox" id="sport" name="categoryIds" value="112" />
+            <label htmlFor="sport">Sport</label>{" "}
+          </section>
+        </StyledFieldset>
         <label htmlFor="area">Area: </label>
         <StyledInputs
           id="area"

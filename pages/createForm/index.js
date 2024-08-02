@@ -15,18 +15,13 @@ const StyledFieldset = styled.fieldset`
   margin: 20px 30px 50px;
 `;
 
-const StyledLegend = styled.legend`
-  display: flex;
-  flex-direction: row;
-`;
-
-export default function CreateForm({ onAddActivity, categoryIds }) {
+export default function CreateForm({ onAddActivity }) {
   return (
     <>
       <StyledAddLink href={"/"}>Go back</StyledAddLink>
       <StyledFieldset>
-        <StyledLegend>Add new Activity</StyledLegend>
-        <ActivityForm onSubmit={onAddActivity} categoryIds={categoryIds} />
+        <legend>Add new Activity</legend>
+        <ActivityForm onSubmit={onAddActivity} />
       </StyledFieldset>
     </>
   );
