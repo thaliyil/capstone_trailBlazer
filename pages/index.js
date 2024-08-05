@@ -1,11 +1,7 @@
 import ActivitiesList from "@/components/ActivitiesList";
 import Link from "next/link";
 
-export default function HomePage({
-  activitiesInfo,
-  activities,
-  onToggleBookmark,
-}) {
+export default function HomePage({ activities, onToggleBookmark }) {
   return (
     <section>
       <Link href="/createForm">
@@ -13,7 +9,6 @@ export default function HomePage({
       </Link>
       <ActivitiesList
         activities={activities}
-        activitiesInfo={activitiesInfo}
         onToggleBookmark={onToggleBookmark}
       />
     </section>

@@ -2,17 +2,12 @@ import { useRouter } from "next/router";
 import ActivityDetails from "@/components/ActivityDetails";
 import Link from "next/link";
 
-export default function ActivityDetailsPage({
-  activitiesInfo,
-  onToggleBookmark,
-}) {
+export default function ActivityDetailsPage({ activities, onToggleBookmark }) {
   const router = useRouter();
 
   const { id } = router.query;
 
-  const selectedActivity = activitiesInfo.find(
-    (activity) => activity.id === id
-  );
+  const selectedActivity = activities.find((activity) => activity.id === id);
   if (!selectedActivity) {
     return null;
   }
@@ -23,9 +18,8 @@ export default function ActivityDetailsPage({
       <ActivityDetails
         activity={selectedActivity}
         isBookmarked={
-          activitiesInfo.find(
-            (activityInfo) => activityInfo.id === selectedActivity.id
-          )?.isBookmarked
+          activities.find((activity) => activity.id === selectedActivity.id)
+            ?.isBookmarked
         }
         onToggleBookmark={() => onToggleBookmark(selectedActivity.id)}
       />

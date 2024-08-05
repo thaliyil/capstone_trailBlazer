@@ -11,18 +11,11 @@ const StyledAddLink = styled(Link)`
   border-radius: 5px;
 `;
 
-const StyledFieldset = styled.fieldset`
-  margin: 20px 30px 50px;
-`;
-
-export default function CreateForm({ onAddActivity }) {
+export default function CreateActivity({ onAddActivity }) {
   return (
     <>
       <StyledAddLink href={"/"}>Go back</StyledAddLink>
-      <StyledFieldset>
-        <legend>Add new Activity</legend>
-        <ActivityForm onSubmit={onAddActivity} />
-      </StyledFieldset>
+      <ActivityForm onSubmit={onAddActivity} />
     </>
   );
 }

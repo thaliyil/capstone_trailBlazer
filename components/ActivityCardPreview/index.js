@@ -4,20 +4,16 @@ import Link from "next/link";
 import BookmarkButton from "../BookmarkButton";
 import { StyledCategory, StyledCateogriesUl } from "../StyledList";
 
-export default function ActivityCardPreview({
-  activity,
-  isBookmarked,
-  onToggleBookmark,
-}) {
-  const { title, categoryIds, imageUrl } = activity;
+export default function ActivityCardPreview({ activity, onToggleBookmark }) {
+  const { title, categoryIds, imageUrl, isBookmarked } = activity;
 
   const filterCategories = getFilteredCategories(categoryIds);
   return (
     <>
       <h2>{title}</h2>
       <BookmarkButton
-        isBookmarked={isBookmarked}
         onToggleBookmark={onToggleBookmark}
+        isBookmarked={isBookmarked}
       />
       <Link href={`activities/${activity.id}`}>
         <Image
