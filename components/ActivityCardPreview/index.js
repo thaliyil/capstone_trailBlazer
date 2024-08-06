@@ -1,31 +1,22 @@
 import Image from "next/image";
-import styled from "styled-components";
 import getFilteredCategories from "@/utils/filterCategories";
 import Link from "next/link";
 import BookmarkButton from "../BookmarkButton";
 import { StyledCategory, StyledCateogriesUl } from "../StyledList";
 
-const StyledImage = styled(Image)`
-  width: auto;
-  height: auto;
-`;
+export default function ActivityCardPreview({ activity, onToggleBookmark }) {
+  const { title, categoryIds, imageUrl, isBookmarked } = activity;
 
-export default function ActivityCardPreview({
-  activity,
-  isBookmarked,
-  onToggleBookmark,
-}) {
-  const { title, categoryIds, imageUrl } = activity;
   const filterCategories = getFilteredCategories(categoryIds);
   return (
     <>
       <h2>{title}</h2>
       <BookmarkButton
-        isBookmarked={isBookmarked}
         onToggleBookmark={onToggleBookmark}
+        isBookmarked={isBookmarked}
       />
       <Link href={`activities/${activity.id}`}>
-        <StyledImage
+        <Image
           src={imageUrl}
           layout="responsive"
           width={400}

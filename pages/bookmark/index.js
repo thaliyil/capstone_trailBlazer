@@ -1,9 +1,9 @@
 import { StyledUl, StyledListItem } from "@/components/StyledList";
 import ActivityCardPreview from "@/components/ActivityCardPreview";
 
-export default function BookmarkList({ activitiesInfo, onToggleBookmark }) {
-  const filterBookmarks = activitiesInfo.filter(
-    (activityInfo) => activityInfo.isBookmarked === true
+export default function BookmarkList({ activities, onToggleBookmark }) {
+  const filterBookmarks = activities.filter(
+    (activity) => activity.isBookmarked === true
   );
 
   return (

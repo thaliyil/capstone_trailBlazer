@@ -1,15 +1,14 @@
 import ActivitiesList from "@/components/ActivitiesList";
+import Link from "next/link";
 
-export default function HomePage({
-  activitiesInfo,
-  activities,
-  onToggleBookmark,
-}) {
+export default function HomePage({ activities, onToggleBookmark }) {
   return (
     <section>
+      <Link href="/createActivity">
+        <button type="button"> + New</button>
+      </Link>
       <ActivitiesList
         activities={activities}
-        activitiesInfo={activitiesInfo}
         onToggleBookmark={onToggleBookmark}
       />
     </section>

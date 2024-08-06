@@ -2,11 +2,7 @@ import { useRouter } from "next/router";
 import ActivityDetails from "@/components/ActivityDetails";
 import Link from "next/link";
 
-export default function ActivityDetailsPage({
-  activitiesInfo,
-  activities,
-  onToggleBookmark,
-}) {
+export default function ActivityDetailsPage({ activities, onToggleBookmark }) {
   const router = useRouter();
 
   const { id } = router.query;
@@ -21,11 +17,7 @@ export default function ActivityDetailsPage({
       <Link href={"/"}>Go back</Link>
       <ActivityDetails
         activity={selectedActivity}
-        isBookmarked={
-          activitiesInfo.find(
-            (activityInfo) => activityInfo.id === selectedActivity.id
-          )?.isBookmarked
-        }
+        isBookmarked={selectedActivity.isBookmarked}
         onToggleBookmark={() => onToggleBookmark(selectedActivity.id)}
       />
     </>
