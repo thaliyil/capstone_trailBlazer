@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import ActivityDetails from "@/components/ActivityDetails";
-import Link from "next/link";
+import { StyledAddLink } from "@/components/StyledList";
 
 export default function ActivityDetailsPage({
   activities,
@@ -18,7 +18,7 @@ export default function ActivityDetailsPage({
 
   return (
     <>
-      <Link href={"/"}>Go back</Link>
+      <StyledAddLink href={"/"}>Go back</StyledAddLink>
       <ActivityDetails
         activity={selectedActivity}
         isBookmarked={selectedActivity.isBookmarked}

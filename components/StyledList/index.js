@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Link from "next/link";
 
 export const StyledCateogriesUl = styled.ul`
   list-style: none;
@@ -25,4 +26,13 @@ export const StyledUl = styled.ul`
 export const StyledListItem = styled.li`
   border: 1px solid black;
   margin: 20px;
+`;
+
+export const StyledAddLink = styled(Link)`
+  background-color: orange;
+  text-decoration: none;
+  color: black;
+  border: 1px solid black;
+  padding: 5px;
+  border-radius: 5px;
 `;

@@ -3,13 +3,13 @@ export default function DeleteModal({ onCancel, onConfirm, isOpen }) {
   if (!isOpen) return null;
   return (
     <ModalContainer>
-      <p>Are you sure You want to delete this item?</p>
-      <button type="button" onClick={onConfirm}>
-        Yes
-      </button>
-      <button type="button" onClick={onCancel}>
-        No
-      </button>
+      <p>Are you sure you want to delete this item?</p>
+      <ModalButton type="button" onClick={onConfirm}>
+        <b>Yes</b>
+      </ModalButton>
+      <ModalButton type="button" onClick={onCancel}>
+        <b>No</b>
+      </ModalButton>
     </ModalContainer>
   );
 }
@@ -18,11 +18,18 @@ const ModalContainer = styled.div`
   border-radius: 5px;
   position: fixed;
   top: 300px;
-  left: 300px;
-  right: 300px;
+  left: 20px;
+  right: 20px;
   z-index: 1;
   background-color: white;
-  width: 350px;
-  height: 100px;
+  padding: 20px;
   opacity: 0.9;
+`;
+
+const ModalButton = styled.button`
+  background-color: orange;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  width: 10rem;
 `;
