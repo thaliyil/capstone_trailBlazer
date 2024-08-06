@@ -99,7 +99,12 @@ export default function ActivityForm({ onSubmit }) {
               <label htmlFor="outdoor">Outdoor</label>
             </section>
             <section>
-              <input type="checkbox" id="winter" name="winter" value="116" />
+              <input
+                type="checkbox"
+                id="winter"
+                name="categoryIds"
+                value="116"
+              />
               <label htmlFor="winter">Winter</label>
             </section>
             <section>

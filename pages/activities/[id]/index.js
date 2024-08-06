@@ -17,10 +17,7 @@ export default function ActivityDetailsPage({ activities, onToggleBookmark }) {
       <Link href={"/"}>Go back</Link>
       <ActivityDetails
         activity={selectedActivity}
-        isBookmarked={
-          activities.find((activity) => activity.id === selectedActivity.id)
-            ?.isBookmarked
-        }
+        isBookmarked={selectedActivity.isBookmarked}
         onToggleBookmark={() => onToggleBookmark(selectedActivity.id)}
       />
     </>

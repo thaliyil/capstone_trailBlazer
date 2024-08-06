@@ -5,9 +5,6 @@ import Layout from "@/components/Layout";
 import { uid } from "uid";
 
 export default function App({ Component, pageProps }) {
-  // const initialActivities = activities.map((activity) => ({
-  //   ...activity,
-  // }));
 
   const [activities, setActivities] = useLocalStorageState("activities", {
     defaultValue: initialActivities,
