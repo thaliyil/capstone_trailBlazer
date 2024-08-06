@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { useRouter } from "next/router";
+import categories from "@/assets/categories";
+import { useState } from "react";
 
 const StyledFormFieldset = styled.fieldset`
   display: flex;
@@ -26,12 +28,13 @@ const StyledTextarea = styled.textarea`
   margin: 10px;
 `;
 export default function ActivityForm({ onSubmit }) {
+  const [selectedCategoryIds, setSelectedCategoryIds] = useState([]);
   const router = useRouter();
   function handleSubmit(event) {
     event.preventDefault();
     const formElements = new FormData(event.target);
     const newActivity = Object.fromEntries(formElements);
-    newActivity.categoryIds = formElements.getAll("categoryIds");
+    newActivity.categoryIds = selectedCategoryIds;
 
     if (newActivity.categoryIds.length === 0) {
       alert("Please select at least one category.. ");
@@ -39,6 +42,18 @@ export default function ActivityForm({ onSubmit }) {
     }
     onSubmit(newActivity);
     router.push("/");
+  }
+  function handleChange(event) {
+    const categoryId = event.target.value;
+    const isAdded = selectedCategoryIds.find((id) => id === categoryId);
+
+    if (isAdded) {
+      setSelectedCategoryIds(
+        selectedCategoryIds.filter((id) => id !== categoryId)
+      );
+    } else {
+      setSelectedCategoryIds([...selectedCategoryIds, categoryId]);
+    }
   }
 
   return (
@@ -71,55 +86,20 @@ export default function ActivityForm({ onSubmit }) {
           ></StyledTextarea>
           <StyledFieldset>
             <legend>Please select your categories</legend>
-            <section>
-              <input
-                type="checkbox"
-                id="water"
-                name="categoryIds"
-                value="113"
-              />
-              <label htmlFor="water">Water</label>
-            </section>
-            <section>
-              <input
-                type="checkbox"
-                id="nature"
-                name="categoryIds"
-                value="114"
-              />
-              <label htmlFor="nature">Nature</label>
-            </section>
-            <section>
-              <input
-                type="checkbox"
-                id="outdoor"
-                name="categoryIds"
-                value="111"
-              />
-              <label htmlFor="outdoor">Outdoor</label>
-            </section>
-            <section>
-              <input type="checkbox" id="winter" name="winter" value="116" />
-              <label htmlFor="winter">Winter</label>
-            </section>
-            <section>
-              <input
-                type="checkbox"
-                id="adventure"
-                name="categoryIds"
-                value="115"
-              />
-              <label htmlFor="adventure">Adventure</label>
-            </section>
-            <section>
-              <input
-                type="checkbox"
-                id="sport"
-                name="categoryIds"
-                value="112"
-              />
-              <label htmlFor="sport">Sport</label>{" "}
-            </section>
+            {categories.map((category) => {
+              return (
+                <div key={category.id}>
+                  <input
+                    type="checkbox"
+                    id={category.name}
+                    value={category.id}
+                    onChange={handleChange}
+                    checked={selectedCategoryIds.includes(category.id)}
+                  />
+                  <label htmlFor={category.name}>{category.name}</label>
+                </div>
+              );
+            })}
           </StyledFieldset>
           <label htmlFor="area">Area: </label>
           <StyledInputs
