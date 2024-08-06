@@ -7,6 +7,7 @@ export default function ActivityDetails({
   activity,
   onToggleBookmark,
   isBookmarked,
+  onDelete,
 }) {
   const { title, categoryIds, imageUrl, area, country, description } = activity;
   const filteredCategories = getFilteredCategories(categoryIds);
@@ -17,6 +18,9 @@ export default function ActivityDetails({
         onToggleBookmark={onToggleBookmark}
         isBookmarked={isBookmarked}
       />
+      <button type="button" onClick={onDelete}>
+        Delete
+      </button>
       <Image
         src={imageUrl}
         layout="responsive"
