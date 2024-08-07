@@ -28,6 +28,7 @@ export default function App({ Component, pageProps }) {
       ...activities,
     ]);
   }
+
   return (
     <Layout>
       <GlobalStyle />
@@ -36,6 +37,7 @@ export default function App({ Component, pageProps }) {
         activities={activities}
         onToggleBookmark={handleToggleBookmark}
         onAddActivity={handleAddActivity}
+        setActivities={setActivities}
       />
     </Layout>
   );

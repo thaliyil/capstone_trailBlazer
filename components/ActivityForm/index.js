@@ -70,7 +70,7 @@ export default function ActivityForm({ onSubmit }) {
             maxLength="30"
             required
           ></StyledInputs>
-          <label htmlFor="image">ImageUrl: </label>
+          <label htmlFor="imageUrl">ImageUrl: </label>
           <StyledInputs
             id="imageUrl"
             name="imageUrl"

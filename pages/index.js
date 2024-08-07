@@ -1,12 +1,10 @@
 import ActivitiesList from "@/components/ActivitiesList";
-import Link from "next/link";
+import { StyledAddLink } from "@/components/StyledList";
 
 export default function HomePage({ activities, onToggleBookmark }) {
   return (
     <section>
-      <Link href="/createActivity">
-        <button type="button"> + New</button>
-      </Link>
+      <StyledAddLink href="/createActivity">+ New</StyledAddLink>
       <ActivitiesList
         activities={activities}
         onToggleBookmark={onToggleBookmark}
