@@ -1,6 +1,6 @@
 import styled from "styled-components";
-export default function DeleteModal({ onCancel, onConfirm, isOpen }) {
-  if (!isOpen) return null;
+export default function DeleteModal({ onCancel, onConfirm, showModal }) {
+  if (!showModal) return null;
   return (
     <ModalContainer>
       <p>Are you sure you want to delete this item?</p>
