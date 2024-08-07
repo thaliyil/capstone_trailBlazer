@@ -2,25 +2,38 @@ import styled from "styled-components";
 export default function DeleteModal({ onCancel, onConfirm, showModal }) {
   if (!showModal) return null;
   return (
-    <ModalContainer>
-      <p>Are you sure you want to delete this item?</p>
-      <ModalButton type="button" onClick={onConfirm}>
-        <b>Yes</b>
-      </ModalButton>
-      <ModalButton type="button" onClick={onCancel}>
-        <b>No</b>
-      </ModalButton>
-    </ModalContainer>
+    <ModalBackground>
+      <ModalContainer>
+        <p>Are you sure you want to delete this item?</p>
+        <ModalButton type="button" onClick={onConfirm}>
+          <b>Yes</b>
+        </ModalButton>
+        <ModalButton type="button" onClick={onCancel}>
+          <b>No</b>
+        </ModalButton>
+      </ModalContainer>
+    </ModalBackground>
   );
 }
+
+const ModalBackground = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+`;
+
 const ModalContainer = styled.div`
   border: 1px solid black;
   border-radius: 5px;
   position: fixed;
-  top: 300px;
+  top: 200px;
   left: 20px;
   right: 20px;
-  z-index: 1;
+  z-index: 2;
   background-color: white;
   padding: 20px;
   opacity: 0.9;
