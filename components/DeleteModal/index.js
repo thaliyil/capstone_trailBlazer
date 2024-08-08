@@ -23,6 +23,7 @@ const ModalBackground = styled.div`
   backdrop-filter: blur(8px);
   background-color: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
+  z-index: 2;
 `;
 const ModalContainer = styled.div`
   border: 1px solid black;
@@ -31,7 +32,7 @@ const ModalContainer = styled.div`
   top: 300px;
   left: 20px;
   right: 20px;
-  z-index: 1;
+  z-index: 3;
   background-color: white;
   padding: 20px;
   opacity: 0.9;
