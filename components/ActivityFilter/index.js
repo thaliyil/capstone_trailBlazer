@@ -1,12 +1,15 @@
 import styled from "styled-components";
 import categories from "@/assets/categories";
-export default function ActivityFilter({ onToggleFilter }) {
+export default function ActivityFilter({ onFilterActivities, filter }) {
   return (
     <FilterContainer>
       {categories.map((category) => (
         <FilterButton
           key={category.id}
-          onClick={() => onToggleFilter(category.id)}
+          onClick={() => onFilterActivities(category.id)}
+          style={{
+            backgroundColor: filter === category.id ? "orange" : "black",
+          }}
         >
           {category.name}
         </FilterButton>
@@ -19,7 +22,6 @@ const FilterButton = styled.button`
   border-radius: 5px;
   width: 10rem;
   height: 2.5rem;
-  background-color: black;
   color: white;
   font-size: 1rem;
 `;

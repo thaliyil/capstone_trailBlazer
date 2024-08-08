@@ -4,21 +4,27 @@ import ActivityFilter from "@/components/ActivityFilter";
 import { useState } from "react";
 
 export default function HomePage({ activities, onToggleBookmark }) {
-  const [filteredList, setFilteredList] = useState(activities);
-
-  function handleToggleFilter(id) {
-    const filteredActivities = id
-      ? activities.filter((activity) => activity.categoryIds.includes(id))
-      : activities;
-    setFilteredList(filteredActivities);
+  const [filter, setFilter] = useState("");
+  function handleFilterActivities(id) {
+    if (id === filter) {
+      setFilter("");
+    } else {
+      setFilter(id);
+    }
   }
+  const filteredActivities = activities.filter((activity) =>
+    filter ? activity.categoryIds.includes(filter) : activities
+  );
 
   return (
     <section>
       <StyledAddLink href="/createActivity">+ New</StyledAddLink>
-      <ActivityFilter onToggleFilter={handleToggleFilter} />
+      <ActivityFilter
+        onFilterActivities={handleFilterActivities}
+        filter={filter}
+      />
       <ActivitiesList
-        activities={filteredList}
+        activities={filteredActivities}
         onToggleBookmark={onToggleBookmark}
       />
     </section>
