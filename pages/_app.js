@@ -29,6 +29,11 @@ export default function App({ Component, pageProps }) {
     ]);
   }
 
+  function handleUpdate(updatedActivity) {
+    setActivities((activities) => [...activities, updatedActivity]);
+    console.log("new activity", activities);
+  }
+
   return (
     <Layout>
       <GlobalStyle />
@@ -38,6 +43,7 @@ export default function App({ Component, pageProps }) {
         onToggleBookmark={handleToggleBookmark}
         onAddActivity={handleAddActivity}
         setActivities={setActivities}
+        onUpdate={handleUpdate}
       />
     </Layout>
   );

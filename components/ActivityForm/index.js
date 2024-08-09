@@ -2,34 +2,17 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import categories from "@/assets/categories";
 import { useState } from "react";
+import Link from "next/link";
 
-const StyledFormFieldset = styled.fieldset`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin: 15px;
-  margin: 20px 30px 50px;
-`;
-const StyledFieldset = styled.fieldset`
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin: 0px;
-  padding: 30px;
-`;
+export default function ActivityForm({ onSubmit, activity, onUpdate }) {
+  const [selectedCategoryIds, setSelectedCategoryIds] = useState(
+    activity?.categoryIds || []
+  );
+  const [isUpdateMode, setIsUpdateMode] = useState(false);
+  const [updatedActivity, setUpdatedActivity] = useState();
 
-const StyledInputs = styled.input`
-  padding: 10px;
-  margin: 10px;
-`;
-
-const StyledTextarea = styled.textarea`
-  padding: 10px;
-  margin: 10px;
-`;
-export default function ActivityForm({ onSubmit }) {
-  const [selectedCategoryIds, setSelectedCategoryIds] = useState([]);
   const router = useRouter();
+
   function handleSubmit(event) {
     event.preventDefault();
     const formElements = new FormData(event.target);
@@ -56,6 +39,10 @@ export default function ActivityForm({ onSubmit }) {
     }
   }
 
+  function handleUpdateActivity() {
+    onUpdate(updatedActivity);
+  }
+
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -69,6 +56,11 @@ export default function ActivityForm({ onSubmit }) {
             placeholder="Please choose title.."
             maxLength="30"
             required
+            defaultValue={activity.title}
+            onChange={(e) => {
+              setUpdatedActivity({ ...updatedActivity, title: e.target.value });
+              setIsUpdateMode(true);
+            }}
           ></StyledInputs>
           <label htmlFor="imageUrl">ImageUrl: </label>
           <StyledInputs
@@ -83,6 +75,14 @@ export default function ActivityForm({ onSubmit }) {
             name="description"
             placeholder="Please choose description.."
             maxLength="150"
+            defaultValue={activity.description}
+            onChange={(e) => {
+              setUpdatedActivity({
+                ...updatedActivity,
+                description: e.target.value,
+              });
+              setIsUpdateMode(true);
+            }}
           ></StyledTextarea>
           <StyledFieldset>
             <legend>Please select your categories</legend>
@@ -108,6 +108,11 @@ export default function ActivityForm({ onSubmit }) {
             type="text"
             placeholder="Please choose area.."
             maxLength="30"
+            defaultValue={activity.area}
+            onChange={(e) => {
+              setUpdatedActivity({ ...updatedActivity, area: e.target.value });
+              setIsUpdateMode(true);
+            }}
           ></StyledInputs>
           <label htmlFor="country">Country: </label>
           <StyledInputs
@@ -116,10 +121,64 @@ export default function ActivityForm({ onSubmit }) {
             type="text"
             placeholder="Please choose a country.."
             maxLength="30"
+            defaultValue={activity.country}
+            onChange={(e) => {
+              setUpdatedActivity({
+                ...updatedActivity,
+                country: e.target.value,
+              });
+              setIsUpdateMode(true);
+              console.log("HEllo", updatedActivity);
+            }}
           ></StyledInputs>
-          <button type="submit">Submit</button>
+          {
+            isUpdateMode ? (
+              <>
+                <Link href={`/activities/${activity.id}`}>
+                  <button
+                    type="button"
+                    onCLick={() => {
+                      setUpdatedActivity({ ...activity });
+                      setIsUpdateMode(false);
+                    }}
+                  >
+                    Cancel
+                  </button>
+                </Link>
+                <button type="submit" onClick={handleUpdateActivity}>
+                  Save
+                </button>
+              </>
+            ) : null
+            // <button type="submit">Submit</button>
+          }
         </StyledFormFieldset>
       </form>
     </>
   );
 }
+
+const StyledFormFieldset = styled.fieldset`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 15px;
+  margin: 20px 30px 50px;
+`;
+const StyledFieldset = styled.fieldset`
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 0px;
+  padding: 30px;
+`;
+
+const StyledInputs = styled.input`
+  padding: 10px;
+  margin: 10px;
+`;
+
+const StyledTextarea = styled.textarea`
+  padding: 10px;
+  margin: 10px;
+`;
