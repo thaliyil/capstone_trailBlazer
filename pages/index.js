@@ -23,10 +23,14 @@ export default function HomePage({ activities, onToggleBookmark }) {
         onFilterActivities={handleFilterActivities}
         filter={filter}
       />
-      <ActivitiesList
-        activities={filteredActivities}
-        onToggleBookmark={onToggleBookmark}
-      />
+      {filteredActivities.length === 0 ? (
+        <p>There are currently no activities matching this filter!</p>
+      ) : (
+        <ActivitiesList
+          activities={filteredActivities}
+          onToggleBookmark={onToggleBookmark}
+        />
+      )}
     </section>
   );
 }
