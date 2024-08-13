@@ -29,9 +29,12 @@ export default function App({ Component, pageProps }) {
     ]);
   }
 
-  function handleUpdate(updatedActivity) {
-    setActivities((activities) => [...activities, updatedActivity]);
-    console.log("new activity", activities);
+  function handleUpdateActivity(updatedActivity) {
+    setActivities(
+      activities.map((activity) =>
+        activity.id === updatedActivity.id ? updatedActivity : activity
+      )
+    );
   }
 
   return (
@@ -43,7 +46,7 @@ export default function App({ Component, pageProps }) {
         onToggleBookmark={handleToggleBookmark}
         onAddActivity={handleAddActivity}
         setActivities={setActivities}
-        onUpdate={handleUpdate}
+        onUpdateActivity={handleUpdateActivity}
       />
     </Layout>
   );

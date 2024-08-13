@@ -5,7 +5,7 @@ export default function CreateActivity({ onAddActivity }) {
   return (
     <>
       <StyledAddLink href={"/"}>Go back</StyledAddLink>
-      <ActivityForm onSubmit={onAddActivity} />
+      <ActivityForm onAddActivity={onAddActivity} />
     </>
   );
 }

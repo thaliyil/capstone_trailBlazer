@@ -1,7 +1,7 @@
 import ActivityForm from "@/components/ActivityForm";
 import { useRouter } from "next/router";
 
-export default function UpdateForm({ activities, onUpdate }) {
+export default function UpdatePage({ activities, onUpdateActivity }) {
   const router = useRouter();
   const { id } = router.query;
 
@@ -9,13 +9,12 @@ export default function UpdateForm({ activities, onUpdate }) {
   if (!selectedActivity) {
     return null;
   }
-  console.log("hello", selectedActivity);
 
   return (
     <ActivityForm
       activity={selectedActivity}
       isUpdateMode
-      onUpdate={onUpdate}
+      onUpdateActivity={onUpdateActivity}
     />
   );
 }
