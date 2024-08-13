@@ -5,31 +5,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { StyledButton } from "../ActivityDetails";
 
-const StyledFormFieldset = styled.fieldset`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin: 15px;
-  margin: 20px 30px 50px;
-`;
-const StyledFieldset = styled.fieldset`
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin: 0px;
-  padding: 30px;
-`;
-
-const StyledInputs = styled.input`
-  padding: 10px;
-  margin: 10px;
-`;
-
-const StyledTextarea = styled.textarea`
-  padding: 10px;
-  margin: 10px;
-`;
-
 export default function ActivityForm({
   activity,
   onUpdateActivity,
@@ -170,3 +145,28 @@ export default function ActivityForm({
     </form>
   );
 }
+
+const StyledFormFieldset = styled.fieldset`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 15px;
+  margin: 20px 30px 50px;
+`;
+const StyledFieldset = styled.fieldset`
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 0px;
+  padding: 30px;
+`;
+
+const StyledInputs = styled.input`
+  padding: 10px;
+  margin: 10px;
+`;
+
+const StyledTextarea = styled.textarea`
+  padding: 10px;
+  margin: 10px;
+`;

@@ -1,7 +1,7 @@
 import GlobalStyle from "../styles";
 import useLocalStorageState from "use-local-storage-state";
-import initialActivities from "@/assets/activities";
 import Layout from "@/components/Layout";
+import initialActivities from "@/assets/activities";
 import { uid } from "uid";
 
 export default function App({ Component, pageProps }) {

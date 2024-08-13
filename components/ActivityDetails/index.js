@@ -47,7 +47,7 @@ export default function ActivityDetails({
   );
 }
 
-const StyledButton = styled.button`
+export const StyledButton = styled.button`
   padding: 10px;
   background-color: orange;
   border-radius: 5px;
