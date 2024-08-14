@@ -22,6 +22,7 @@ export default function Navigation() {
     <StyledFooter>
       <StyledLink href="/">Home</StyledLink>
       <StyledLink href="/bookmark">Bookmarks</StyledLink>
+      <StyledLink href="/spotlight">Spotlight</StyledLink>
     </StyledFooter>
   );
 }
