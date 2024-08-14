@@ -9,12 +9,12 @@ export default function ActivityDetailsPage({
   onToggleBookmark,
   setActivities,
 }) {
+  const [showModal, setShowModal] = useState(false);
+  const [idToDelete, setIdToDelete] = useState(null);
+
   const router = useRouter();
 
   const { id } = router.query;
-
-  const [showModal, setShowModal] = useState(false);
-  const [idToDelete, setIdToDelete] = useState(null);
 
   const selectedActivity = activities.find((activity) => activity.id === id);
   if (!selectedActivity) {
