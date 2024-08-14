@@ -5,12 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { StyledButton } from "../ActivityDetails";
 
-export default function ActivityForm({
-  activity,
-  onUpdateActivity,
-  isUpdateMode,
-  onAddActivity,
-}) {
+export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
   const [selectedCategoryIds, setSelectedCategoryIds] = useState(
     activity?.categoryIds || []
   );
@@ -19,45 +14,26 @@ export default function ActivityForm({
 
   function handleChange(event) {
     const categoryId = event.target.value;
-    const isAdded = selectedCategoryIds.find((id) => id === categoryId);
-
-    if (isAdded) {
-      setSelectedCategoryIds(
-        selectedCategoryIds.filter((id) => id !== categoryId)
-      );
-    } else {
-      setSelectedCategoryIds([...selectedCategoryIds, categoryId]);
-    }
+    setSelectedCategoryIds(
+      selectedCategoryIds.includes(categoryId)
+        ? selectedCategoryIds.filter((id) => id !== categoryId)
+        : [...selectedCategoryIds, categoryId]
+    );
   }
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    if (!isUpdateMode) {
-      const formElements = new FormData(event.target);
-      const newActivity = Object.fromEntries(formElements);
-      newActivity.categoryIds = selectedCategoryIds;
+    const formElements = new FormData(event.target);
+    const newActivity = Object.fromEntries(formElements);
+    newActivity.categoryIds = selectedCategoryIds;
 
-      if (newActivity.categoryIds.length === 0) {
-        alert("Please select at least one category.. ");
-        return false;
-      }
-
-      onAddActivity(newActivity);
-      router.push("/");
-    } else {
-      const updatedActivity = {
-        id: activity.id,
-        title: event.target.title.value,
-        imageUrl: event.target.imageUrl.value,
-        categoryIds: selectedCategoryIds,
-        description: event.target.description.value,
-        area: event.target.area.value,
-        country: event.target.country.value,
-      };
-      onUpdateActivity(updatedActivity);
-      router.back();
+    if (newActivity.categoryIds.length === 0) {
+      alert("Please select at least one category.. ");
+      return false;
     }
+    onSubmit(newActivity);
+    isUpdateMode ? router.back() : router.push("/");
   }
 
   return (
@@ -133,9 +109,7 @@ export default function ActivityForm({
         ></StyledInputs>
         {isUpdateMode ? (
           <>
-            <Link href={`/activities/${activity.id}`}>
-              <StyledButton type="button">Cancel</StyledButton>
-            </Link>
+            <Link href={`/activities/${activity.id}`}>Cancel</Link>
             <StyledButton type="submit">Save</StyledButton>
           </>
         ) : (

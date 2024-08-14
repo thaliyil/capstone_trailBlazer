@@ -40,9 +40,7 @@ export default function ActivityDetails({
       <StyledButton type="button" onClick={onDelete}>
         Delete
       </StyledButton>
-      <Link href={`/activities/${activity.id}/update`}>
-        <StyledButton type="button">Update</StyledButton>
-      </Link>
+      <Link href={`/activities/${activity.id}/update`}>Update</Link>
     </>
   );
 }

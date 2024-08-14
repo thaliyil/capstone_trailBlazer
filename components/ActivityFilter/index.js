@@ -17,7 +17,6 @@ export default function ActivityFilter({ onFilterActivities, filter }) {
     </FilterContainer>
   );
 }
-git;
 const FilterButton = styled.button`
   padding: 5px;
   border-radius: 5px;
