@@ -23,10 +23,9 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
 
   function handleSubmit(event) {
     event.preventDefault();
-
-    const formElements = new FormData(event.target);
-    const newActivity = Object.fromEntries(formElements);
-    newActivity.categoryIds = selectedCategoryIds;
+    const formData = new FormData(event.target);
+    const activityData = Object.fromEntries(formData);
+    const newActivity = { ...activityData, categoryIds: selectedCategoryIds };
 
     if (newActivity.categoryIds.length === 0) {
       alert("Please select at least one category.. ");

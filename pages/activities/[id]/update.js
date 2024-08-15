@@ -1,5 +1,6 @@
 import ActivityForm from "@/components/ActivityForm";
 import { useRouter } from "next/router";
+import toast from "react-hot-toast";
 
 export default function UpdatePage({ activities, setActivities }) {
   const router = useRouter();
@@ -17,6 +18,7 @@ export default function UpdatePage({ activities, setActivities }) {
           : activity
       )
     );
+    toast.success("Activity is updated successfully!", { delay: 9000 });
   }
 
   return (

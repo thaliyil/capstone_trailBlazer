@@ -3,6 +3,7 @@ import ActivityDetails from "@/components/ActivityDetails";
 import { StyledAddLink } from "@/components/StyledList";
 import DeleteModal from "@/components/DeleteModal";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function ActivityDetailsPage({
   activities,
@@ -29,6 +30,7 @@ export default function ActivityDetailsPage({
     setActivities(activities.filter((activity) => activity.id !== idToDelete));
     setShowModal(false);
     router.push("/");
+    toast.success("Activity is deleted", { delay: 9000 });
   }
 
   return (
