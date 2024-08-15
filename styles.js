@@ -17,8 +17,7 @@ export default createGlobalStyle`
   :root {
 --coral: #F4847B;
 --dijon: #F3B170;
---dark-turqouise: #097471;
---light-turqouise: #7EB1B0;
-
+--dark-green: #097471;
+--light-green: #7EB1B0;
 }
 `;

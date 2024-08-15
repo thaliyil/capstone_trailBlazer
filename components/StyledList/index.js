@@ -11,7 +11,7 @@ export const StyledCateogriesUl = styled.ul`
 `;
 
 export const StyledCategory = styled.li`
-  border: 1px solid grey;
+  border: 1px solid black;
   padding: 5px;
   border-radius: 5px;
   margin: 10px 0px;
@@ -22,11 +22,11 @@ export const StyledUl = styled.ul`
   list-style: none;
   padding: 0;
   padding-bottom: 20px;
-  background-color: var(--dark-turqouise);
+  background-color: var(--dark-green);
 `;
 
 export const StyledListItem = styled.li`
-  background-color: var(--light-turqouise);
+  background-color: var(--light-green);
   border: 1px solid black;
   margin: 20px;
 `;
@@ -38,6 +38,7 @@ export const StyledAddLink = styled(Link)`
   border: 1px solid black;
   padding: 5px;
   border-radius: 5px;
+  margin: 10px;
 `;
 
 export const StyledSection = styled.section`

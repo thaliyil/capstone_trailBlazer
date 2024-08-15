@@ -32,4 +32,5 @@ const FilterContainer = styled.section`
   gap: 10px;
   margin: 20px 20px 0px;
   overflow: auto;
+  scrollbar-width: none;
 `;

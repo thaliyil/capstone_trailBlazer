@@ -33,7 +33,7 @@ const ModalContainer = styled.div`
   left: 20px;
   right: 20px;
   z-index: 3;
-  background-color: var(--light-turqouise);
+  background-color: var(--light-green);
   padding: 20px;
   opacity: 0.9;
 `;
