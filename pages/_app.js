@@ -3,6 +3,7 @@ import useLocalStorageState from "use-local-storage-state";
 import initialActivities from "@/assets/activities";
 import Layout from "@/components/Layout";
 import { uid } from "uid";
+import "../assets/fonts.css";
 
 export default function App({ Component, pageProps }) {
   const [activities, setActivities] = useLocalStorageState("activities", {
