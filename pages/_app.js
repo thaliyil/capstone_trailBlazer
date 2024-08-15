@@ -1,8 +1,9 @@
 import GlobalStyle from "../styles";
 import useLocalStorageState from "use-local-storage-state";
-import initialActivities from "@/assets/activities";
 import Layout from "@/components/Layout";
+import initialActivities from "@/assets/activities";
 import { uid } from "uid";
+import toast from "react-hot-toast";
 
 export default function App({ Component, pageProps }) {
   const [activities, setActivities] = useLocalStorageState("activities", {
@@ -27,6 +28,7 @@ export default function App({ Component, pageProps }) {
       { id: uid(), isBookmarked: false, ...newActivity },
       ...activities,
     ]);
+    toast.success("Activity is added successfully!", { delay: 9000 });
   }
 
   return (

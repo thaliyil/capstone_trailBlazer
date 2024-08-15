@@ -3,18 +3,19 @@ import ActivityDetails from "@/components/ActivityDetails";
 import { StyledAddLink } from "@/components/StyledList";
 import DeleteModal from "@/components/DeleteModal";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 export default function ActivityDetailsPage({
   activities,
   onToggleBookmark,
   setActivities,
 }) {
+  const [showModal, setShowModal] = useState(false);
+  const [idToDelete, setIdToDelete] = useState(null);
+
   const router = useRouter();
 
   const { id } = router.query;
-
-  const [showModal, setShowModal] = useState(false);
-  const [idToDelete, setIdToDelete] = useState(null);
 
   const selectedActivity = activities.find((activity) => activity.id === id);
   if (!selectedActivity) {
@@ -29,6 +30,7 @@ export default function ActivityDetailsPage({
     setActivities(activities.filter((activity) => activity.id !== idToDelete));
     setShowModal(false);
     router.push("/");
+    toast.success("Activity is deleted", { delay: 9000 });
   }
 
   return (

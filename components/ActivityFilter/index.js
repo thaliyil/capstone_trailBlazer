@@ -7,9 +7,11 @@ export default function ActivityFilter({ onFilterActivities, filter }) {
         <FilterButton
           key={category.id}
           onClick={() => onFilterActivities(category.id)}
-          style={{
-            backgroundColor: filter === category.id ? "orange" : "black",
-          }}
+
+          $filter={filter === category.id}
+
+          
+
         >
           {category.name}
         </FilterButton>
@@ -24,6 +26,9 @@ const FilterButton = styled.button`
   height: 2.5rem;
   color: white;
   font-size: 1rem;
+
+  background-color: ${({ $filter }) => ($filter ? "orange" : "white")};
+
 `;
 const FilterContainer = styled.section`
   display: flex;
