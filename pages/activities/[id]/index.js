@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import ActivityDetails from "@/components/ActivityDetails";
-import { StyledAddLink } from "@/components/StyledList";
+import { StyledAddLink, StyledSection } from "@/components/StyledList";
 import DeleteModal from "@/components/DeleteModal";
 import { useState } from "react";
 
@@ -32,7 +32,7 @@ export default function ActivityDetailsPage({
   }
 
   return (
-    <>
+    <StyledSection>
       <StyledAddLink href={"/"}>Go back</StyledAddLink>
       <ActivityDetails
         activity={selectedActivity}
@@ -45,6 +45,6 @@ export default function ActivityDetailsPage({
         onCancel={() => setShowModal(false)}
         onConfirm={handleConfirm}
       />
-    </>
+    </StyledSection>
   );
 }
