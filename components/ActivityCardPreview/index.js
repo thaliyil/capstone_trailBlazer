@@ -2,15 +2,14 @@ import Image from "next/image";
 import getFilteredCategories from "@/utils/filterCategories";
 import Link from "next/link";
 import BookmarkButton from "../BookmarkButton";
-import { StyledCategory, StyledCateogriesUl } from "../StyledList";
+import { StyledCategory, StyledCateogriesUl, StyledCard } from "../StyledList";
 
 export default function ActivityCardPreview({ activity, onToggleBookmark }) {
   const { title, categoryIds, imageUrl, isBookmarked } = activity;
 
   const filterCategories = getFilteredCategories(categoryIds);
   return (
-    <>
-      <h2>{title}</h2>
+    <StyledCard>
       <BookmarkButton
         onToggleBookmark={onToggleBookmark}
         isBookmarked={isBookmarked}
@@ -24,12 +23,12 @@ export default function ActivityCardPreview({ activity, onToggleBookmark }) {
           alt={title}
         />
       </Link>
-
+      <h2>{title}</h2>
       <StyledCateogriesUl>
         {filterCategories.map((category) => (
           <StyledCategory key={category.id}>{category.name}</StyledCategory>
         ))}
       </StyledCateogriesUl>
-    </>
+    </StyledCard>
   );
 }

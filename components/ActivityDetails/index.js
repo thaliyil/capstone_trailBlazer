@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { StyledCategory, StyledCateogriesUl } from "../StyledList";
+import { StyledCategory, StyledCateogriesUl, StyledCard } from "../StyledList";
 import getFilteredCategories from "@/utils/filterCategories";
 import BookmarkButton from "../BookmarkButton";
 import styled from "styled-components";
@@ -13,8 +13,7 @@ export default function ActivityDetails({
   const { title, categoryIds, imageUrl, area, country, description } = activity;
   const filteredCategories = getFilteredCategories(categoryIds);
   return (
-    <>
-      <h2>{title}</h2>
+    <StyledCard>
       <BookmarkButton
         onToggleBookmark={onToggleBookmark}
         isBookmarked={isBookmarked}
@@ -27,6 +26,7 @@ export default function ActivityDetails({
         height={360}
         alt={title}
       />
+      <h2>{title}</h2>
       <h3>
         {area}, {country}
       </h3>
@@ -39,13 +39,13 @@ export default function ActivityDetails({
       <DeleteButton type="button" onClick={onDelete}>
         Delete
       </DeleteButton>
-    </>
+    </StyledCard>
   );
 }
 
 const DeleteButton = styled.button`
   padding: 10px;
-  background-color: orange;
+  background-color: var(--coral);
   border-radius: 5px;
   margin-bottom: 50px;
   width: 10rem;
