@@ -3,30 +3,6 @@ import { useRouter } from "next/router";
 import categories from "@/assets/categories";
 import { useState } from "react";
 
-const StyledFormFieldset = styled.fieldset`
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin: 15px;
-  margin: 20px 30px 50px;
-`;
-const StyledFieldset = styled.fieldset`
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  margin: 0px;
-  padding: 30px;
-`;
-
-const StyledInputs = styled.input`
-  padding: 10px;
-  margin: 10px;
-`;
-
-const StyledTextarea = styled.textarea`
-  padding: 10px;
-  margin: 10px;
-`;
 export default function ActivityForm({ onSubmit }) {
   const [selectedCategoryIds, setSelectedCategoryIds] = useState([]);
   const router = useRouter();
@@ -117,9 +93,42 @@ export default function ActivityForm({ onSubmit }) {
             placeholder="Please choose a country.."
             maxLength="30"
           ></StyledInputs>
-          <button type="submit">Submit</button>
+          <StyledButtonSubmit type="submit">Submit</StyledButtonSubmit>
         </StyledFormFieldset>
       </form>
     </>
   );
 }
+
+const StyledFormFieldset = styled.fieldset`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin: 15px;
+  margin: 20px 30px 50px;
+  background-color: var(--light-green);
+`;
+
+const StyledFieldset = styled.fieldset`
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 0px;
+  padding: 30px;
+`;
+
+const StyledInputs = styled.input`
+  padding: 10px;
+  margin: 10px;
+`;
+
+const StyledTextarea = styled.textarea`
+  padding: 10px;
+  margin: 10px;
+`;
+
+const StyledButtonSubmit = styled.button`
+  background-color: var(--coral);
+  border-radius: 5px;
+  height: 2rem;
+`;

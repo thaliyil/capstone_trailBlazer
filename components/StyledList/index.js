@@ -23,7 +23,7 @@ export const StyledUl = styled.ul`
   list-style: none;
   padding: 0;
   padding-bottom: 20px;
-  background-color: var(--dark-green);
+  background-color: white;
 `;
 
 export const StyledListItem = styled.li`

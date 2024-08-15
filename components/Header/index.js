@@ -6,6 +6,7 @@ export default function Header() {
 
 const StyledHeader = styled.h1`
   background-color: var(--dijon);
+
   padding: 10px 0;
   margin: 0;
   border: 1px solid grey;

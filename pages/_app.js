@@ -3,7 +3,13 @@ import useLocalStorageState from "use-local-storage-state";
 import initialActivities from "@/assets/activities";
 import Layout from "@/components/Layout";
 import { uid } from "uid";
-import "../assets/fonts.css";
+import { Quicksand } from "@next/font/google";
+
+export const quicksand = Quicksand({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  variable: "--font-quicksand",
+});
 
 export default function App({ Component, pageProps }) {
   const [activities, setActivities] = useLocalStorageState("activities", {
@@ -32,7 +38,7 @@ export default function App({ Component, pageProps }) {
 
   return (
     <Layout>
-      <GlobalStyle />
+      <GlobalStyle className={quicksand} />
       <Component
         {...pageProps}
         activities={activities}

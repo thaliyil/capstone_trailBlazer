@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import "/assets/fonts.css";
 
 export default createGlobalStyle`
   *,
@@ -10,10 +9,10 @@ export default createGlobalStyle`
 
   body {
     margin: 0;
-    font-family: system-ui;
-    /* text-align: center; */
-    background-color: #097471;
-    /* font-family: Quicksand; */
+   text-align:center;
+    background-color: white;
+    font-family:'Gill Sans'
+    
   }
   
   :root {
@@ -22,6 +21,5 @@ export default createGlobalStyle`
 --dark-green: #097471;
 --light-green: #7EB1B0;
 
---font: Quicksand;
 }
 `;
