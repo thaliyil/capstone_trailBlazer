@@ -15,7 +15,6 @@ export default function DeleteModal({ onCancel, onConfirm, showModal }) {
     </ModalBackground>
   );
 }
-
 const ModalBackground = styled.div`
   width: 100vw;
   height: 100vh;
@@ -24,8 +23,8 @@ const ModalBackground = styled.div`
   backdrop-filter: blur(8px);
   background-color: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
+  z-index: 2;
 `;
-
 const ModalContainer = styled.div`
   border: 1px solid black;
   border-radius: 5px;
@@ -33,7 +32,7 @@ const ModalContainer = styled.div`
   top: 200px;
   left: 20px;
   right: 20px;
-  z-index: 2;
+  z-index: 3;
   background-color: white;
   padding: 20px;
   opacity: 0.9;

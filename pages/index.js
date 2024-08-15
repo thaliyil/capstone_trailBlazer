@@ -1,14 +1,36 @@
 import ActivitiesList from "@/components/ActivitiesList";
 import { StyledAddLink } from "@/components/StyledList";
+import ActivityFilter from "@/components/ActivityFilter";
+import { useState } from "react";
 
 export default function HomePage({ activities, onToggleBookmark }) {
+  const [filter, setFilter] = useState("");
+  function handleFilterActivities(id) {
+    if (id === filter) {
+      setFilter("");
+    } else {
+      setFilter(id);
+    }
+  }
+  const filteredActivities = activities.filter((activity) =>
+    filter ? activity.categoryIds.includes(filter) : activities
+  );
+
   return (
     <section>
       <StyledAddLink href="/createActivity">+ New</StyledAddLink>
-      <ActivitiesList
-        activities={activities}
-        onToggleBookmark={onToggleBookmark}
+      <ActivityFilter
+        onFilterActivities={handleFilterActivities}
+        filter={filter}
       />
+      {filteredActivities.length === 0 ? (
+        <p>There are currently no activities matching this filter!</p>
+      ) : (
+        <ActivitiesList
+          activities={filteredActivities}
+          onToggleBookmark={onToggleBookmark}
+        />
+      )}
     </section>
   );
 }
