@@ -33,13 +33,13 @@ const ModalContainer = styled.div`
   left: 20px;
   right: 20px;
   z-index: 3;
-  background-color: white;
+  background-color: var(--light-turqouise);
   padding: 20px;
   opacity: 0.9;
 `;
 
 const ModalButton = styled.button`
-  background-color: orange;
+  background-color: var(--coral);
   padding: 10px;
   margin: 10px;
   border-radius: 5px;

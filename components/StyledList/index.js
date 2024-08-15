@@ -15,24 +15,35 @@ export const StyledCategory = styled.li`
   padding: 5px;
   border-radius: 5px;
   margin: 10px 0px;
+  background-color: var(--coral);
 `;
 
 export const StyledUl = styled.ul`
   list-style: none;
   padding: 0;
   padding-bottom: 20px;
+  background-color: var(--dark-turqouise);
 `;
 
 export const StyledListItem = styled.li`
+  background-color: var(--light-turqouise);
   border: 1px solid black;
   margin: 20px;
 `;
 
 export const StyledAddLink = styled(Link)`
-  background-color: orange;
+  background-color: var(--coral);
   text-decoration: none;
   color: black;
   border: 1px solid black;
   padding: 5px;
   border-radius: 5px;
+`;
+
+export const StyledSection = styled.section`
+  padding-top: 5rem;
+`;
+
+export const StyledCard = styled.div`
+  position: relative;
 `;

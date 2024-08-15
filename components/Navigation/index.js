@@ -7,7 +7,7 @@ const StyledFooter = styled.footer`
   right: 0px;
   left: 0px;
   z-index: 1;
-  background-color: orange;
+  background-color: var(--dijon);
   display: flex;
   justify-content: space-around;
   border: 1px solid black;
@@ -16,6 +16,7 @@ const StyledFooter = styled.footer`
 
 const StyledLink = styled(Link)`
   text-decoration: none;
+  color: black;
 `;
 export default function Navigation() {
   return (
