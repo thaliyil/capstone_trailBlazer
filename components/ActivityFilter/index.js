@@ -22,7 +22,7 @@ const FilterButton = styled.button`
   height: 2.5rem;
   color: white;
   font-size: 1rem;
-  background-color: ${(props) => (props.$filter ? "orange" : "black")};
+  background-color: ${({ $filter }) => ($filter ? "orange" : "white")};
 `;
 const FilterContainer = styled.section`
   display: flex;
