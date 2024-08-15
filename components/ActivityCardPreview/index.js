@@ -3,6 +3,7 @@ import getFilteredCategories from "@/utils/filterCategories";
 import Link from "next/link";
 import BookmarkButton from "../BookmarkButton";
 import { StyledCategory, StyledCateogriesUl, StyledCard } from "../StyledList";
+import styled from "styled-components";
 
 export default function ActivityCardPreview({ activity, onToggleBookmark }) {
   const { title, categoryIds, imageUrl, isBookmarked } = activity;
@@ -21,6 +22,7 @@ export default function ActivityCardPreview({ activity, onToggleBookmark }) {
           width={400}
           height={360}
           alt={title}
+          style={imageStyle}
         />
       </Link>
       <h2>{title}</h2>
@@ -32,3 +34,7 @@ export default function ActivityCardPreview({ activity, onToggleBookmark }) {
     </StyledCard>
   );
 }
+
+const imageStyle = {
+  borderRadius: "10px",
+};

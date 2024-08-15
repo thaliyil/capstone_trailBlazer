@@ -4,6 +4,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
 import { StyledSection } from "@/components/StyledList";
+import Add from "../assets/svg/add.svg";
 
 export default function HomePage({ activities, onToggleBookmark }) {
   const [filter, setFilter] = useState("");
@@ -20,7 +21,9 @@ export default function HomePage({ activities, onToggleBookmark }) {
 
   return (
     <StyledSection>
-      <StyledCreateLink href="/createActivity"> + Add </StyledCreateLink>
+      <Link href="/createActivity">
+        <Add />{" "}
+      </Link>
       <ActivityFilter
         onFilterActivities={handleFilterActivities}
         filter={filter}
@@ -36,13 +39,3 @@ export default function HomePage({ activities, onToggleBookmark }) {
     </StyledSection>
   );
 }
-
-const StyledCreateLink = styled(Link)`
-  background-color: var(--coral);
-
-  border: 1px solid black;
-  padding: 5px;
-  border-radius: 5px;
-  color: black;
-  text-decoration: none;
-`;

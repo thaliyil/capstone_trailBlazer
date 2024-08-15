@@ -8,7 +8,7 @@ export default function ActivityFilter({ onFilterActivities, filter }) {
           key={category.id}
           onClick={() => onFilterActivities(category.id)}
           style={{
-            backgroundColor: filter === category.id ? "orange" : "black",
+            backgroundColor: filter === category.id ? "var(--coral)" : "black",
           }}
         >
           {category.name}

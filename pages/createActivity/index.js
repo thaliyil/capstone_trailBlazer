@@ -1,10 +1,14 @@
 import ActivityForm from "@/components/ActivityForm";
-import { StyledAddLink, StyledSection } from "@/components/StyledList";
+import { StyledSection } from "@/components/StyledList";
+import Link from "next/link";
+import Back from "../../assets/svg/back.svg";
 
 export default function CreateActivity({ onAddActivity }) {
   return (
     <StyledSection>
-      <StyledAddLink href={"/"}>Go back</StyledAddLink>
+      <Link href={"/"}>
+        <Back />
+      </Link>
       <ActivityForm onSubmit={onAddActivity} />
     </StyledSection>
   );

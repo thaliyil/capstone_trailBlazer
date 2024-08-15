@@ -3,6 +3,7 @@ import { StyledCategory, StyledCateogriesUl, StyledCard } from "../StyledList";
 import getFilteredCategories from "@/utils/filterCategories";
 import BookmarkButton from "../BookmarkButton";
 import styled from "styled-components";
+import Delete from "../../assets/svg/delete.svg";
 
 export default function ActivityDetails({
   activity,
@@ -37,16 +38,18 @@ export default function ActivityDetails({
         ))}
       </StyledCateogriesUl>
       <DeleteButton type="button" onClick={onDelete}>
-        Delete
+        <StyledDelete />
       </DeleteButton>
     </StyledCard>
   );
 }
 
 const DeleteButton = styled.button`
-  padding: 10px;
+  margin-bottom: 50px;
   background-color: var(--coral);
   border-radius: 5px;
-  margin-bottom: 50px;
-  width: 10rem;
+`;
+
+const StyledDelete = styled(Delete)`
+  color: black;
 `;
