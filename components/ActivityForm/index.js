@@ -5,7 +5,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { StyledButton } from "../ActivityDetails";
 import countries from "@/assets/countries";
-import React from "react";
 import Select from "react-select";
 
 export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
