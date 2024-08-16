@@ -12,6 +12,7 @@ const nextConfig = {
         port: "",
       },
     ],
+    domains: ["res.cloudinary.com"],
   },
   webpack(config) {
     config.module.rules.push({

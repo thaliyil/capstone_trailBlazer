@@ -21,12 +21,18 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
     );
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const activityData = Object.fromEntries(formData);
     const newActivity = { ...activityData, categoryIds: selectedCategoryIds };
-
+    const response = await fetch("api/upload", {
+      method: "POST",
+      body: newActivity,
+    });
+    const { url } = await response.json();
+    console.log(url);
+    newActivity.imageUrl = url;
     if (newActivity.categoryIds.length === 0) {
       alert("Please select at least one category.. ");
       return false;
@@ -57,12 +63,12 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
         <StyledInputs
           id="imageUrl"
           name="imageUrl"
-          type="text"
-          defaultValue={
+          type="file"
+          /* defaultValue={
             isUpdateMode
               ? activity?.imageUrl
               : "https://images.unsplash.com/photo-1648167538185-d957d3caf393?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          }
+          } */
         />
         <label htmlFor="description">Description: </label>
         <StyledTextarea
