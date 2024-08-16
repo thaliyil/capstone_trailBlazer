@@ -1,5 +1,5 @@
 import ActivityCardPreview from "../ActivityCardPreview";
-import { StyledUl, StyledListItem } from "../StyledList";
+import { StyledUl, StyledListItem } from "../Styles";
 
 export default function ActivitiesList({ activities, onToggleBookmark }) {
   return (

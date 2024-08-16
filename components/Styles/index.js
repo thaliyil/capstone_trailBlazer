@@ -23,7 +23,7 @@ export const StyledUl = styled.ul`
   list-style: none;
   padding: 0;
   padding-bottom: 20px;
-  background-color: white;
+  background-color: var(--dark-green);
 `;
 
 export const StyledListItem = styled.li`
@@ -52,4 +52,8 @@ export const StyledSection = styled.section`
 
 export const StyledCard = styled.div`
   position: relative;
+`;
+
+export const StyledMessage = styled.h3`
+  color: white;
 `;

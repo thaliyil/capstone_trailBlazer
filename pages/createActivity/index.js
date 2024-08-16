@@ -1,5 +1,5 @@
 import ActivityForm from "@/components/ActivityForm";
-import { StyledSection } from "@/components/StyledList";
+import { StyledSection } from "@/components/Styles";
 import Link from "next/link";
 import Back from "../../assets/svg/back.svg";
 

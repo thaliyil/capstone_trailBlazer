@@ -2,7 +2,8 @@ import {
   StyledUl,
   StyledListItem,
   StyledSection,
-} from "@/components/StyledList";
+  StyledMessage,
+} from "@/components/Styles";
 import ActivityCardPreview from "@/components/ActivityCardPreview";
 
 export default function BookmarkList({ activities, onToggleBookmark }) {
@@ -13,7 +14,7 @@ export default function BookmarkList({ activities, onToggleBookmark }) {
   return (
     <StyledSection>
       {filterBookmarks.length === 0 ? (
-        <p>You have no bookmarks yet</p>
+        <StyledMessage>You have no bookmarks yet!</StyledMessage>
       ) : (
         <StyledUl>
           {filterBookmarks.map((filterBookmark) => (

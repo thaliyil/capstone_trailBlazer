@@ -2,8 +2,7 @@ import Image from "next/image";
 import getFilteredCategories from "@/utils/filterCategories";
 import Link from "next/link";
 import BookmarkButton from "../BookmarkButton";
-import { StyledCategory, StyledCateogriesUl, StyledCard } from "../StyledList";
-import styled from "styled-components";
+import { StyledCategory, StyledCateogriesUl, StyledCard } from "../Styles";
 
 export default function ActivityCardPreview({ activity, onToggleBookmark }) {
   const { title, categoryIds, imageUrl, isBookmarked } = activity;

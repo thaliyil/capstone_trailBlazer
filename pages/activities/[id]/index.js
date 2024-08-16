@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import ActivityDetails from "@/components/ActivityDetails";
-import { StyledSection } from "@/components/StyledList";
+import { StyledSection } from "@/components/Styles";
 import DeleteModal from "@/components/DeleteModal";
 import { useState } from "react";
 import Back from "../../../assets/svg/back.svg";
@@ -36,9 +36,9 @@ export default function ActivityDetailsPage({
 
   return (
     <StyledSection>
-      <StyledBackLink href={"/"}>
-        <Back width={44} />
-      </StyledBackLink>
+      <Link href={"/"}>
+        <Back />
+      </Link>
       <ActivityDetails
         activity={selectedActivity}
         isBookmarked={selectedActivity.isBookmarked}
@@ -53,5 +53,3 @@ export default function ActivityDetailsPage({
     </StyledSection>
   );
 }
-
-const StyledBackLink = styled(Link)``;

@@ -1,9 +1,8 @@
 import ActivitiesList from "@/components/ActivitiesList";
 import ActivityFilter from "@/components/ActivityFilter";
 import { useState } from "react";
-import styled from "styled-components";
 import Link from "next/link";
-import { StyledSection } from "@/components/StyledList";
+import { StyledSection, StyledMessage } from "@/components/Styles";
 import Add from "../assets/svg/add.svg";
 
 export default function HomePage({ activities, onToggleBookmark }) {
@@ -29,7 +28,9 @@ export default function HomePage({ activities, onToggleBookmark }) {
         filter={filter}
       />
       {filteredActivities.length === 0 ? (
-        <p>There are currently no activities matching this filter!</p>
+        <StyledMessage>
+          There are currently no activities matching this filter!
+        </StyledMessage>
       ) : (
         <ActivitiesList
           activities={filteredActivities}
