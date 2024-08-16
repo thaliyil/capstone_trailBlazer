@@ -5,6 +5,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { StyledButton } from "../ActivityDetails";
 import countries from "@/assets/countries";
+import React from "react";
+import Select from "react-select";
 
 export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
   const [selectedCategoryIds, setSelectedCategoryIds] = useState(
@@ -12,6 +14,13 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
   );
 
   const router = useRouter();
+
+  const countriesOptions = countries.map((country) => {
+    return {
+      value: country.name,
+      label: country.name,
+    };
+  });
 
   function handleChange(event) {
     const categoryId = event.target.value;
@@ -98,18 +107,15 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
           maxLength="30"
           defaultValue={activity?.area}
         ></StyledInputs>
-
-        <label htmlFor="country">Country: </label>
-        <StyledSelect
-          id="country"
-          name="country"
-
-          // defaultValue={activity?.country}
-        >
-          {countries.map((country) => (
-            <StyledOption value={country.code}>{country.name}</StyledOption>
-          ))}
-        </StyledSelect>
+        <StyledSelectSection>
+          <label htmlFor="country">Country: </label>
+          <StyledSelect
+            id="country"
+            name="country"
+            options={countriesOptions}
+            defaultValue={activity?.country}
+          />
+        </StyledSelectSection>
         {isUpdateMode ? (
           <>
             <Link href={`/activities/${activity.id}`}>Cancel</Link>
@@ -121,20 +127,6 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
       </StyledFormFieldset>
     </form>
   );
-}
-
-{
-  /* <label for="pet-select">Choose a pet:</label>
-
-<select name="pets" id="pet-select">
-  <option value="">--Please choose an option--</option>
-  <option value="dog">Dog</option>
-  <option value="cat">Cat</option>
-  <option value="hamster">Hamster</option>
-  <option value="parrot">Parrot</option>
-  <option value="spider">Spider</option>
-  <option value="goldfish">Goldfish</option>
-</select> */
 }
 
 const StyledFormFieldset = styled.fieldset`
@@ -162,11 +154,14 @@ const StyledTextarea = styled.textarea`
   margin: 10px;
 `;
 
-const StyledSelect = styled.select`
-  padding: 10px;
+const StyledSelect = styled(Select)`
+  text-align: left;
+  border: 1px solid black;
+  border-radius: 3px;
   margin: 10px;
 `;
 
-const StyledOption = styled.option`
+const StyledSelectSection = styled.div`
+  position: relative;
   max-height: 4rem;
 `;
