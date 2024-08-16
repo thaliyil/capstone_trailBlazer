@@ -98,14 +98,14 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
           defaultValue={activity?.area}
         ></StyledInputs>
         <label htmlFor="country">Country: </label>
-        <StyledInputs
+        <StyledSelect
           id="country"
           name="country"
           type="text"
           placeholder="Please choose a country.."
           maxLength="30"
           defaultValue={activity?.country}
-        ></StyledInputs>
+        ></StyledSelect>
         {isUpdateMode ? (
           <>
             <Link href={`/activities/${activity.id}`}>Cancel</Link>
@@ -143,3 +143,5 @@ const StyledTextarea = styled.textarea`
   padding: 10px;
   margin: 10px;
 `;
+
+const StyledSelect = styled.select``;
