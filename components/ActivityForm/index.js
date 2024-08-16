@@ -107,15 +107,15 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
           maxLength="30"
           defaultValue={activity?.area}
         ></StyledInputs>
-        <StyledSelectSection>
-          <label htmlFor="country">Country: </label>
-          <StyledSelect
-            id="country"
-            name="country"
-            options={countriesOptions}
-            defaultValue={activity?.country}
-          />
-        </StyledSelectSection>
+        <label htmlFor="country">Country: </label>
+        <StyledSelect
+          id="country"
+          name="country"
+          options={countriesOptions}
+          placeholder="Please choose country.."
+          defaultValue={activity?.country}
+        />
+
         {isUpdateMode ? (
           <>
             <Link href={`/activities/${activity.id}`}>Cancel</Link>
@@ -159,9 +159,5 @@ const StyledSelect = styled(Select)`
   border: 1px solid black;
   border-radius: 3px;
   margin: 10px;
-`;
-
-const StyledSelectSection = styled.div`
-  position: relative;
-  max-height: 4rem;
+  font-size: 0.8rem;
 `;
