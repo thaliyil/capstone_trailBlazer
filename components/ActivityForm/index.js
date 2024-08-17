@@ -4,6 +4,7 @@ import categories from "@/assets/categories";
 import { useState } from "react";
 import Link from "next/link";
 import { StyledButton } from "../ActivityDetails";
+import Image from "next/image";
 
 export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
   const [selectedCategoryIds, setSelectedCategoryIds] = useState(
@@ -23,15 +24,22 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
 
   async function handleSubmit(event) {
     event.preventDefault();
+
     const formData = new FormData(event.target);
     const activityData = Object.fromEntries(formData);
-    const newActivity = { ...activityData, categoryIds: selectedCategoryIds };
+
+    formData.append("categoryIds", JSON.stringify(selectedCategoryIds));
     const response = await fetch("api/upload", {
       method: "POST",
-      body: newActivity,
+      body: formData,
     });
     const { url } = await response.json();
-    console.log(url);
+    const newActivity = {
+      ...activityData,
+      imageUrl: url,
+      categoryIds: selectedCategoryIds,
+    };
+    console.log("hi", url);
     newActivity.imageUrl = url;
     if (newActivity.categoryIds.length === 0) {
       alert("Please select at least one category.. ");
@@ -64,6 +72,7 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
           id="imageUrl"
           name="imageUrl"
           type="file"
+          accept="image/*"
           /* defaultValue={
             isUpdateMode
               ? activity?.imageUrl
