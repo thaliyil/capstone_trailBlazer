@@ -1,6 +1,6 @@
 import {
   StyledUl,
-  StyledListItem,
+  StyledLi,
   StyledSection,
   StyledMessage,
 } from "@/components/Styles";
@@ -18,13 +18,13 @@ export default function BookmarkList({ activities, onToggleBookmark }) {
       ) : (
         <StyledUl>
           {filterBookmarks.map((filterBookmark) => (
-            <StyledListItem key={filterBookmark.id}>
+            <StyledLi key={filterBookmark.id}>
               <ActivityCardPreview
                 activity={filterBookmark}
                 isBookmarked={filterBookmark.isBookmarked}
                 onToggleBookmark={() => onToggleBookmark(filterBookmark.id)}
               />
-            </StyledListItem>
+            </StyledLi>
           ))}
         </StyledUl>
       )}

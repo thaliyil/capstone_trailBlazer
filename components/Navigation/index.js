@@ -1,6 +1,15 @@
 import Link from "next/link";
 import styled from "styled-components";
 
+export default function Navigation() {
+  return (
+    <StyledFooter>
+      <StyledLink href="/">Home</StyledLink>
+      <StyledLink href="/bookmark">Bookmarks</StyledLink>
+    </StyledFooter>
+  );
+}
+
 const StyledFooter = styled.footer`
   position: fixed;
   bottom: 0px;
@@ -28,11 +37,3 @@ const StyledLink = styled(Link)`
     padding: 3px;
   }
 `;
-export default function Navigation() {
-  return (
-    <StyledFooter>
-      <StyledLink href="/">Home</StyledLink>
-      <StyledLink href="/bookmark">Bookmarks</StyledLink>
-    </StyledFooter>
-  );
-}

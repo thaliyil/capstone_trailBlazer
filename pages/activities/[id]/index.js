@@ -36,7 +36,7 @@ export default function ActivityDetailsPage({
 
   return (
     <StyledSection>
-      <Link href={"/"}>
+      <Link aria-label="Go back to all activities" href={"/"}>
         <Back />
       </Link>
       <ActivityDetails

@@ -20,7 +20,10 @@ export default function HomePage({ activities, onToggleBookmark }) {
 
   return (
     <StyledSection>
-      <Link href="/createActivity">
+      <Link
+        aria-label="Click here to add a new activity"
+        href="/createActivity"
+      >
         <Add />{" "}
       </Link>
       <ActivityFilter

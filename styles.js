@@ -1,4 +1,9 @@
 import { createGlobalStyle } from "styled-components";
+import { Quicksand } from "next/font/google";
+
+const quicksand = Quicksand({
+  subsets: ["latin"],
+});
 
 export default createGlobalStyle`
   *,
@@ -11,7 +16,7 @@ export default createGlobalStyle`
     margin: 0;
     text-align: center;
     background-color: var(--dark-green);
-    font-family:'Gill Sans';
+    font-family: var(--font-family);
   
   }
 
@@ -23,6 +28,10 @@ export default createGlobalStyle`
 
 --box-shadow-layout: rgba(0, 0, 0, 0.4) 0px 2px 4px,
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+--box-shadow-cards:  rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,
+    rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
+    rgba(0, 0, 0, 0.09) 0px 32px 16px;
 
+--font-family: ${quicksand.style.fontFamily};    
 }
 `;

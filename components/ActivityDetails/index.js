@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { StyledCategory, StyledCateogriesUl } from "../Styles";
+import { StyledCategoryLi, StyledCateogriesUl } from "../Styles";
 import getFilteredCategories from "@/utils/filterCategories";
 import BookmarkButton from "../BookmarkButton";
 import styled from "styled-components";
@@ -34,10 +34,14 @@ export default function ActivityDetails({
       <p>{description}</p>
       <StyledCateogriesUl>
         {filteredCategories.map((category) => (
-          <StyledCategory key={category.id}>{category.name}</StyledCategory>
+          <StyledCategoryLi key={category.id}>{category.name}</StyledCategoryLi>
         ))}
       </StyledCateogriesUl>
-      <DeleteButton type="button" onClick={onDelete}>
+      <DeleteButton
+        aria-label="Click here to delete the activity"
+        type="button"
+        onClick={onDelete}
+      >
         <Delete />
       </DeleteButton>
     </StyledCardDetails>

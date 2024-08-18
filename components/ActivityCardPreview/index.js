@@ -1,8 +1,9 @@
 import Image from "next/image";
 import getFilteredCategories from "@/utils/filterCategories";
 import Link from "next/link";
+import styled from "styled-components";
 import BookmarkButton from "../BookmarkButton";
-import { StyledCategory, StyledCateogriesUl, StyledCard } from "../Styles";
+import { StyledCategoryLi, StyledCateogriesUl, StyledCard } from "../Styles";
 
 export default function ActivityCardPreview({ activity, onToggleBookmark }) {
   const { title, categoryIds, imageUrl, isBookmarked } = activity;
@@ -14,26 +15,28 @@ export default function ActivityCardPreview({ activity, onToggleBookmark }) {
         onToggleBookmark={onToggleBookmark}
         isBookmarked={isBookmarked}
       />
-      <Link href={`activities/${activity.id}`}>
-        <Image
+      <Link
+        aria-label="Click here to go to the activity details"
+        href={`activities/${activity.id}`}
+      >
+        <StyledImage
           src={imageUrl}
           layout="responsive"
-          width={400}
-          height={360}
+          width={500}
+          height={400}
           alt={title}
-          style={imageStyle}
         />
       </Link>
       <h2>{title}</h2>
       <StyledCateogriesUl>
         {filterCategories.map((category) => (
-          <StyledCategory key={category.id}>{category.name}</StyledCategory>
+          <StyledCategoryLi key={category.id}>{category.name}</StyledCategoryLi>
         ))}
       </StyledCateogriesUl>
     </StyledCard>
   );
 }
 
-const imageStyle = {
-  borderRadius: "10px",
-};
+const StyledImage = styled(Image)`
+  border-radius: 10px;
+`;
