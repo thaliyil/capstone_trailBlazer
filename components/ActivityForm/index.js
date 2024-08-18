@@ -111,10 +111,10 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
           id="country"
           name="country"
           options={countriesOptions}
-          placeholder="Please choose country.."
-          defaultValue={activity?.country}
+          placeholder={
+            isUpdateMode ? activity?.country : "Please choose country.."
+          }
         />
-
         {isUpdateMode ? (
           <>
             <Link href={`/activities/${activity.id}`}>Cancel</Link>
@@ -135,6 +135,7 @@ const StyledFormFieldset = styled.fieldset`
   margin: 15px;
   margin: 20px 30px 50px;
 `;
+
 const StyledFieldset = styled.fieldset`
   display: flex;
   justify-content: space-around;
