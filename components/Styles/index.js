@@ -28,11 +28,11 @@ export const StyledUl = styled.ul`
   flex-direction: column;
   justify-content: center;
 
-  /* @media (min-width: 800px) {
+  @media (min-width: 768px) {
     display: grid;
-    grid-column: 1fr 1fr 1fr (250px);
+    grid-template-columns: auto auto;
     gap: 1.5rem;
-  } */
+  }
 `;
 
 export const StyledLi = styled.li`
@@ -41,12 +41,6 @@ export const StyledLi = styled.li`
   margin: 20px;
   border-radius: 10px;
   box-shadow: var(--box-shadow-cards);
-
-  /* @media (min-width: 800px) {
-    display: grid;
-    grid-column: 1fr 1fr 1fr (250px);
-    gap: 1.5rem;
-  } */
 `;
 
 export const StyledAddLink = styled(Link)`

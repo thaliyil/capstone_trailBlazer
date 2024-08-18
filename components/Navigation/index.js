@@ -22,6 +22,7 @@ const StyledFooter = styled.footer`
   border: 1px solid grey;
   padding: 5px;
   box-shadow: var(--box-shadow-layout);
+  font-family: var(--font-family);
 `;
 
 const StyledLink = styled(Link)`

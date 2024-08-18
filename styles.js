@@ -17,7 +17,7 @@ export default createGlobalStyle`
     text-align: center;
     background-color: var(--dark-green);
     font-family: var(--font-family);
-  
+    
   }
 
   :root {

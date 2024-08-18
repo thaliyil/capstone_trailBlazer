@@ -7,7 +7,7 @@ export default function BookmarkButton({ onToggleBookmark, isBookmarked }) {
       <StyledButton type="button">
         <StyledHeart
           aria-label="Click to add the activity to bookmarks"
-          width={44}
+          width={55}
           onClick={onToggleBookmark}
           $isBookmarked={isBookmarked}
         />
