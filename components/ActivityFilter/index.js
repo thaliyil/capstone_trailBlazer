@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import categories from "@/assets/categories";
+
 export default function ActivityFilter({ onFilterActivities, filter }) {
   return (
     <FilterContainer>
@@ -26,8 +27,7 @@ const FilterButton = styled.button`
   height: 2.5rem;
   color: black;
   font-size: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
-    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  box-shadow: var(--box-shadow-layout);
 `;
 
 const FilterContainer = styled.section`

@@ -24,6 +24,15 @@ export const StyledUl = styled.ul`
   padding: 0;
   padding-bottom: 20px;
   background-color: var(--dark-green);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (min-width: 800px) {
+    display: grid;
+    grid-column: 1fr 1fr 1fr (250px);
+    gap: 1.5rem;
+  }
 `;
 
 export const StyledListItem = styled.li`
@@ -34,6 +43,12 @@ export const StyledListItem = styled.li`
   box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px,
     rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
     rgba(0, 0, 0, 0.09) 0px 32px 16px;
+
+  @media (min-width: 800px) {
+    display: grid;
+    grid-column: 1fr 1fr 1fr (250px);
+    gap: 1.5rem;
+  }
 `;
 
 export const StyledAddLink = styled(Link)`
