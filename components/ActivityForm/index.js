@@ -37,11 +37,7 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
   return (
     <form onSubmit={handleSubmit}>
       <StyledFormFieldset>
-        {isUpdateMode ? (
-          <legend>Update Activity</legend>
-        ) : (
-          <legend>Add new Activity</legend>
-        )}
+        {isUpdateMode ? <h3>Update Activity</h3> : <h3>Add new Activity</h3>}
         <label htmlFor="title">Title: </label>
         <StyledInputs
           id="title"
