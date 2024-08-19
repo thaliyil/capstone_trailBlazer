@@ -124,13 +124,17 @@ const StyledFormFieldset = styled.fieldset`
   flex-direction: column;
   gap: 15px;
   font-weight: 700;
-  margin: 20px 30px 70px;
+  margin: var(--media-queries-form-s);
   background-color: var(--light-green);
   box-shadow: var(--box-shadow-layout);
   border-radius: 10px;
 
   @media (min-width: 768px) {
-    margin: 20px 3rem 70px;
+    margin: var(--media-queries-form-m);
+  }
+
+  @media (min-width: 992px) {
+    margin: var(--media-queries-form-l);
   }
 `;
 
