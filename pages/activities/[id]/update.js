@@ -16,11 +16,13 @@ export default function UpdatePage({ activities, setActivities }) {
         activity.id === selectedActivity.id
           ? {
               id: selectedActivity.id,
+              imageUrl: selectedActivity.imagePreview,
               ...updatedActivity,
             }
           : activity
       )
     );
+    console.log("updated activity is", updatedActivity);
     toast.success("Activity is updated successfully!", { delay: 9000 });
   }
 

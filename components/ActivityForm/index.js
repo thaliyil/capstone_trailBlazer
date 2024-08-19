@@ -4,12 +4,15 @@ import categories from "@/assets/categories";
 import { useState } from "react";
 import Link from "next/link";
 import { StyledButton } from "../ActivityDetails";
+import Image from "next/image";
+import UploadImage from "../../assets/upload.svg";
 
 export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
   const [selectedCategoryIds, setSelectedCategoryIds] = useState(
     activity?.categoryIds || []
   );
-
+  const [imagePreview, setImagePreview] = useState(activity?.imageUrl || "");
+  // const [imagePreview, setImagePreview] = useState(null);
   const router = useRouter();
 
   function handleChange(event) {
@@ -20,21 +23,27 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
         : [...selectedCategoryIds, categoryId]
     );
   }
-
+  function handleImageChange(event) {
+    const file = event.target.files[0];
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setImagePreview(imageUrl);
+    }
+  }
+  console.log("image", imagePreview);
   async function handleSubmit(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
     const activityData = Object.fromEntries(formData);
-    //formData.append("existingImageUrl", activity?.imageUrl || "");
+
     formData.append("categoryIds", JSON.stringify(selectedCategoryIds));
     if (activity?.imageUrl) {
-      // formData.append("currentImageUrl",imageUrl);
-      // formData.append("imageUrl", activity.defaultValue);
+      formData.append("currentImageUrl", imageUrl);
     }
     console.log("existing url is", imageUrl);
     try {
-      const response = await fetch("api/upload", {
+      const response = await fetch("/api/upload", {
         method: "POST",
         body: formData,
       });
@@ -47,17 +56,18 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
       const parsedResponse = JSON.parse(responseText);
       const { url } = parsedResponse;
       //const { url } = await response.json();
+
       const newActivity = {
         ...activityData,
-        imageUrl: url,
+        imageUrl: imagePreview,
         categoryIds: selectedCategoryIds,
       };
 
-      newActivity.imageUrl = url;
       if (newActivity.categoryIds.length === 0) {
         alert("Please select at least one category.. ");
         return false;
       }
+      newActivity.imageUrl = url;
       onSubmit(newActivity);
       isUpdateMode ? router.back() : router.push("/");
     } catch (error) {
@@ -83,12 +93,17 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
           required
           defaultValue={activity?.title}
         ></StyledInputs>
-        <label htmlFor="imageUrl">ImageUrl: </label>
-        <StyledInputs
+        <label htmlFor="imageUrl">
+          {" "}
+          <UploadImage width={20} height={20} />
+          <span>Upload image</span>{" "}
+        </label>
+        <StyledImageUploadInput
           id="imageUrl"
           name="imageUrl"
           type="file"
           accept="image/*"
+          onChange={handleImageChange}
           //defaultValue={activity?.imageUrl}
           /* defaultValue={
             isUpdateMode
@@ -96,6 +111,17 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
               : "https://images.unsplash.com/photo-1648167538185-d957d3caf393?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
           } */
         />
+
+        {imagePreview && (
+          <ImagePreview>
+            <Image
+              src={imagePreview}
+              alt="preview of selected Image"
+              width={200}
+              height={200}
+            />
+          </ImagePreview>
+        )}
         <label htmlFor="description">Description: </label>
         <StyledTextarea
           id="description"
@@ -174,4 +200,13 @@ const StyledInputs = styled.input`
 const StyledTextarea = styled.textarea`
   padding: 10px;
   margin: 10px;
+`;
+const ImagePreview = styled.div`
+  margin: 10px;
+  img {
+    border-radius: 8px;
+  }
+`;
+const StyledImageUploadInput = styled(StyledInputs)`
+  display: none;
 `;
