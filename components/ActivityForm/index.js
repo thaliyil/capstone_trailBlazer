@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import categories from "@/assets/categories";
 import { useState } from "react";
 import Link from "next/link";
-import { StyledButton } from "../ActivityDetails";
 
 export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
   const [selectedCategoryIds, setSelectedCategoryIds] = useState(
@@ -109,10 +108,10 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
         {isUpdateMode ? (
           <>
             <Link href={`/activities/${activity.id}`}>Cancel</Link>
-            <StyledButton type="submit">Save</StyledButton>
+            <StyledButtonSubmit type="submit">Save</StyledButtonSubmit>
           </>
         ) : (
-          <StyledButton type="submit">Submit</StyledButton>
+          <StyledButtonSubmit type="submit">Submit</StyledButtonSubmit>
         )}
       </StyledFormFieldset>
     </form>

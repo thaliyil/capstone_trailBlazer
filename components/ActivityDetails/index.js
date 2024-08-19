@@ -4,6 +4,8 @@ import getFilteredCategories from "@/utils/filterCategories";
 import BookmarkButton from "../BookmarkButton";
 import styled from "styled-components";
 import Delete from "../../assets/svg/delete.svg";
+import Link from "next/link";
+import Edit from "../../assets/svg/edit.svg";
 
 export default function ActivityDetails({
   activity,
@@ -44,6 +46,9 @@ export default function ActivityDetails({
       >
         <Delete />
       </DeleteButton>
+      <StyledEditLink href={`/activities/${activity.id}/update`}>
+        <Edit />
+      </StyledEditLink>
     </StyledCardDetails>
   );
 }
@@ -59,4 +64,11 @@ const StyledCardDetails = styled.div`
   position: relative;
   color: white;
   padding-bottom: 10px;
+`;
+
+const StyledEditLink = styled(Link)`
+  margin-bottom: 50px;
+  background-color: var(--coral);
+  border-radius: 5px;
+  color: white;
 `;
