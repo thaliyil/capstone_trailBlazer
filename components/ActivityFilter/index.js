@@ -24,10 +24,8 @@ const FilterButton = styled.button`
   height: 2.5rem;
   color: black;
   font-size: 1rem;
-
   background-color: ${({ $filter }) =>
     $filter ? "var(--coral)" : "var(--light-green)"};
-
   box-shadow: var(--box-shadow-layout);
 `;
 

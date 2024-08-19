@@ -22,7 +22,7 @@ export default function ActivityDetails({
         isBookmarked={isBookmarked}
       />
 
-      <Image
+      <StyledImg
         src={imageUrl}
         layout="responsive"
         width={400}
@@ -55,9 +55,9 @@ export default function ActivityDetails({
 
 const DeleteButton = styled.button`
   margin-bottom: 50px;
+  margin-right: 5px;
   background-color: var(--coral);
   border-radius: 5px;
-  color: white;
 `;
 
 const StyledCardDetails = styled.div`
@@ -70,5 +70,12 @@ const StyledEditLink = styled(Link)`
   margin-bottom: 50px;
   background-color: var(--coral);
   border-radius: 5px;
-  color: white;
+  border: 1.5px solid black;
+  padding: 15px 5px 2px;
+  margin-left: 10px;
+`;
+
+const StyledImg = styled(Image)`
+  border-radius: 20px;
+  margin-top: 15px;
 `;

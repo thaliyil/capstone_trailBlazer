@@ -1,6 +1,9 @@
 import ActivityForm from "@/components/ActivityForm";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
+import { StyledSection } from "@/components/Styles";
+import Link from "next/link";
+import Back from "../../../assets/svg/back.svg";
 
 export default function UpdatePage({ activities, setActivities }) {
   const router = useRouter();
@@ -22,10 +25,15 @@ export default function UpdatePage({ activities, setActivities }) {
   }
 
   return (
-    <ActivityForm
-      activity={selectedActivity}
-      isUpdateMode
-      onSubmit={handleUpdateActivity}
-    />
+    <StyledSection>
+      <Link aria-label="Go back to all activities" href={"/"}>
+        <Back />
+      </Link>
+      <ActivityForm
+        activity={selectedActivity}
+        isUpdateMode
+        onSubmit={handleUpdateActivity}
+      />
+    </StyledSection>
   );
 }
