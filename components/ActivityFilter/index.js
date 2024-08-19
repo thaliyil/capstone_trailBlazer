@@ -30,7 +30,6 @@ const FilterButton = styled.button`
   box-shadow: var(--box-shadow-layout);
 
   &:hover {
-    width: 12rem;
     transition-duration: 0.5s;
     background-color: var(--coral);
   }

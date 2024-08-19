@@ -41,6 +41,15 @@ export const StyledLi = styled.li`
   margin: 20px;
   border-radius: 10px;
   box-shadow: var(--box-shadow-cards);
+  width: 600px;
+  height: 550px;
+
+  &:hover {
+    width: 620px;
+    height: 570px;
+    transition-duration: 0.5s;
+    margin: 10px;
+  }
 `;
 
 export const StyledAddLink = styled(Link)`
