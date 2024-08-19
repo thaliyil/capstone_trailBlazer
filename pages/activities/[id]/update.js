@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { StyledSection } from "@/components/Styles";
 import Link from "next/link";
+import styled from "styled-components";
 import Back from "../../../assets/svg/back.svg";
 
 export default function UpdatePage({ activities, setActivities }) {
@@ -27,7 +28,7 @@ export default function UpdatePage({ activities, setActivities }) {
   return (
     <StyledSection>
       <Link aria-label="Go back to all activities" href={"/"}>
-        <Back />
+        <StyledBack />
       </Link>
       <ActivityForm
         activity={selectedActivity}
@@ -37,3 +38,16 @@ export default function UpdatePage({ activities, setActivities }) {
     </StyledSection>
   );
 }
+
+const StyledBack = styled(Back)`
+  width: 60px;
+  height: 60px;
+  margin-bottom: 5px;
+
+  &:hover {
+    width: 65px;
+    height: 65px;
+    margin-bottom: 0;
+    transition-duration: 0.5s;
+  }
+`;
