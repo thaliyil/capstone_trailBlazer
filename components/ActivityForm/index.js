@@ -4,7 +4,6 @@ import categories from "@/assets/categories";
 import { useState } from "react";
 import Link from "next/link";
 import { StyledButton } from "../ActivityDetails";
-import Image from "next/image";
 
 export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
   const [selectedCategoryIds, setSelectedCategoryIds] = useState(
@@ -27,26 +26,43 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
 
     const formData = new FormData(event.target);
     const activityData = Object.fromEntries(formData);
-
+    //formData.append("existingImageUrl", activity?.imageUrl || "");
     formData.append("categoryIds", JSON.stringify(selectedCategoryIds));
-    const response = await fetch("api/upload", {
-      method: "POST",
-      body: formData,
-    });
-    const { url } = await response.json();
-    const newActivity = {
-      ...activityData,
-      imageUrl: url,
-      categoryIds: selectedCategoryIds,
-    };
-    console.log("hi", url);
-    newActivity.imageUrl = url;
-    if (newActivity.categoryIds.length === 0) {
-      alert("Please select at least one category.. ");
-      return false;
+    if (activity?.imageUrl) {
+      // formData.append("currentImageUrl",imageUrl);
+      // formData.append("imageUrl", activity.defaultValue);
     }
-    onSubmit(newActivity);
-    isUpdateMode ? router.back() : router.push("/");
+    console.log("existing url is", imageUrl);
+    try {
+      const response = await fetch("api/upload", {
+        method: "POST",
+        body: formData,
+      });
+      const responseText = await response.text();
+      // console.log("Raw response:", responseText);
+      if (!response.ok) {
+        console.error("Failed to upload the image");
+        return;
+      }
+      const parsedResponse = JSON.parse(responseText);
+      const { url } = parsedResponse;
+      //const { url } = await response.json();
+      const newActivity = {
+        ...activityData,
+        imageUrl: url,
+        categoryIds: selectedCategoryIds,
+      };
+
+      newActivity.imageUrl = url;
+      if (newActivity.categoryIds.length === 0) {
+        alert("Please select at least one category.. ");
+        return false;
+      }
+      onSubmit(newActivity);
+      isUpdateMode ? router.back() : router.push("/");
+    } catch (error) {
+      console.error("Error submitting the form:", error);
+    }
   }
 
   return (
@@ -73,6 +89,7 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
           name="imageUrl"
           type="file"
           accept="image/*"
+          //defaultValue={activity?.imageUrl}
           /* defaultValue={
             isUpdateMode
               ? activity?.imageUrl

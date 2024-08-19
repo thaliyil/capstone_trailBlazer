@@ -11,40 +11,7 @@ export const config = {
     bodyParser: false,
   },
 };
-/* export default async function handler(request, response) {
-  // ensure this route can only be used for POST requests
-  if (request.method !== "POST") {
-    response.status(400).json({ message: "Method not allowed" });
-    return;
-  }
 
-  // we initialize formidable with an empty options object
-  const form = formidable({});
-
-  // we have access to a .parse() method that allows us to access the fields
-  // and more importantly the files
-  const [fields, files] = await form.parse(request);
-
-  //  refers to the first file in the array of files uploaded through the form input with the "name "attribute set to "image".
-  const file = files.image[0];
-  const { newFilename, filepath } = file;
-
-  // now we have the information about the image, we can send it to Cloudinary
-
-  const result = await cloudinary.v2.uploader.upload(filepath, {
-    public_id: newFilename,
-    folder: "nf",
-  });
-  /*
-    To upload a file, we call the upload method with the file's path. 
-    Additionally, we can provide an optional configuration object:
-    - 'public_id' allows us to specify a custom identifier for the uploaded file.
-    - 'folder' lets us designate a specific folder within Cloudinary where the file should be stored.
-    */
-
-/*  response.status(200).json(result);
-}*/
-///working fine
 export default async function handler(request, response) {
   if (request.method !== "POST") {
     return response.status(400).json({ message: "Method not allowed" });
@@ -60,10 +27,9 @@ export default async function handler(request, response) {
       return response.status(500).json({ error: error.message });
     }
 
-    let file;
     if (files.imageUrl && files.imageUrl[0].size > 0) {
       // When a new file is uploaded
-      file = files.imageUrl[0];
+      const file = files.imageUrl[0];
 
       const uploadResult = await cloudinary.v2.uploader.upload(file.filepath, {
         public_id: file.newFilename,
@@ -73,7 +39,7 @@ export default async function handler(request, response) {
       return response.status(200).json({ url: uploadResult.secure_url });
     } else if (fields.currentImageUrl) {
       // If no new image is uploaded, use the existing image
-      return response.status(200).json({ url: fields.currentImageUrl[0] });
+      return response.status(200).json({ url: fields.currentImageUrl });
     } else {
       // Use default image
       return response.status(200).json({

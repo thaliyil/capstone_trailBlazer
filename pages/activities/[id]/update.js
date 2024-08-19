@@ -14,7 +14,10 @@ export default function UpdatePage({ activities, setActivities }) {
     setActivities(
       activities.map((activity) =>
         activity.id === selectedActivity.id
-          ? { id: selectedActivity.id, ...updatedActivity }
+          ? {
+              id: selectedActivity.id,
+              ...updatedActivity,
+            }
           : activity
       )
     );
