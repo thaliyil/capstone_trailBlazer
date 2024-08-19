@@ -25,16 +25,15 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
-    const activityData = Object.fromEntries(formData);
+    const activityData = Object.fromEntries(formData.entries());
     //formData.append("existingImageUrl", activity?.imageUrl || "");
     formData.append("categoryIds", JSON.stringify(selectedCategoryIds));
-    if (activity?.imageUrl) {
-      // formData.append("currentImageUrl",imageUrl);
-      // formData.append("imageUrl", activity.defaultValue);
-    }
-    console.log("existing url is", imageUrl);
+
+    //   // formData.append("imageUrl", activity.defaultValue);
+    // }
+
     try {
-      const response = await fetch("api/upload", {
+      const response = await fetch("/api/upload", {
         method: "POST",
         body: formData,
       });
@@ -42,11 +41,12 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
       // console.log("Raw response:", responseText);
       if (!response.ok) {
         console.error("Failed to upload the image");
+        alert("Failed to upload the image!");
         return;
       }
       const parsedResponse = JSON.parse(responseText);
       const { url } = parsedResponse;
-      //const { url } = await response.json();
+      // const { url } = await response.json();
       const newActivity = {
         ...activityData,
         imageUrl: url,
@@ -62,6 +62,7 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
       isUpdateMode ? router.back() : router.push("/");
     } catch (error) {
       console.error("Error submitting the form:", error);
+      alert("Error submitting the form. Please try again.");
     }
   }
 
@@ -83,18 +84,18 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
           required
           defaultValue={activity?.title}
         ></StyledInputs>
-        <label htmlFor="imageUrl">ImageUrl: </label>
+        <label htmlFor="imageUrl">Image: </label>
         <StyledInputs
           id="imageUrl"
           name="imageUrl"
           type="file"
           accept="image/*"
           //defaultValue={activity?.imageUrl}
-          /* defaultValue={
-            isUpdateMode
-              ? activity?.imageUrl
-              : "https://images.unsplash.com/photo-1648167538185-d957d3caf393?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          } */
+          // defaultValue={
+          //   isUpdateMode
+          //     ? activity?.imageUrl
+          //     : "https://images.unsplash.com/photo-1648167538185-d957d3caf393?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          // }
         />
         <label htmlFor="description">Description: </label>
         <StyledTextarea
