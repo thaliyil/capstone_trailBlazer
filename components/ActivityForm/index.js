@@ -104,14 +104,16 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
             defaultValue={activity?.country}
           ></StyledInputs>
           {isUpdateMode ? (
-            <>
+            <StyledButtonDisplay>
               <StyledButtonSubmit type="submit">Save</StyledButtonSubmit>
               <StyledCancelLink href={`/activities/${activity.id}`}>
                 Cancel
               </StyledCancelLink>
-            </>
+            </StyledButtonDisplay>
           ) : (
-            <StyledButtonSubmit type="submit">Submit</StyledButtonSubmit>
+            <StyledButtonDisplay>
+              <StyledButtonSubmit type="submit">Submit</StyledButtonSubmit>
+            </StyledButtonDisplay>
           )}
         </StyledFormFieldset>
       </form>
@@ -135,6 +137,10 @@ const StyledFormFieldset = styled.fieldset`
 
   @media (min-width: 992px) {
     margin: var(--media-queries-form-l);
+  }
+
+  @media (min-width: 1200px) {
+    margin: var(--media-queries-form-xl);
   }
 `;
 
@@ -162,17 +168,40 @@ const StyledTextarea = styled.textarea`
 const StyledButtonSubmit = styled.button`
   background-color: var(--coral);
   border-radius: 5px;
-  height: 3rem;
+  height: 2.2rem;
   font-size: 1rem;
+  font-family: var(--font-family);
+  font-weight: 500;
+  width: 150px;
+  margin-bottom: 15px;
+
+  &:hover {
+    width: 180px;
+    transition-duration: 0.5s;
+  }
 `;
 
 const StyledCancelLink = styled(Link)`
   border: 2px solid black;
   border-radius: 5px;
-  padding: 0.7rem;
+  padding: 0.3rem;
   font-size: 1rem;
   background-color: var(--coral);
   text-decoration: none;
   color: black;
   font-weight: 500;
+  width: 150px;
+  margin-bottom: 15px;
+
+  &:hover {
+    width: 180px;
+    transition-duration: 0.5s;
+  }
+`;
+
+const StyledButtonDisplay = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 `;
