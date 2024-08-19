@@ -19,9 +19,6 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
     activity?.categoryIds || []
   );
 
-  console.log("defaultdata", activity);
-  const [selectedCountry, setSelectedCountry] = useState();
-
   const router = useRouter();
 
   function handleChange(event) {
@@ -44,7 +41,7 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
       return false;
     }
     onSubmit(newActivity);
-    console.log("this is the activity", newActivity);
+
     isUpdateMode ? router.back() : router.push("/");
   }
 
