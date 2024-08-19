@@ -7,19 +7,22 @@ import { StyledButton } from "../ActivityDetails";
 import countries from "@/assets/countries";
 import Select from "react-select";
 
+const countriesOptions = countries.map((country) => {
+  return {
+    value: country.name,
+    label: country.name,
+  };
+});
+
 export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
   const [selectedCategoryIds, setSelectedCategoryIds] = useState(
     activity?.categoryIds || []
   );
 
-  const router = useRouter();
+  console.log("defaultdata", activity);
+  const [selectedCountry, setSelectedCountry] = useState();
 
-  const countriesOptions = countries.map((country) => {
-    return {
-      value: country.name,
-      label: country.name,
-    };
-  });
+  const router = useRouter();
 
   function handleChange(event) {
     const categoryId = event.target.value;
@@ -41,6 +44,7 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
       return false;
     }
     onSubmit(newActivity);
+    console.log("this is the activity", newActivity);
     isUpdateMode ? router.back() : router.push("/");
   }
 
@@ -111,8 +115,11 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
           id="country"
           name="country"
           options={countriesOptions}
-          placeholder={
-            isUpdateMode ? activity?.country : "Please choose country.."
+          placeholder="Please choose country.."
+          value={
+            isUpdateMode
+              ? { value: activity.country, label: activity.country }
+              : activity
           }
         />
         {isUpdateMode ? (
