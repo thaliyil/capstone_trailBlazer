@@ -44,6 +44,7 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
     console.log("existing url is", imageUrl);
     try {
       const response = await fetch("/api/upload", {
+      const response = await fetch("/api/upload", {
         method: "POST",
         body: formData,
       });
@@ -51,6 +52,7 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
       // console.log("Raw response:", responseText);
       if (!response.ok) {
         console.error("Failed to upload the image");
+        alert("Failed to upload the image!");
         return;
       }
       const parsedResponse = JSON.parse(responseText);
@@ -72,6 +74,7 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
       isUpdateMode ? router.back() : router.push("/");
     } catch (error) {
       console.error("Error submitting the form:", error);
+      alert("Error submitting the form. Please try again.");
     }
   }
 
