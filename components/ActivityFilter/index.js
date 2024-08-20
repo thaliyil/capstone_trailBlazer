@@ -36,8 +36,8 @@ const FilterButton = styled.button`
 
   @media (min-width: 992px) {
     width: 12rem;
-    height: ${({ $filter }) => ($filter ? "3rem" : "2.5rem")};
-    margin-bottom: ${({ $filter }) => ($filter ? "0px" : "3px")};
+    padding: ${({ $filter }) => ($filter ? "7px" : "5px")};
+    margin-bottom: ${({ $filter }) => ($filter ? "0" : "1rem")};
 
     &:hover {
       transition-duration: 0.5s;
