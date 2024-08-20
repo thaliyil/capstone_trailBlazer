@@ -64,6 +64,19 @@ const StyledCardDetails = styled.div`
   position: relative;
   color: white;
   padding-bottom: 10px;
+  margin: 0 40px;
+
+  @media (min-width: 768px) {
+    margin: var(--media-queries-form-m);
+  }
+
+  @media (min-width: 992px) {
+    margin: var(--media-queries-form-l);
+  }
+
+  @media (min-width: 1200px) {
+    margin: var(--media-queries-form-xl);
+  }
 `;
 
 const StyledEditLink = styled(Link)`

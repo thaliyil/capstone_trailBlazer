@@ -41,12 +41,12 @@ export const StyledLi = styled.li`
   margin: 20px;
   border-radius: 10px;
   box-shadow: var(--box-shadow-cards);
-  width: 600px;
-  height: 550px;
+  width: 330px;
+  height: 380px;
 
   &:hover {
-    width: 620px;
-    height: 570px;
+    width: 350px;
+    height: 400px;
     transition-duration: 0.5s;
     margin: 10px;
   }
