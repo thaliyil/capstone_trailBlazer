@@ -33,6 +33,16 @@ const FilterButton = styled.button`
     transition-duration: 0.5s;
     background-color: var(--coral);
   }
+
+  @media (min-width: 992px) {
+    width: 12rem;
+    height: ${({ $filter }) => ($filter ? "3rem" : "2.5rem")};
+
+    &:hover {
+      transition-duration: 0.5s;
+      background-color: var(--coral);
+    }
+  }
 `;
 
 const FilterContainer = styled.section`
@@ -43,4 +53,22 @@ const FilterContainer = styled.section`
   margin: 20px 20px 0px;
   overflow: auto;
   scrollbar-width: none;
+
+  @media (min-width: 992px) {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    gap: 1rem;
+  }
 `;
+// @media (min-width: 768px) {
+//     margin: var(--media-queries-form-m);
+//   }
+
+//   @media (min-width: 992px) {
+//     margin: var(--media-queries-form-l);
+//   }
+
+//   @media (min-width: 1200px) {
+//     margin: var(--media-queries-form-xl);
+//   }
