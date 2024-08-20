@@ -19,6 +19,11 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
     activity?.categoryIds || []
   );
 
+  const [country, setCountry] = useState(
+    countriesOptions.find((option) => option.value === activity?.country) ||
+      null
+  );
+
   const router = useRouter();
 
   function handleChange(event) {
@@ -30,11 +35,19 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
     );
   }
 
+  function handleCountryChange(selectedCountry) {
+    setCountry(selectedCountry);
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const activityData = Object.fromEntries(formData);
-    const newActivity = { ...activityData, categoryIds: selectedCategoryIds };
+    const newActivity = {
+      ...activityData,
+      categoryIds: selectedCategoryIds,
+      country: country?.value || activity?.country,
+    };
 
     if (newActivity.categoryIds.length === 0) {
       alert("Please select at least one category.. ");
@@ -105,6 +118,7 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
           placeholder="Please choose area.."
           maxLength="30"
           defaultValue={activity?.area}
+          required
         ></StyledInputs>
         <label htmlFor="country">Country: </label>
         <StyledSelect
@@ -112,11 +126,9 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
           name="country"
           options={countriesOptions}
           placeholder="Please choose country.."
-          value={
-            isUpdateMode
-              ? { value: activity.country, label: activity.country }
-              : activity
-          }
+          onChange={handleCountryChange}
+          defaultValue={country}
+          required
         />
         {isUpdateMode ? (
           <>
