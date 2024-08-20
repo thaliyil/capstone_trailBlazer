@@ -11,10 +11,12 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
   const [selectedCategoryIds, setSelectedCategoryIds] = useState(
     activity?.categoryIds || []
   );
-  const [imagePreview, setImagePreview] = useState(activity?.imageUrl || "");
-  // const [imagePreview, setImagePreview] = useState(null);
+  const defaultImageUrl =
+    "https://images.unsplash.com/photo-1648167538185-d957d3caf393?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+  const [imagePreview, setImagePreview] = useState(
+    activity?.imageUrl || defaultImageUrl
+  );
   const router = useRouter();
-
   function handleChange(event) {
     const categoryId = event.target.value;
     setSelectedCategoryIds(
@@ -23,58 +25,43 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
         : [...selectedCategoryIds, categoryId]
     );
   }
-  function handleImageChange(event) {
-    const file = event.target.files[0];
-    if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setImagePreview(imageUrl);
-    }
-  }
-  console.log("image", imagePreview);
+
   async function handleSubmit(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
     const activityData = Object.fromEntries(formData);
-
-    formData.append("categoryIds", JSON.stringify(selectedCategoryIds));
-    if (activity?.imageUrl) {
-      formData.append("currentImageUrl", imageUrl);
+    activityData.imageUrl = imagePreview;
+    activityData.categoryIds = selectedCategoryIds;
+    if (selectedCategoryIds.length === 0) {
+      alert("Please select at least one category.");
+      return false;
     }
-    console.log("existing url is", imageUrl);
-    try {
-      const response = await fetch("/api/upload", {
-      const response = await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      });
-      const responseText = await response.text();
-      // console.log("Raw response:", responseText);
-      if (!response.ok) {
-        console.error("Failed to upload the image");
-        alert("Failed to upload the image!");
-        return;
-      }
-      const parsedResponse = JSON.parse(responseText);
-      const { url } = parsedResponse;
-      //const { url } = await response.json();
+    onSubmit(activityData);
+    isUpdateMode ? router.back() : router.push("/");
+  }
 
-      const newActivity = {
-        ...activityData,
-        imageUrl: imagePreview,
-        categoryIds: selectedCategoryIds,
-      };
+  async function handleUploadImage(file) {
+    const formData = new FormData();
+    formData.append("imageUrl", file);
 
-      if (newActivity.categoryIds.length === 0) {
-        alert("Please select at least one category.. ");
-        return false;
-      }
-      newActivity.imageUrl = url;
-      onSubmit(newActivity);
-      isUpdateMode ? router.back() : router.push("/");
-    } catch (error) {
-      console.error("Error submitting the form:", error);
-      alert("Error submitting the form. Please try again.");
+    const response = await fetch("/api/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      console.error("Failed to upload the image");
+      return;
+    }
+
+    const { url } = await response.json();
+    setImagePreview(url);
+  }
+  function handleImageChange(event) {
+    const file = event.target.files[0];
+    if (file) {
+      handleUploadImage(file);
     }
   }
 
@@ -97,7 +84,6 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
           defaultValue={activity?.title}
         ></StyledInputs>
         <label htmlFor="imageUrl">
-          {" "}
           <UploadImage width={20} height={20} />
           <span>Upload image</span>{" "}
         </label>
@@ -107,12 +93,6 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
           type="file"
           accept="image/*"
           onChange={handleImageChange}
-          //defaultValue={activity?.imageUrl}
-          /* defaultValue={
-            isUpdateMode
-              ? activity?.imageUrl
-              : "https://images.unsplash.com/photo-1648167538185-d957d3caf393?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          } */
         />
 
         {imagePreview && (
