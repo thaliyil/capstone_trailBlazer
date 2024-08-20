@@ -65,6 +65,7 @@ const StyledCardDetails = styled.div`
   color: white;
   padding-bottom: 10px;
   margin: 0 40px;
+  max-width: 700px;
 
   @media (min-width: 768px) {
     margin: var(--media-queries-form-m);
