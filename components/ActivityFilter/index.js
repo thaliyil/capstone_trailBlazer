@@ -20,13 +20,13 @@ export default function ActivityFilter({ onFilterActivities, filter }) {
 const FilterButton = styled.button`
   padding: 5px;
   border-radius: 5px;
-  width: ${({ $filter }) => ($filter ? "12rem" : "10rem")};
+
   height: 2.5rem;
   color: black;
   font-size: 1rem;
   background-color: ${({ $filter }) =>
     $filter ? "var(--coral)" : "var(--light-green)"};
-
+  width: ${({ $filter }) => ($filter ? "12rem" : "10rem")};
   box-shadow: var(--box-shadow-layout);
 
   &:hover {
@@ -37,6 +37,7 @@ const FilterButton = styled.button`
   @media (min-width: 992px) {
     width: 12rem;
     height: ${({ $filter }) => ($filter ? "3rem" : "2.5rem")};
+    margin-bottom: ${({ $filter }) => ($filter ? "0px" : "3px")};
 
     &:hover {
       transition-duration: 0.5s;
