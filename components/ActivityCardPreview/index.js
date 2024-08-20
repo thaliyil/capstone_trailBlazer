@@ -22,7 +22,7 @@ export default function ActivityCardPreview({ activity, onToggleBookmark }) {
         <StyledImage
           src={imageUrl}
           layout="responsive"
-          width={500}
+          width={400}
           height={400}
           alt={title}
         />

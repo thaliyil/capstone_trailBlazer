@@ -84,7 +84,7 @@ const StyledEditLink = styled(Link)`
   background-color: var(--coral);
   border-radius: 5px;
   border: 1.5px solid black;
-  padding: 15px 5px 2px;
+  padding: 25px 5px 2px;
   margin-left: 10px;
 `;
 

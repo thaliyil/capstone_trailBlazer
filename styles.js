@@ -36,6 +36,6 @@ export default createGlobalStyle`
 --media-queries-form-s: 20px 30px 70px;
 --media-queries-form-m: 20px 100px 70px;
 --media-queries-form-l: 20px 200px 70px;
---media-queries-form-xl: 20px 300px 70px;
+--media-queries-form-xl: 20px 250px 70px;
 }
 `;

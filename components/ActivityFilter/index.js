@@ -20,10 +20,9 @@ export default function ActivityFilter({ onFilterActivities, filter }) {
 const FilterButton = styled.button`
   padding: 5px;
   border-radius: 5px;
-
-  height: 2.5rem;
+  height: 3rem;
   color: black;
-  font-size: 1rem;
+  font-size: 1.3rem;
   background-color: ${({ $filter }) =>
     $filter ? "var(--coral)" : "var(--light-green)"};
   width: ${({ $filter }) => ($filter ? "12rem" : "10rem")};
