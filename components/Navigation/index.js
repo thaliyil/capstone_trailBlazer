@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default function Navigation() {
   return (
     <StyledFooter>
-      <StyledLink href="/bookmark">Bookmarks</StyledLink>
+      <StyledLink href="/bookmark">My Bookmarks</StyledLink>
       <StyledLink href="/">Home</StyledLink>
       <StyledLink href="/spotlight">Inspire me</StyledLink>
     </StyledFooter>

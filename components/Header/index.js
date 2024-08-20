@@ -1,16 +1,87 @@
 import styled from "styled-components";
+import { Spin as Hamburger } from "hamburger-react";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function Header() {
-  return <StyledHeader>TrailBlazer</StyledHeader>;
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <StyledHeader>
+      <StyledHeading>TrailBlazer</StyledHeading>
+      <StyledMenu>
+        <Hamburger
+          toggled={isOpen}
+          toggle={setIsOpen}
+          duration={0.8}
+          label="Show Menu"
+        />
+        {isOpen ? (
+          <HamburgerMenu>
+            <MenuLink onClick={() => setIsOpen(false)} href="/bookmark">
+              My Bookmarks
+            </MenuLink>
+            <MenuLink onClick={() => setIsOpen(false)} href="/">
+              Home
+            </MenuLink>
+            <MenuLink onClick={() => setIsOpen(false)} href="/spotlight">
+              Inspire me
+            </MenuLink>
+          </HamburgerMenu>
+        ) : null}
+      </StyledMenu>
+    </StyledHeader>
+  );
 }
 
-const StyledHeader = styled.h1`
+const StyledHeader = styled.div`
   background-color: var(--dijon);
-  padding: 10px 0;
   margin: 0;
-  border: 1px solid grey;
+  border: 1px solid black;
   position: fixed;
   width: 100vw;
   z-index: 3;
   box-shadow: var(--box-shadow-layout);
+`;
+
+const StyledHeading = styled.h1`
+  font-style: italic;
+`;
+
+const StyledMenu = styled.div`
+  position: fixed;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  z-index: 10;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+`;
+
+const HamburgerMenu = styled.div`
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  background-color: var(--dijon);
+  border-radius: 10px;
+  margin: 20px 0;
+`;
+
+const MenuLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  padding: 30px 15px;
+  font-size: 1.5rem;
+  border: 1px solid black;
+  width: 100%;
+  text-align: right;
+
+  &:hover {
+    color: var(--dark-green);
+    font-size: 1.6rem;
+    transition-duration: 0.4s;
+    padding: 29px 9px;
 `;
