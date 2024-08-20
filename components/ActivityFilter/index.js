@@ -61,14 +61,3 @@ const FilterContainer = styled.section`
     gap: 1rem;
   }
 `;
-// @media (min-width: 768px) {
-//     margin: var(--media-queries-form-m);
-//   }
-
-//   @media (min-width: 992px) {
-//     margin: var(--media-queries-form-l);
-//   }
-
-//   @media (min-width: 1200px) {
-//     margin: var(--media-queries-form-xl);
-//   }
