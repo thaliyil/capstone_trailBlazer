@@ -24,6 +24,10 @@ const StyledFooter = styled.footer`
   padding: 5px;
   box-shadow: var(--box-shadow-layout);
   font-family: var(--font-family);
+
+  @media (min-width: 768px) {
+    display: none;
+  }
 `;
 
 const StyledLink = styled(Link)`
