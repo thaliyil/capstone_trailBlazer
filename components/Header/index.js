@@ -84,4 +84,5 @@ const MenuLink = styled(Link)`
     font-size: 1.6rem;
     transition-duration: 0.4s;
     padding: 29px 9px;
+  }
 `;

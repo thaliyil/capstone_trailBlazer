@@ -4,7 +4,7 @@ import styled from "styled-components";
 export default function Navigation() {
   return (
     <StyledFooter>
-      <StyledLink href="/bookmark">My Bookmarks</StyledLink>
+      <StyledLink href="/bookmark">Bookmarks</StyledLink>
       <StyledLink href="/">Home</StyledLink>
       <StyledLink href="/spotlight">Inspire me</StyledLink>
     </StyledFooter>
@@ -33,11 +33,11 @@ const StyledFooter = styled.footer`
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   padding: 5px;
   &:hover {
     color: var(--dark-green);
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     transition-duration: 0.4s;
     padding: 3px;
   }
