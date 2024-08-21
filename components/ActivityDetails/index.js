@@ -29,11 +29,11 @@ export default function ActivityDetails({
         height={360}
         alt={title}
       />
-      <h2>{title}</h2>
-      <h3>
+      <StyledDetailsTitle>{title}</StyledDetailsTitle>
+      <StyledDetailsSubtitle>
         {area}, {country}
-      </h3>
-      <p>{description}</p>
+      </StyledDetailsSubtitle>
+      <StyledDetailsDescription>{description}</StyledDetailsDescription>
       <StyledCateogriesUl>
         {filteredCategories.map((category) => (
           <StyledCategoryLi key={category.id}>{category.name}</StyledCategoryLi>
@@ -66,6 +66,8 @@ const StyledCardDetails = styled.div`
   padding-bottom: 10px;
   margin: 0 40px;
   max-width: 700px;
+  font-family: var(--font-family);
+  font-weight: 400;
 
   @media (min-width: 768px) {
     margin: var(--media-queries-form-m);
@@ -92,4 +94,22 @@ const StyledEditLink = styled(Link)`
 const StyledImg = styled(Image)`
   border-radius: 20px;
   margin-top: 15px;
+`;
+
+const StyledDetailsTitle = styled.h2`
+  font-size: 2rem;
+  font-weight: 400;
+`;
+
+const StyledDetailsSubtitle = styled.h3`
+  font-size: 1.6rem;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 50px;
+`;
+
+const StyledDetailsDescription = styled.p`
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 2;
 `;

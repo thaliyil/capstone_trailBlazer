@@ -27,7 +27,7 @@ export default function ActivityCardPreview({ activity, onToggleBookmark }) {
           alt={title}
         />
       </Link>
-      <h2>{title}</h2>
+      <StyledCardTitle>{title}</StyledCardTitle>
       <StyledCateogriesUl>
         {filterCategories.map((category) => (
           <StyledCategoryLi key={category.id}>{category.name}</StyledCategoryLi>
@@ -39,4 +39,9 @@ export default function ActivityCardPreview({ activity, onToggleBookmark }) {
 
 const StyledImage = styled(Image)`
   border-radius: 10px;
+`;
+
+const StyledCardTitle = styled.h3`
+  font-weight: 400;
+  font-size: 1.5rem;
 `;

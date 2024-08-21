@@ -22,7 +22,9 @@ const FilterButton = styled.button`
   border-radius: 5px;
   height: 3rem;
   color: black;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+  font-weight: 400;
+  font-family: var(--font-family);
   background-color: ${({ $filter }) =>
     $filter ? "var(--coral)" : "var(--light-green)"};
   width: ${({ $filter }) => ($filter ? "12rem" : "10rem")};

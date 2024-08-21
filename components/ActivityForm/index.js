@@ -39,7 +39,11 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
     <StyledCard>
       <form onSubmit={handleSubmit}>
         <StyledFormFieldset>
-          {isUpdateMode ? <h3>Update Activity</h3> : <h3>Add new Activity</h3>}
+          {isUpdateMode ? (
+            <StyledFormHeading>Update Activity</StyledFormHeading>
+          ) : (
+            <StyledFormHeading>Add new Activity</StyledFormHeading>
+          )}
           <label htmlFor="title">Title: </label>
           <StyledInputs
             id="title"
@@ -125,7 +129,8 @@ const StyledFormFieldset = styled.fieldset`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  font-weight: 700;
+  font-weight: 400;
+  font-size: 1.2rem;
   margin: var(--media-queries-form-s);
   background-color: var(--light-green);
   box-shadow: var(--box-shadow-layout);
@@ -169,9 +174,9 @@ const StyledButtonSubmit = styled.button`
   background-color: var(--coral);
   border-radius: 5px;
   height: 2.2rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-family: var(--font-family);
-  font-weight: 500;
+  font-weight: 400;
   width: 150px;
   margin-bottom: 15px;
 
@@ -185,11 +190,11 @@ const StyledCancelLink = styled(Link)`
   border: 2px solid black;
   border-radius: 5px;
   padding: 0.3rem;
-  font-size: 1rem;
+  font-size: 1.2rem;
   background-color: var(--coral);
   text-decoration: none;
   color: black;
-  font-weight: 500;
+  font-weight: 400;
   width: 150px;
   margin-bottom: 15px;
 
@@ -204,4 +209,9 @@ const StyledButtonDisplay = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
+`;
+
+const StyledFormHeading = styled.h3`
+  font-weight: 400;
+  font-size: 1.7rem;
 `;

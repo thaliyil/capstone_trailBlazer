@@ -56,4 +56,7 @@ const StyledAdd = styled(Add)`
     margin-bottom: 0;
     transition-duration: 0.5s;
   }
+  @media (min-width: 768px) {
+    display: none;
+  }
 `;

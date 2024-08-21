@@ -7,16 +7,18 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <StyledHeader>
-      <StyledHeading>TrailBlazer</StyledHeading>
-      <StyledMenu>
-        <Hamburger
-          toggled={isOpen}
-          toggle={setIsOpen}
-          duration={0.6}
-          label="Show Menu"
-        />
-      </StyledMenu>
+    <>
+      <StyledHeader>
+        <StyledHeading>TrailBlazer</StyledHeading>
+        <StyledMenu>
+          <Hamburger
+            toggled={isOpen}
+            toggle={setIsOpen}
+            duration={0.6}
+            label="Show Menu"
+          />
+        </StyledMenu>
+      </StyledHeader>
       {isOpen ? (
         <HamburgerMenu>
           <MenuLink onClick={() => setIsOpen(false)} href="/bookmark">
@@ -33,7 +35,7 @@ export default function Header() {
           </MenuLink>
         </HamburgerMenu>
       ) : null}
-    </StyledHeader>
+    </>
   );
 }
 
@@ -49,7 +51,7 @@ const StyledHeader = styled.div`
 
 const StyledHeading = styled.h1`
   font-style: italic;
-  font-weight: 300;
+  font-weight: 400;
 `;
 
 const StyledMenu = styled.div`
@@ -66,12 +68,20 @@ const StyledMenu = styled.div`
 
 const HamburgerMenu = styled.div`
   border: 1px solid black;
-  display: flex;
-  flex-direction: column;
-  align-items: end;
   background-color: var(--dijon);
   border-radius: 10px;
-  margin: 20px 0;
+  position: absolute;
+  position: fixed;
+  right: 5px;
+  top: 90px;
+  box-shadow: var(--box-shadow-layout);
+  width: 300px;
+  height: 400px;
+  z-index: 10;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 
 const MenuLink = styled(Link)`
@@ -79,7 +89,8 @@ const MenuLink = styled(Link)`
   color: black;
   padding: 30px 15px;
   font-size: 1.5rem;
-
+  display: flex;
+  flex-direction: column;
   text-align: right;
 
   &:hover {
