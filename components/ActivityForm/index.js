@@ -15,7 +15,6 @@ const countriesOptions = countries.map((country) => {
   };
 });
 
-
 export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
   const [selectedCategoryIds, setSelectedCategoryIds] = useState(
     activity?.categoryIds || []
@@ -185,10 +184,11 @@ const StyledSelect = styled(Select)`
   border-radius: 3px;
   margin: 10px;
   font-size: 0.8rem;
+`;
+
 const StyledButtonSubmit = styled.button`
   background-color: var(--coral);
   border-radius: 5px;
   height: 3rem;
   font-size: 1rem;
-
 `;
