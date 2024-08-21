@@ -6,7 +6,8 @@ import styled from "styled-components";
 import Delete from "../../assets/svg/delete.svg";
 import Link from "next/link";
 import Edit from "../../assets/svg/edit.svg";
-
+import { useEffect, useState } from "react";
+import { fetchWeather } from "@/utils/fetchWeather";
 export default function ActivityDetails({
   activity,
   onToggleBookmark,
@@ -14,7 +15,16 @@ export default function ActivityDetails({
   onDelete,
 }) {
   const { title, categoryIds, imageUrl, area, country, description } = activity;
+  const [weather, setWeather] = useState(null);
   const filteredCategories = getFilteredCategories(categoryIds);
+  useEffect(() => {
+    async function getWeather() {
+      const weatherData = await fetchWeather(country);
+      setWeather(weatherData);
+    }
+    getWeather();
+  }, [country]);
+
   return (
     <StyledCardDetails>
       <BookmarkButton
@@ -34,6 +44,27 @@ export default function ActivityDetails({
         {area}, {country}
       </h3>
       <p>{description}</p>
+      {weather && (
+        <WeatherDetails>
+          <p>
+            Weather in {weather.name}: {weather.weather[0].description}
+          </p>
+          <p>
+            <WeatherIcon
+              src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
+              alt={weather.weather[0].description}
+            />
+          </p>
+          <p>Temperature: {weather.main.temp}°C</p>
+          <p>Humidity: {weather.main.humidity}%</p>
+          <p>Wind Speed: {weather.wind.speed} m/s</p>
+          {weather.rain && <p>Rain: {weather.rain["1h"]} mm (last hour)</p>}
+          {weather.snow && <p>Snow: {weather.snow["1h"]} mm (last hour)</p>}
+          <p>Visibility: {weather.visibility / 1000} km</p>
+          <p>Pressure: {weather.main.pressure} hPa</p>
+        </WeatherDetails>
+      )}
+
       <StyledCateogriesUl>
         {filteredCategories.map((category) => (
           <StyledCategoryLi key={category.id}>{category.name}</StyledCategoryLi>
@@ -52,7 +83,16 @@ export default function ActivityDetails({
     </StyledCardDetails>
   );
 }
-
+const WeatherDetails = styled.div`
+  background-color: var(--light-green);
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+`;
+const WeatherIcon = styled.img`
+  width: 100px;
+  height: 100px;
+`;
 const DeleteButton = styled.button`
   margin-bottom: 50px;
   background-color: var(--coral);
