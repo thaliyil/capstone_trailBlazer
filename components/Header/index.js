@@ -26,7 +26,10 @@ export default function Header() {
             Home
           </MenuLink>
           <MenuLink onClick={() => setIsOpen(false)} href="/spotlight">
-            Inspire me
+            Inspire me!
+          </MenuLink>
+          <MenuLink onClick={() => setIsOpen(false)} href="/createActivity">
+            Add new Activity
           </MenuLink>
         </HamburgerMenu>
       ) : null}
@@ -46,6 +49,7 @@ const StyledHeader = styled.div`
 
 const StyledHeading = styled.h1`
   font-style: italic;
+  font-weight: 300;
 `;
 
 const StyledMenu = styled.div`
@@ -75,8 +79,7 @@ const MenuLink = styled(Link)`
   color: black;
   padding: 30px 15px;
   font-size: 1.5rem;
-  border: 1px solid black;
-  width: 100%;
+
   text-align: right;
 
   &:hover {
