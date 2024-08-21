@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import categories from "@/assets/categories";
+
 export default function ActivityFilter({ onFilterActivities, filter }) {
   return (
     <FilterContainer>
@@ -7,11 +8,7 @@ export default function ActivityFilter({ onFilterActivities, filter }) {
         <FilterButton
           key={category.id}
           onClick={() => onFilterActivities(category.id)}
-
           $filter={filter === category.id}
-
-          
-
         >
           {category.name}
         </FilterButton>
@@ -19,17 +16,21 @@ export default function ActivityFilter({ onFilterActivities, filter }) {
     </FilterContainer>
   );
 }
+
 const FilterButton = styled.button`
   padding: 5px;
   border-radius: 5px;
   width: 10rem;
   height: 2.5rem;
-  color: white;
+  color: black;
   font-size: 1rem;
 
-  background-color: ${({ $filter }) => ($filter ? "orange" : "white")};
+  background-color: ${({ $filter }) =>
+    $filter ? "var(--coral)" : "var(--light-green)"};
 
+  box-shadow: var(--box-shadow-layout);
 `;
+
 const FilterContainer = styled.section`
   display: flex;
   justify-content: space-around;
@@ -37,4 +38,5 @@ const FilterContainer = styled.section`
   gap: 10px;
   margin: 20px 20px 0px;
   overflow: auto;
+  scrollbar-width: none;
 `;

@@ -1,9 +1,11 @@
 import Image from "next/image";
-import { StyledCategory, StyledCateogriesUl } from "../StyledList";
+import { StyledCategoryLi, StyledCateogriesUl } from "../Styles";
 import getFilteredCategories from "@/utils/filterCategories";
 import BookmarkButton from "../BookmarkButton";
 import styled from "styled-components";
+import Delete from "../../assets/svg/delete.svg";
 import Link from "next/link";
+import Edit from "../../assets/svg/edit.svg";
 
 export default function ActivityDetails({
   activity,
@@ -14,8 +16,7 @@ export default function ActivityDetails({
   const { title, categoryIds, imageUrl, area, country, description } = activity;
   const filteredCategories = getFilteredCategories(categoryIds);
   return (
-    <>
-      <h2>{title}</h2>
+    <StyledCardDetails>
       <BookmarkButton
         onToggleBookmark={onToggleBookmark}
         isBookmarked={isBookmarked}
@@ -28,27 +29,46 @@ export default function ActivityDetails({
         height={360}
         alt={title}
       />
+      <h2>{title}</h2>
       <h3>
         {area}, {country}
       </h3>
       <p>{description}</p>
       <StyledCateogriesUl>
         {filteredCategories.map((category) => (
-          <StyledCategory key={category.id}>{category.name}</StyledCategory>
+          <StyledCategoryLi key={category.id}>{category.name}</StyledCategoryLi>
         ))}
       </StyledCateogriesUl>
-      <StyledButton type="button" onClick={onDelete}>
-        Delete
-      </StyledButton>
-      <Link href={`/activities/${activity.id}/update`}>Update</Link>
-    </>
+      <DeleteButton
+        aria-label="Click here to delete the activity"
+        type="button"
+        onClick={onDelete}
+      >
+        <Delete />
+      </DeleteButton>
+      <StyledEditLink href={`/activities/${activity.id}/update`}>
+        <Edit />
+      </StyledEditLink>
+    </StyledCardDetails>
   );
 }
 
-export const StyledButton = styled.button`
-  padding: 10px;
-  background-color: orange;
-  border-radius: 5px;
+const DeleteButton = styled.button`
   margin-bottom: 50px;
-  width: 10rem;
+  background-color: var(--coral);
+  border-radius: 5px;
+  color: white;
+`;
+
+const StyledCardDetails = styled.div`
+  position: relative;
+  color: white;
+  padding-bottom: 10px;
+`;
+
+const StyledEditLink = styled(Link)`
+  margin-bottom: 50px;
+  background-color: var(--coral);
+  border-radius: 5px;
+  color: white;
 `;

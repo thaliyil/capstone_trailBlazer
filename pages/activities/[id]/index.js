@@ -1,9 +1,12 @@
 import { useRouter } from "next/router";
 import ActivityDetails from "@/components/ActivityDetails";
-import { StyledAddLink } from "@/components/StyledList";
+import { StyledSection } from "@/components/Styles";
 import DeleteModal from "@/components/DeleteModal";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import Back from "../../../assets/svg/back.svg";
+import Link from "next/link";
+import styled from "styled-components";
 
 export default function ActivityDetailsPage({
   activities,
@@ -34,8 +37,10 @@ export default function ActivityDetailsPage({
   }
 
   return (
-    <>
-      <StyledAddLink href={"/"}>Go back</StyledAddLink>
+    <StyledSection>
+      <Link aria-label="Go back to all activities" href={"/"}>
+        <Back />
+      </Link>
       <ActivityDetails
         activity={selectedActivity}
         isBookmarked={selectedActivity.isBookmarked}
@@ -47,6 +52,6 @@ export default function ActivityDetailsPage({
         onCancel={() => setShowModal(false)}
         onConfirm={handleConfirm}
       />
-    </>
+    </StyledSection>
   );
 }

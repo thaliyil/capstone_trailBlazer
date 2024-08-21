@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import categories from "@/assets/categories";
 import { useState } from "react";
 import Link from "next/link";
+
 import { StyledButton } from "../ActivityDetails";
 import countries from "@/assets/countries";
 import Select from "react-select";
@@ -13,6 +14,7 @@ const countriesOptions = countries.map((country) => {
     label: country.name,
   };
 });
+
 
 export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
   const [selectedCategoryIds, setSelectedCategoryIds] = useState(
@@ -133,10 +135,10 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
         {isUpdateMode ? (
           <>
             <Link href={`/activities/${activity.id}`}>Cancel</Link>
-            <StyledButton type="submit">Save</StyledButton>
+            <StyledButtonSubmit type="submit">Save</StyledButtonSubmit>
           </>
         ) : (
-          <StyledButton type="submit">Submit</StyledButton>
+          <StyledButtonSubmit type="submit">Submit</StyledButtonSubmit>
         )}
       </StyledFormFieldset>
     </form>
@@ -183,4 +185,10 @@ const StyledSelect = styled(Select)`
   border-radius: 3px;
   margin: 10px;
   font-size: 0.8rem;
+const StyledButtonSubmit = styled.button`
+  background-color: var(--coral);
+  border-radius: 5px;
+  height: 3rem;
+  font-size: 1rem;
+
 `;
