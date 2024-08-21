@@ -50,7 +50,9 @@ export default function ActivityDetails({
       <StyledEditLink href={`/activities/${activity.id}/update`}>
         <Edit />
       </StyledEditLink>
-      <Notes />
+      <NotesWrapper>
+        <Notes />
+      </NotesWrapper>
     </StyledCardDetails>
   );
 }
@@ -73,4 +75,11 @@ const StyledEditLink = styled(Link)`
   background-color: var(--coral);
   border-radius: 5px;
   color: white;
+`;
+
+const NotesWrapper = styled.div`
+  border: 1px solid black;
+  width: 600px;
+  height: 400px;
+  margin: 100px;
 `;
