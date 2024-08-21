@@ -8,6 +8,7 @@ import Link from "next/link";
 import Edit from "../../assets/svg/edit.svg";
 import { useEffect, useState } from "react";
 import { fetchWeather } from "@/utils/fetchWeather";
+
 export default function ActivityDetails({
   activity,
   onToggleBookmark,
@@ -15,8 +16,8 @@ export default function ActivityDetails({
   onDelete,
 }) {
   const { title, categoryIds, imageUrl, area, country, description } = activity;
-  const [weather, setWeather] = useState(null);
   const filteredCategories = getFilteredCategories(categoryIds);
+  const [weather, setWeather] = useState(null);
 
   useEffect(() => {
     async function getWeather() {
