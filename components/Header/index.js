@@ -19,7 +19,7 @@ export default function Header() {
           />
         </StyledMenu>
       </StyledHeader>
-      {isOpen ? (
+      {isOpen && (
         <HamburgerMenu>
           <MenuLink onClick={() => setIsOpen(false)} href="/bookmark">
             My Bookmarks
@@ -34,7 +34,7 @@ export default function Header() {
             Add new Activity
           </MenuLink>
         </HamburgerMenu>
-      ) : null}
+      )}
     </>
   );
 }
@@ -66,7 +66,7 @@ const StyledMenu = styled.div`
   }
 `;
 
-const HamburgerMenu = styled.div`
+const HamburgerMenu = styled.nav`
   border: 1px solid black;
   background-color: var(--dijon);
   border-radius: 10px;

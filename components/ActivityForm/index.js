@@ -90,9 +90,9 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
     <form onSubmit={handleSubmit}>
       <StyledFormFieldset>
         {isUpdateMode ? (
-          <legend>Update Activity</legend>
+          <StyledFormHeading>Update Activity</StyledFormHeading>
         ) : (
-          <legend>Add new Activity</legend>
+          <StyledFormHeading>Add new Activity</StyledFormHeading>
         )}
         <label htmlFor="title">Title: </label>
         <StyledInputs
@@ -106,7 +106,7 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
         ></StyledInputs>
         <label htmlFor="imageUrl">
           <UploadImage width={20} height={20} />
-          <span>Upload image</span>{" "}
+          <span>Upload image:</span>{" "}
         </label>
         <StyledImageUploadInput
           id="imageUrl"
@@ -170,14 +170,18 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
           defaultValue={country}
           required
         />
-        {isUpdateMode ? (
-          <>
-            <Link href={`/activities/${activity.id}`}>Cancel</Link>
-            <StyledButtonSubmit type="submit">Save</StyledButtonSubmit>
-          </>
-        ) : (
-          <StyledButtonSubmit type="submit">Submit</StyledButtonSubmit>
-        )}
+        <StyledButtonDisplay>
+          {isUpdateMode ? (
+            <>
+              <StyledCancelLink href={`/activities/${activity.id}`}>
+                Cancel
+              </StyledCancelLink>
+              <StyledButtonSubmit type="submit">Save</StyledButtonSubmit>
+            </>
+          ) : (
+            <StyledButtonSubmit type="submit">Submit</StyledButtonSubmit>
+          )}
+        </StyledButtonDisplay>
       </StyledFormFieldset>
     </form>
   );

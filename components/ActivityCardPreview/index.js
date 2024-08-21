@@ -41,7 +41,7 @@ const StyledImage = styled(Image)`
   border-radius: 10px;
 `;
 
-const StyledCardTitle = styled.h3`
+const StyledCardTitle = styled.h2`
   font-weight: 400;
   font-size: 1.5rem;
 `;
