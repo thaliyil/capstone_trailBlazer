@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import categories from "@/assets/categories";
 import { useState } from "react";
 import Link from "next/link";
-
 import { StyledButton } from "../ActivityDetails";
 import countries from "@/assets/countries";
 import Select from "react-select";
