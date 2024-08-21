@@ -7,6 +7,8 @@ import { StyledCard } from "../Styles";
 import { StyledButton } from "../ActivityDetails";
 import countries from "@/assets/countries";
 import Select from "react-select";
+import Image from "next/image";
+import UploadImage from "../../assets/upload.svg";
 
 const countriesOptions = countries.map((country) => {
   return {
@@ -19,6 +21,11 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
   const [selectedCategoryIds, setSelectedCategoryIds] = useState(
     activity?.categoryIds || []
   );
+  const defaultImageUrl =
+    "https://images.unsplash.com/photo-1648167538185-d957d3caf393?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+  const [imagePreview, setImagePreview] = useState(
+    activity?.imageUrl || defaultImageUrl
+  );
 
   const [country, setCountry] = useState(
     countriesOptions.find((option) => option.value === activity?.country) ||
@@ -26,7 +33,6 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
   );
 
   const router = useRouter();
-
   function handleChange(event) {
     const categoryId = event.target.value;
     setSelectedCategoryIds(
@@ -35,27 +41,49 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
         : [...selectedCategoryIds, categoryId]
     );
   }
-
   function handleCountryChange(selectedCountry) {
     setCountry(selectedCountry);
   }
-
   function handleSubmit(event) {
     event.preventDefault();
+
     const formData = new FormData(event.target);
     const activityData = Object.fromEntries(formData);
-    const newActivity = {
-      ...activityData,
-      categoryIds: selectedCategoryIds,
-      country: country?.value || activity?.country,
-    };
 
-    if (newActivity.categoryIds.length === 0) {
-      alert("Please select at least one category.. ");
+    activityData.imageUrl = imagePreview;
+    activityData.categoryIds = selectedCategoryIds;
+    activityData.country = country?.value || activity?.country;
+    if (selectedCategoryIds.length === 0) {
+      alert("Please select at least one category.");
+
       return false;
     }
-    onSubmit(newActivity);
+    onSubmit(activityData);
     isUpdateMode ? router.back() : router.push("/");
+  }
+
+  async function handleUploadImage(file) {
+    const formData = new FormData();
+    formData.append("imageUrl", file);
+
+    const response = await fetch("/api/upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (!response.ok) {
+      console.error("Failed to upload the image");
+      return;
+    }
+
+    const { url } = await response.json();
+    setImagePreview(url);
+  }
+  function handleImageChange(event) {
+    const file = event.target.files[0];
+    if (file) {
+      handleUploadImage(file);
+    }
   }
 
   return (
@@ -76,17 +104,28 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
           required
           defaultValue={activity?.title}
         ></StyledInputs>
-        <label htmlFor="imageUrl">ImageUrl: </label>
-        <StyledInputs
+        <label htmlFor="imageUrl">
+          <UploadImage width={20} height={20} />
+          <span>Upload image</span>{" "}
+        </label>
+        <StyledImageUploadInput
           id="imageUrl"
           name="imageUrl"
-          type="text"
-          defaultValue={
-            isUpdateMode
-              ? activity?.imageUrl
-              : "https://images.unsplash.com/photo-1648167538185-d957d3caf393?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          }
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange}
         />
+
+        {imagePreview && (
+          <ImagePreview>
+            <Image
+              src={imagePreview}
+              alt="preview of selected Image"
+              width={200}
+              height={200}
+            />
+          </ImagePreview>
+        )}
         <label htmlFor="description">Description: </label>
         <StyledTextarea
           id="description"
@@ -241,4 +280,13 @@ const StyledButtonDisplay = styled.div`
 const StyledFormHeading = styled.h3`
   font-weight: 400;
   font-size: 1.7rem;
+`;
+const ImagePreview = styled.div`
+  margin: 10px;
+  img {
+    border-radius: 8px;
+  }
+`;
+const StyledImageUploadInput = styled(StyledInputs)`
+  display: none;
 `;

@@ -18,10 +18,15 @@ export default function UpdatePage({ activities, setActivities }) {
     setActivities(
       activities.map((activity) =>
         activity.id === selectedActivity.id
-          ? { id: selectedActivity.id, ...updatedActivity }
+          ? {
+              id: selectedActivity.id,
+              imageUrl: selectedActivity.imagePreview,
+              ...updatedActivity,
+            }
           : activity
       )
     );
+    console.log("updated activity is", updatedActivity);
     toast.success("Activity is updated successfully!", { delay: 9000 });
   }
 

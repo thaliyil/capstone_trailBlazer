@@ -16,7 +16,7 @@ export default createGlobalStyle`
     margin: 0;
     text-align: center;
     background-color: var(--dark-green);
-    font-family: var(--font-family);
+    font-family: var(--font-family ),system-ui;
   }
 
   :root {
@@ -31,11 +31,11 @@ export default createGlobalStyle`
     rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px,
     rgba(0, 0, 0, 0.09) 0px 32px 16px;
 
---font-family: ${quicksand.style.fontFamily}; 
 
 --media-queries-form-s: 20px 30px 70px;
 --media-queries-form-m: 20px 100px 70px;
 --media-queries-form-l: 20px 200px 70px;
 --media-queries-form-xl: 20px 500px 70px;
+--font-family: ${quicksand.style.fontFamily},system-ui;    
 }
 `;
