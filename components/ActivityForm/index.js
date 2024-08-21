@@ -3,10 +3,25 @@ import { useRouter } from "next/router";
 import categories from "@/assets/categories";
 import { useState } from "react";
 import Link from "next/link";
+import { StyledButton } from "../ActivityDetails";
+import countries from "@/assets/countries";
+import Select from "react-select";
+
+const countriesOptions = countries.map((country) => {
+  return {
+    value: country.name,
+    label: country.name,
+  };
+});
 
 export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
   const [selectedCategoryIds, setSelectedCategoryIds] = useState(
     activity?.categoryIds || []
+  );
+
+  const [country, setCountry] = useState(
+    countriesOptions.find((option) => option.value === activity?.country) ||
+      null
   );
 
   const router = useRouter();
@@ -20,11 +35,19 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
     );
   }
 
+  function handleCountryChange(selectedCountry) {
+    setCountry(selectedCountry);
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const activityData = Object.fromEntries(formData);
-    const newActivity = { ...activityData, categoryIds: selectedCategoryIds };
+    const newActivity = {
+      ...activityData,
+      categoryIds: selectedCategoryIds,
+      country: country?.value || activity?.country,
+    };
 
     if (newActivity.categoryIds.length === 0) {
       alert("Please select at least one category.. ");
@@ -95,16 +118,18 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
           placeholder="Please choose area.."
           maxLength="30"
           defaultValue={activity?.area}
+          required
         ></StyledInputs>
         <label htmlFor="country">Country: </label>
-        <StyledInputs
+        <StyledSelect
           id="country"
           name="country"
-          type="text"
-          placeholder="Please choose a country.."
-          maxLength="30"
-          defaultValue={activity?.country}
-        ></StyledInputs>
+          options={countriesOptions}
+          placeholder="Please choose country.."
+          onChange={handleCountryChange}
+          defaultValue={country}
+          required
+        />
         {isUpdateMode ? (
           <>
             <Link href={`/activities/${activity.id}`}>Cancel</Link>
@@ -150,6 +175,14 @@ const StyledTextarea = styled.textarea`
   padding: 10px;
   margin: 10px;
   border-radius: 5px;
+`;
+
+const StyledSelect = styled(Select)`
+  text-align: left;
+  border: 1px solid black;
+  border-radius: 3px;
+  margin: 10px;
+  font-size: 0.8rem;
 `;
 
 const StyledButtonSubmit = styled.button`
