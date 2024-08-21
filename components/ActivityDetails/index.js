@@ -51,7 +51,7 @@ export default function ActivityDetails({
         <Edit />
       </StyledEditLink>
       <NotesWrapper>
-        <Notes />
+        <Notes activityId={activity.id} />
       </NotesWrapper>
     </StyledCardDetails>
   );

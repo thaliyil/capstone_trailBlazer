@@ -3,8 +3,9 @@ import useLocalStorageState from "use-local-storage-state";
 import styled from "styled-components";
 import { uid } from "uid";
 
-export default function Notes() {
-  const [notes, setNotes] = useLocalStorageState("notes", {
+export default function Notes({ activityId }) {
+  const storageNotesKey = `notes-${activityId}`;
+  const [notes, setNotes] = useLocalStorageState(storageNotesKey, {
     defaultValue: [],
   });
   const [noteInput, setNoteInput] = useState("");
@@ -27,9 +28,7 @@ export default function Notes() {
 
   return (
     <StyledNotesWrapper>
-      <StyledNotesHeading>
-        Your personal notes for this activity:
-      </StyledNotesHeading>
+      <StyledNotesHeading>My notes for this activity:</StyledNotesHeading>
       <StyledNotesTextarea
         type="text"
         placeholder="Add note.."
