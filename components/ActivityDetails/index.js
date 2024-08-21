@@ -67,19 +67,15 @@ const DeleteButton = styled.button`
 const StyledCardDetails = styled.div`
   position: relative;
   color: white;
-  padding-bottom: 10px;
+  padding-bottom: 15rem;
 `;
 
 const StyledEditLink = styled(Link)`
-  margin-bottom: 50px;
   background-color: var(--coral);
   border-radius: 5px;
   color: white;
 `;
 
 const NotesWrapper = styled.div`
-  border: 1px solid black;
-  width: 600px;
-  height: 400px;
-  margin: 100px;
+  width: 100vw;
 `;

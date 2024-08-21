@@ -29,41 +29,38 @@ export default function Notes({ activityId }) {
   return (
     <StyledNotesWrapper>
       <StyledNotesHeading>My notes for this activity:</StyledNotesHeading>
-      <StyledNotesTextarea
+      <StyledNotesInput
         type="text"
         placeholder="Add note.."
         onChange={handleNoteChange}
         value={noteInput}
         cols={3}
         rows={10}
-      ></StyledNotesTextarea>
+      ></StyledNotesInput>
       <StyledNotesSaveButton type="submit" onClick={handleAddNote}>
         Save
       </StyledNotesSaveButton>
-      {notes.length > 0 && (
-        <StyledNotesUl>
-          {notes.map((note) => (
-            <StyledNotesLi key={note.id}>
-              {note.content}
-              <StyledNotesDeleteButton
-                type="button"
-                onClick={() => handleDeleteNote(note)}
-              >
-                X
-              </StyledNotesDeleteButton>
-            </StyledNotesLi>
-          ))}
-        </StyledNotesUl>
-      )}
+      {/* {notes.length > 0 && ( */}
+      <StyledNotesUl>
+        {notes.map((note) => (
+          <StyledNotesLi key={note.id}>
+            {note.content}
+            <StyledNotesDeleteButton
+              type="button"
+              onClick={() => handleDeleteNote(note)}
+            >
+              X
+            </StyledNotesDeleteButton>
+          </StyledNotesLi>
+        ))}
+      </StyledNotesUl>
+      {/* )} */}
     </StyledNotesWrapper>
   );
 }
 
 const StyledNotesWrapper = styled.div`
   height: 100px;
-  width: 400px;
-  padding: 20px;
-  border: 1px solid black;
 `;
 
 const StyledNotesHeading = styled.h4`
@@ -71,11 +68,10 @@ const StyledNotesHeading = styled.h4`
   font-weight: 400;
 `;
 
-const StyledNotesTextarea = styled.textarea`
+const StyledNotesInput = styled.input`
   height: 30px;
   width: 150px;
   border-radius: 5px;
-  position: relative;
 `;
 
 const StyledNotesSaveButton = styled.button`
@@ -83,17 +79,16 @@ const StyledNotesSaveButton = styled.button`
   background-color: var(--coral);
   padding: 5px;
   font-size: 1rem;
-  position: absolute;
+  margin: 5px;
 `;
 
 const StyledNotesUl = styled.ul`
-  margin: 0;
+  margin: 1rem 12rem 0 0;
   padding: 0;
   list-style: none;
   display: flex;
   flex-direction: column;
-  align-items: end;
-  border: 1px solid black;
+  align-items: flex-end;
 `;
 
 const StyledNotesLi = styled.li`
