@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Delete from "../../assets/svg/delete.svg";
 import Link from "next/link";
 import Edit from "../../assets/svg/edit.svg";
+import Notes from "../Notes";
 
 export default function ActivityDetails({
   activity,
@@ -49,6 +50,7 @@ export default function ActivityDetails({
       <StyledEditLink href={`/activities/${activity.id}/update`}>
         <Edit />
       </StyledEditLink>
+      <Notes />
     </StyledCardDetails>
   );
 }
