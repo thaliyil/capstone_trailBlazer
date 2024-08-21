@@ -17,6 +17,7 @@ export default function ActivityDetails({
   const { title, categoryIds, imageUrl, area, country, description } = activity;
   const [weather, setWeather] = useState(null);
   const filteredCategories = getFilteredCategories(categoryIds);
+
   useEffect(() => {
     async function getWeather() {
       const weatherData = await fetchWeather(country);

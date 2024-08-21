@@ -1,5 +1,5 @@
 export async function fetchWeather(country) {
-  const apiKey = "22a153e1b365b479930365b2b894f977"; // Replace with your API key
+  const apiKey = "22a153e1b365b479930365b2b894f977";
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${country}&appid=${apiKey}&units=metric`;
 
   try {
@@ -8,6 +8,7 @@ export async function fetchWeather(country) {
       throw new Error("Failed to fetch weather data");
     }
     const data = await response.json();
+    console.log(data);
     return data;
   } catch (error) {
     console.error(error);
