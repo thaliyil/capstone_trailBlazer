@@ -13,23 +13,23 @@ export default function Header() {
         <Hamburger
           toggled={isOpen}
           toggle={setIsOpen}
-          duration={0.8}
+          duration={0.6}
           label="Show Menu"
         />
-        {isOpen ? (
-          <HamburgerMenu>
-            <MenuLink onClick={() => setIsOpen(false)} href="/bookmark">
-              My Bookmarks
-            </MenuLink>
-            <MenuLink onClick={() => setIsOpen(false)} href="/">
-              Home
-            </MenuLink>
-            <MenuLink onClick={() => setIsOpen(false)} href="/spotlight">
-              Inspire me
-            </MenuLink>
-          </HamburgerMenu>
-        ) : null}
       </StyledMenu>
+      {isOpen ? (
+        <HamburgerMenu>
+          <MenuLink onClick={() => setIsOpen(false)} href="/bookmark">
+            My Bookmarks
+          </MenuLink>
+          <MenuLink onClick={() => setIsOpen(false)} href="/">
+            Home
+          </MenuLink>
+          <MenuLink onClick={() => setIsOpen(false)} href="/spotlight">
+            Inspire me
+          </MenuLink>
+        </HamburgerMenu>
+      ) : null}
     </StyledHeader>
   );
 }
