@@ -1,7 +1,9 @@
 import ActivitiesList from "@/components/ActivitiesList";
-import { StyledAddLink } from "@/components/StyledList";
 import ActivityFilter from "@/components/ActivityFilter";
 import { useState } from "react";
+import Link from "next/link";
+import { StyledSection, StyledMessage } from "@/components/Styles";
+import Add from "../assets/svg/add.svg";
 
 export default function HomePage({ activities, onToggleBookmark }) {
   const [filter, setFilter] = useState("");
@@ -17,20 +19,27 @@ export default function HomePage({ activities, onToggleBookmark }) {
   );
 
   return (
-    <section>
-      <StyledAddLink href="/createActivity">+ New</StyledAddLink>
+    <StyledSection>
+      <Link
+        aria-label="Click here to add a new activity"
+        href="/createActivity"
+      >
+        <Add />{" "}
+      </Link>
       <ActivityFilter
         onFilterActivities={handleFilterActivities}
         filter={filter}
       />
       {filteredActivities.length === 0 ? (
-        <p>There are currently no activities matching this filter!</p>
+        <StyledMessage>
+          There are currently no activities matching this filter!
+        </StyledMessage>
       ) : (
         <ActivitiesList
           activities={filteredActivities}
           onToggleBookmark={onToggleBookmark}
         />
       )}
-    </section>
+    </StyledSection>
   );
 }

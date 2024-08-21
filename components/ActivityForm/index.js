@@ -3,9 +3,12 @@ import { useRouter } from "next/router";
 import categories from "@/assets/categories";
 import { useState } from "react";
 import Link from "next/link";
+
 import { StyledButton } from "../ActivityDetails";
 import Image from "next/image";
 import UploadImage from "../../assets/upload.svg";
+
+
 
 export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
   const [selectedCategoryIds, setSelectedCategoryIds] = useState(
@@ -150,10 +153,10 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
         {isUpdateMode ? (
           <>
             <Link href={`/activities/${activity.id}`}>Cancel</Link>
-            <StyledButton type="submit">Save</StyledButton>
+            <StyledButtonSubmit type="submit">Save</StyledButtonSubmit>
           </>
         ) : (
-          <StyledButton type="submit">Submit</StyledButton>
+          <StyledButtonSubmit type="submit">Submit</StyledButtonSubmit>
         )}
       </StyledFormFieldset>
     </form>
@@ -164,25 +167,41 @@ const StyledFormFieldset = styled.fieldset`
   display: flex;
   flex-direction: column;
   gap: 15px;
-  margin: 15px;
-  margin: 20px 30px 50px;
+
+  margin: 20px 30px 60px;
+  background-color: var(--light-green);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
+    rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+    rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+  border-radius: 10px;
 `;
+
 const StyledFieldset = styled.fieldset`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   margin: 0px;
   padding: 30px;
+  border-radius: 5px;
 `;
 
 const StyledInputs = styled.input`
   padding: 10px;
   margin: 10px;
+  border-radius: 5px;
 `;
 
 const StyledTextarea = styled.textarea`
   padding: 10px;
   margin: 10px;
+  border-radius: 5px;
+`;
+
+const StyledButtonSubmit = styled.button`
+  background-color: var(--coral);
+  border-radius: 5px;
+  height: 3rem;
+  font-size: 1rem;
 `;
 const ImagePreview = styled.div`
   margin: 10px;
