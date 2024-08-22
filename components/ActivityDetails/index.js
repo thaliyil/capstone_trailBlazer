@@ -45,13 +45,13 @@ export default function ActivityDetails({
       <StyledDetailsTitle>{title}</StyledDetailsTitle>
       <StyledDetailsSubtitle>
         {area}, {country}
- </StyledDetailsSubtitle>
-    
+      </StyledDetailsSubtitle>
+
       {weather && (
         <WeatherDetails>
-          <p>
+          <h4>
             Weather in {weather.name}: {weather.weather[0].description}
-          </p>
+          </h4>
           <p>
             <WeatherIcon
               src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
@@ -67,8 +67,6 @@ export default function ActivityDetails({
         </WeatherDetails>
       )}
 
-
-     
       <StyledDetailsDescription>{description}</StyledDetailsDescription>
 
       <StyledCateogriesUl>
@@ -89,7 +87,7 @@ export default function ActivityDetails({
     </StyledCardDetails>
   );
 }
-const WeatherDetails = styled.div`
+const WeatherDetails = styled.section`
   background-color: var(--light-green);
   padding: 10px;
   border-radius: 5px;
