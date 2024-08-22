@@ -34,6 +34,7 @@ export default function Notes({ activityId }) {
             type="text"
             placeholder="Add note.."
             aria-label="Add a note for this activity"
+            maxLength={30}
           ></StyledNotesInput>
           <StyledNotesSaveButton type="submit">Save</StyledNotesSaveButton>{" "}
           <StyledNotesUl>
@@ -88,8 +89,8 @@ const StyledNotesUl = styled.ul`
 `;
 
 const StyledNotesLi = styled.li`
-  line-height: 2;
-  font-size: 1.1rem;
+  line-height: 1.5;
+  font-size: 1rem;
 `;
 
 const StyledNotesDeleteButton = styled.button`

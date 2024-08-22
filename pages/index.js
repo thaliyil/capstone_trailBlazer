@@ -26,21 +26,23 @@ export default function HomePage({ activities, onToggleBookmark }) {
           Welcome to TRAILBLAZER - Your Ultimate Adventure Companion
         </StyledHeadingHome>
         <p>
-          Embark on your next great adventure with Trailblazer, the app designed
-          for outdoor enthusiasts who crave exploration and discovery.
+          Embark on your next great adventure with TRAILBLAZER, the app designed
+          for outdoor enthusiasts who crave exploration and discovery. <br />
+          <hr />
+          There is a list of activities to choose from, or you can create a new
+          activity here:
         </p>
+        <Link
+          aria-label="Click here to add a new activity"
+          href="/createActivity"
+        >
+          <StyledAdd />
+        </Link>
       </StyledSectionHome>
-      <p>Filter by category:</p>
       <ActivityFilter
         onFilterActivities={handleFilterActivities}
         filter={filter}
       />
-      <Link
-        aria-label="Click here to add a new activity"
-        href="/createActivity"
-      >
-        <StyledAdd />{" "}
-      </Link>
 
       {filteredActivities.length === 0 ? (
         <StyledMessage>
@@ -57,9 +59,8 @@ export default function HomePage({ activities, onToggleBookmark }) {
 }
 
 const StyledAdd = styled(Add)`
-  width: 60px;
-  height: 60px;
-  margin-top: 20px;
+  width: 40px;
+  height: 40px;
 
   &:hover {
     width: 65px;
