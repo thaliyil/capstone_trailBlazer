@@ -1,4 +1,3 @@
-import { useState } from "react";
 import useLocalStorageState from "use-local-storage-state";
 import styled from "styled-components";
 import { uid } from "uid";
@@ -8,13 +7,16 @@ export default function Notes({ activityId }) {
   const [notes, setNotes] = useLocalStorageState(storageNotesKey, {
     defaultValue: [],
   });
-  const [noteInput, setNoteInput] = useState("");
 
-  function handleAddNote() {
+  function handleSubmitNote(event) {
+    event.preventDefault();
+
+    const noteInput = event.target.note.value;
+
     if (noteInput.trim() !== "") {
       const newNote = { id: uid(), content: noteInput };
       setNotes([...notes, newNote]);
-      setNoteInput("");
+      event.target.reset();
     }
   }
 
@@ -22,39 +24,31 @@ export default function Notes({ activityId }) {
     setNotes(notes.filter((id) => id !== noteToDelete));
   }
 
-  function handleNoteChange(event) {
-    setNoteInput(event.target.value);
-  }
-
   return (
     <StyledNotesWrapper>
       <StyledNotesHeading>My notes for this activity:</StyledNotesHeading>
-      <StyledNotesInput
-        type="text"
-        placeholder="Add note.."
-        onChange={handleNoteChange}
-        value={noteInput}
-        cols={3}
-        rows={10}
-      ></StyledNotesInput>
-      <StyledNotesSaveButton type="submit" onClick={handleAddNote}>
-        Save
-      </StyledNotesSaveButton>
-      {/* {notes.length > 0 && ( */}
-      <StyledNotesUl>
-        {notes.map((note) => (
-          <StyledNotesLi key={note.id}>
-            {note.content}
-            <StyledNotesDeleteButton
-              type="button"
-              onClick={() => handleDeleteNote(note)}
-            >
-              X
-            </StyledNotesDeleteButton>
-          </StyledNotesLi>
-        ))}
-      </StyledNotesUl>
-      {/* )} */}
+      <form onSubmit={handleSubmitNote}>
+        <StyledNotesInput
+          name="note"
+          type="text"
+          placeholder="Add note.."
+          aria-label="Add a note for this activity"
+        ></StyledNotesInput>
+        <StyledNotesSaveButton type="submit">Save</StyledNotesSaveButton>{" "}
+        <StyledNotesUl>
+          {notes.map((note) => (
+            <StyledNotesLi key={note.id}>
+              {note.content}
+              <StyledNotesDeleteButton
+                type="button"
+                onClick={() => handleDeleteNote(note)}
+              >
+                X
+              </StyledNotesDeleteButton>
+            </StyledNotesLi>
+          ))}
+        </StyledNotesUl>
+      </form>
     </StyledNotesWrapper>
   );
 }
@@ -83,7 +77,7 @@ const StyledNotesSaveButton = styled.button`
 `;
 
 const StyledNotesUl = styled.ul`
-  margin: 1rem 12rem 0 0;
+  margin: 15px 100px 0 0;
   padding: 0;
   list-style: none;
   display: flex;
