@@ -46,7 +46,6 @@ export const StyledLi = styled.li`
   height: 390px;
 
   &:hover {
-    width: 390px;
     height: 410px;
     transition-duration: 0.5s;
     margin: 10px;
