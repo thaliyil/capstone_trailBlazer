@@ -21,16 +21,13 @@ export default function ActivityDetails({
   useEffect(() => {
     async function getWeather() {
       const response = await fetch(`/api/weather?country=${country}`);
-      if (!response.ok) {
+      if (response.ok) {
         const weatherData = await response.json();
-        console.log("weather data is", weatherData);
         setWeather(weatherData);
       }
     }
     getWeather();
   }, [country]);
-
-  console.log("wether2 is", weather);
   return (
     <StyledCardDetails>
       <BookmarkButton
@@ -53,21 +50,21 @@ export default function ActivityDetails({
       {weather && (
         <WeatherDetails>
           <p>
-            Weather in {weather?.name}: {weather?.weather[0].description}
+            Weather in {weather.name}: {weather.weather[0].description}
           </p>
           <p>
             <WeatherIcon
-              src={`http://openweathermap.org/img/wn/${weather?.weather[0].icon}@4x.png`}
-              alt={weather?.weather[0].description}
+              src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
+              alt={weather.weather[0].description}
             />
           </p>
-          <p>Temperature: {weather?.main.temp}°C</p>
-          <p>Humidity: {weather?.main.humidity}%</p>
-          <p>Wind Speed: {weather?.wind.speed} m/s</p>
-          {weather?.rain && <p>Rain: {weather?.rain["1h"]} mm (last hour)</p>}
-          {weather?.snow && <p>Snow: {weather?.snow["1h"]} mm (last hour)</p>}
-          <p>Visibility: {weather?.visibility / 1000} km</p>
-          <p>Pressure: {weather?.main.pressure} hPa</p>
+          <p>Temperature: {weather.main.temp}°C</p>
+          <p>Humidity: {weather.main.humidity}%</p>
+          <p>Wind Speed: {weather.wind.speed} m/s</p>
+          {weather.rain && <p>Rain: {weather.rain["1h"]} mm (last hour)</p>}
+          {weather.snow && <p>Snow: {weather.snow["1h"]} mm (last hour)</p>}
+          <p>Visibility: {weather.visibility / 1000} km</p>
+          <p>Pressure: {weather.main.pressure} hPa</p>
         </WeatherDetails>
       )}
 
