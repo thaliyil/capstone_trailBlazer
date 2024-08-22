@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Spin as Hamburger } from "hamburger-react";
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
+import logo from "../../assets/logo.png";
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,6 +12,7 @@ export default function Header() {
     <>
       <StyledHeader>
         <StyledHeading>TrailBlazer</StyledHeading>
+        <StyledLogo src={logo} />
         <StyledMenu>
           <Hamburger
             toggled={isOpen}
@@ -99,4 +102,15 @@ const MenuLink = styled(Link)`
     transition-duration: 0.4s;
     padding: 29px 9px;
   }
+`;
+
+const StyledLogo = styled(Image)`
+  width: 50px;
+  height: 60px;
+  position: absolute;
+  z-index: 50;
+  position: fixed;
+  left: 40px;
+  border-radius: 5px;
+  top: 10px;
 `;

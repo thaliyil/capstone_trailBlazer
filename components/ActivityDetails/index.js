@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Delete from "../../assets/svg/delete.svg";
 import Link from "next/link";
 import Edit from "../../assets/svg/edit.svg";
+import Notes from "../Notes";
 
 export default function ActivityDetails({
   activity,
@@ -49,6 +50,7 @@ export default function ActivityDetails({
       <StyledEditLink href={`/activities/${activity.id}/update`}>
         <Edit />
       </StyledEditLink>
+      <Notes activityId={activity.id} />
     </StyledCardDetails>
   );
 }
@@ -64,7 +66,7 @@ const StyledCardDetails = styled.div`
   position: relative;
   color: white;
   padding-bottom: 10px;
-  margin: 0 40px;
+  margin: 0 40px 200px;
   max-width: 700px;
   font-family: var(--font-family);
   font-weight: 400;
@@ -83,7 +85,6 @@ const StyledCardDetails = styled.div`
 `;
 
 const StyledEditLink = styled(Link)`
-  margin-bottom: 50px;
   background-color: var(--coral);
   border-radius: 5px;
   border: 1.5px solid black;
