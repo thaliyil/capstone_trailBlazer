@@ -53,9 +53,13 @@ const StyledHeader = styled.div`
 `;
 
 const StyledHeading = styled.h1`
-  font-weight: 400;
+  font-weight: 500;
   z-index: 60;
   color: black;
+
+  @media (max-width: 767px) {
+    font-weight: 500;
+  }
 `;
 
 const StyledMenu = styled.div`
@@ -109,15 +113,14 @@ const StyledLogo = styled(Image)`
   width: 45px;
   height: 60px;
   position: absolute;
-
   position: fixed;
   left: 40px;
   border-radius: 5px;
   top: 10px;
 
   @media (max-width: 767px) {
-    left: 45%;
-    right: 45%;
+    z-index: -1;
+    left: 43%;
     opacity: 0.4;
   }
 `;
