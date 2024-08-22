@@ -6,7 +6,9 @@ import styled from "styled-components";
 import Delete from "../../assets/svg/delete.svg";
 import Link from "next/link";
 import Edit from "../../assets/svg/edit.svg";
+import { useEffect, useState } from "react";
 import Notes from "../Notes";
+
 
 export default function ActivityDetails({
   activity,
@@ -16,6 +18,18 @@ export default function ActivityDetails({
 }) {
   const { title, categoryIds, imageUrl, area, country, description } = activity;
   const filteredCategories = getFilteredCategories(categoryIds);
+  const [weather, setWeather] = useState(null);
+
+  useEffect(() => {
+    async function getWeather() {
+      const response = await fetch(`/api/weather?country=${country}`);
+      if (response.ok) {
+        const weatherData = await response.json();
+        setWeather(weatherData);
+      }
+    }
+    getWeather();
+  }, [country]);
   return (
     <StyledCardDetails>
       <BookmarkButton
@@ -34,7 +48,29 @@ export default function ActivityDetails({
       <StyledDetailsSubtitle>
         {area}, {country}
       </StyledDetailsSubtitle>
+
+      {weather && (
+        <WeatherDetails>
+          <h4>
+            Weather in {weather.name}: {weather.weather[0].description}
+          </h4>
+          <p>
+            <WeatherIcon
+              src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
+              alt={weather.weather[0].description}
+            />
+          </p>
+          <p>Temperature: {Math.round(weather.main.temp)}°C</p>
+          <p>Humidity: {weather.main.humidity}%</p>
+          <p>Wind Speed: {weather.wind.speed} m/s</p>
+          {weather.rain && <p>Rain: {weather.rain["1h"]} mm (last hour)</p>}
+          {weather.snow && <p>Snow: {weather.snow["1h"]} mm (last hour)</p>}
+          <p>Visibility: {weather.visibility / 1000} km</p>
+        </WeatherDetails>
+      )}
+
       <StyledDetailsDescription>{description}</StyledDetailsDescription>
+
       <StyledCateogriesUl>
         {filteredCategories.map((category) => (
           <StyledCategoryLi key={category.id}>{category.name}</StyledCategoryLi>
@@ -54,7 +90,16 @@ export default function ActivityDetails({
     </StyledCardDetails>
   );
 }
-
+const WeatherDetails = styled.section`
+  background-color: var(--light-green);
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+`;
+const WeatherIcon = styled.img`
+  width: 100px;
+  height: 100px;
+`;
 const DeleteButton = styled.button`
   margin-bottom: 50px;
   margin-right: 5px;
