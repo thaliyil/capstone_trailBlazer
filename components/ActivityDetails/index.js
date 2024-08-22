@@ -64,7 +64,6 @@ export default function ActivityDetails({
           {weather.rain && <p>Rain: {weather.rain["1h"]} mm (last hour)</p>}
           {weather.snow && <p>Snow: {weather.snow["1h"]} mm (last hour)</p>}
           <p>Visibility: {weather.visibility / 1000} km</p>
-          <p>Pressure: {weather.main.pressure} hPa</p>
         </WeatherDetails>
       )}
 
