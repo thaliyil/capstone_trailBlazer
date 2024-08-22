@@ -37,6 +37,11 @@ const ModalContainer = styled.div`
   background-color: var(--light-green);
   padding: 20px;
   opacity: 0.9;
+
+  @media (min-width: 992px) {
+    left: 200px;
+    right: 200px;
+  }
 `;
 
 const ModalButton = styled.button`
@@ -46,4 +51,9 @@ const ModalButton = styled.button`
   border-radius: 5px;
   width: 10rem;
   box-shadow: var(--box-shadow-layout);
+
+  &:hover {
+    width: 12rem;
+    transition-duration: 0.5s;
+  }
 `;

@@ -20,23 +20,46 @@ export default function ActivityFilter({ onFilterActivities, filter }) {
 const FilterButton = styled.button`
   padding: 5px;
   border-radius: 5px;
-  width: 10rem;
-  height: 2.5rem;
+  height: 3rem;
   color: black;
-  font-size: 1rem;
-
+  font-size: 1.2rem;
+  font-weight: 400;
+  font-family: var(--font-family);
   background-color: ${({ $filter }) =>
     $filter ? "var(--coral)" : "var(--light-green)"};
-
+  width: ${({ $filter }) => ($filter ? "12rem" : "10rem")};
   box-shadow: var(--box-shadow-layout);
+
+  &:hover {
+    transition-duration: 0.5s;
+    background-color: var(--coral);
+  }
+
+  @media (min-width: 992px) {
+    width: 12rem;
+    padding: ${({ $filter }) => ($filter ? "7px" : "5px")};
+    margin-bottom: ${({ $filter }) => ($filter ? "0" : "1rem")};
+
+    &:hover {
+      transition-duration: 0.5s;
+      background-color: var(--coral);
+    }
+  }
 `;
 
 const FilterContainer = styled.section`
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: nowrap;
   gap: 10px;
   margin: 20px 20px 0px;
   overflow: auto;
   scrollbar-width: none;
+
+  @media (min-width: 992px) {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    align-items: center;
+    gap: 1rem;
+  }
 `;

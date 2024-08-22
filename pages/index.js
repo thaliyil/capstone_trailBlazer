@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { StyledSection, StyledMessage } from "@/components/Styles";
 import Add from "../assets/svg/add.svg";
+import styled from "styled-components";
 
 export default function HomePage({ activities, onToggleBookmark }) {
   const [filter, setFilter] = useState("");
@@ -24,7 +25,7 @@ export default function HomePage({ activities, onToggleBookmark }) {
         aria-label="Click here to add a new activity"
         href="/createActivity"
       >
-        <Add />{" "}
+        <StyledAdd />{" "}
       </Link>
       <ActivityFilter
         onFilterActivities={handleFilterActivities}
@@ -43,3 +44,19 @@ export default function HomePage({ activities, onToggleBookmark }) {
     </StyledSection>
   );
 }
+
+const StyledAdd = styled(Add)`
+  width: 60px;
+  height: 60px;
+  margin-bottom: 5px;
+
+  &:hover {
+    width: 65px;
+    height: 65px;
+    margin-bottom: 0;
+    transition-duration: 0.5s;
+  }
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
