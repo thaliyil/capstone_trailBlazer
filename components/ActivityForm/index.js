@@ -3,8 +3,6 @@ import { useRouter } from "next/router";
 import categories from "@/assets/categories";
 import { useState } from "react";
 import Link from "next/link";
-import { StyledCard } from "../Styles";
-import { StyledButton } from "../ActivityDetails";
 import countries from "@/assets/countries";
 import Select from "react-select";
 import Image from "next/image";
@@ -79,6 +77,7 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
     const { url } = await response.json();
     setImagePreview(url);
   }
+
   function handleImageChange(event) {
     const file = event.target.files[0];
     if (file) {
@@ -315,12 +314,14 @@ const StyledFormHeading = styled.h3`
   font-weight: 400;
   font-size: 1.7rem;
 `;
+
 const ImagePreview = styled.div`
   margin: 10px;
   img {
     border-radius: 8px;
   }
 `;
+
 const StyledImageUploadInput = styled(StyledInputs)`
   display: none;
 `;

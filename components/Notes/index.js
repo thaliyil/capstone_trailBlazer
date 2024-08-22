@@ -57,7 +57,8 @@ export default function Notes({ activityId }) {
 }
 
 const StyledNotesWrapper = styled.div`
-  height: 100px;
+  height: auto;
+  margin-bottom: 50px;
 `;
 
 const StyledNotesHeading = styled.h4`
@@ -80,7 +81,7 @@ const StyledNotesSaveButton = styled.button`
 `;
 
 const StyledNotesUl = styled.ul`
-  margin: 15px 100px 0 0;
+  margin: 15px 30% 0 0;
   padding: 0;
   list-style: none;
   display: flex;
@@ -105,6 +106,7 @@ const StyledFormNotes = styled.form`
   border-radius: 10px;
   background-color: var(--light-green);
   margin-bottom: 30px;
+  height: auto;
 
   @media (min-width: 992px) {
     margin: 0;

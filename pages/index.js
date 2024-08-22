@@ -27,11 +27,13 @@ export default function HomePage({ activities, onToggleBookmark }) {
         </StyledHeadingHome>
         <p>
           Embark on your next great adventure with TRAILBLAZER, the app designed
-          for outdoor enthusiasts who crave exploration and discovery. <br />
-          <hr />
+          for outdoor enthusiasts who crave exploration and discovery.
+        </p>{" "}
+        <hr></hr>
+        <StyledAddP>
           There is a list of activities to choose from, or you can create a new
           activity here:
-        </p>
+        </StyledAddP>
         <Link
           aria-label="Click here to add a new activity"
           href="/createActivity"
@@ -68,6 +70,12 @@ const StyledAdd = styled(Add)`
     margin-bottom: 0;
     transition-duration: 0.5s;
   }
+  @media (min-width: 768px) {
+    display: none;
+  }
+`;
+
+const StyledAddP = styled.p`
   @media (min-width: 768px) {
     display: none;
   }

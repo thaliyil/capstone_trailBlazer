@@ -156,10 +156,6 @@ const StyledEditLink = styled(Link)`
 const StyledImg = styled(Image)`
   border-radius: 20px;
   margin-top: 15px;
-
-  /* @media (min-width: 992px) {
-    width: 700px;
-    height: 500px; */
 `;
 
 const StyledDetailsTitle = styled.h2`
@@ -190,6 +186,6 @@ const InfoSection = styled.section`
     grid-template-columns: auto auto;
     justify-content: center;
     gap: 15px;
-    padding: 20px;
+    margin: 20px;
   }
 `;
