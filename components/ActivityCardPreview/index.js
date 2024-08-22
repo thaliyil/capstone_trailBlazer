@@ -19,20 +19,20 @@ export default function ActivityCardPreview({ activity, onToggleBookmark }) {
         aria-label="Click here to go to the activity details"
         href={`activities/${activity.id}`}
       >
-        <StyledImage
-          src={imageUrl}
-          layout="responsive"
-          width={400}
-          height={400}
-          alt={title}
-        />
+        <ImageWrapper>
+          <StyledImage src={imageUrl} fill={true} alt={title} />
+        </ImageWrapper>
       </Link>
-      <StyledCardTitle>{title}</StyledCardTitle>
-      <StyledCateogriesUl>
-        {filterCategories.map((category) => (
-          <StyledCategoryLi key={category.id}>{category.name}</StyledCategoryLi>
-        ))}
-      </StyledCateogriesUl>
+      <InfoWrapper>
+        <StyledCardTitle>{title}</StyledCardTitle>
+        <StyledCateogriesUl>
+          {filterCategories.map((category) => (
+            <StyledCategoryLi key={category.id}>
+              {category.name}
+            </StyledCategoryLi>
+          ))}
+        </StyledCateogriesUl>
+      </InfoWrapper>
     </StyledCard>
   );
 }
@@ -44,4 +44,19 @@ const StyledImage = styled(Image)`
 const StyledCardTitle = styled.h2`
   font-weight: 400;
   font-size: 1.5rem;
+`;
+
+const ImageWrapper = styled.div`
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  height: 230px;
+  width: 368px;
+`;
+
+const InfoWrapper = styled.div`
+  position: absolute;
+  top: 230px;
+  left: 50px;
+  right: 50px;
 `;

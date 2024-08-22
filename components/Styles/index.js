@@ -34,6 +34,13 @@ export const StyledUl = styled.ul`
     justify-content: center;
     gap: 1.5rem;
   }
+
+  @media (min-width: 992px) {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    gap: 1.5rem;
+  }
 `;
 
 export const StyledLi = styled.li`
@@ -46,7 +53,6 @@ export const StyledLi = styled.li`
   height: 390px;
 
   &:hover {
-    width: 390px;
     height: 410px;
     transition-duration: 0.5s;
     margin: 10px;

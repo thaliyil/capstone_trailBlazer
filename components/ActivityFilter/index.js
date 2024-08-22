@@ -1,19 +1,35 @@
 import styled from "styled-components";
 import categories from "@/assets/categories";
+import { useState } from "react";
+import { FaList } from "react-icons/fa";
 
 export default function ActivityFilter({ onFilterActivities, filter }) {
+  const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  function toggleDropdown() {
+    setIsDropdownVisible(!isDropdownVisible);
+  }
+
   return (
-    <FilterContainer>
-      {categories.map((category) => (
-        <FilterButton
-          key={category.id}
-          onClick={() => onFilterActivities(category.id)}
-          $filter={filter === category.id}
-        >
-          {category.name}
-        </FilterButton>
-      ))}
-    </FilterContainer>
+    <>
+      <CategoryButton
+        $isDropdownVisible={isDropdownVisible}
+        onClick={toggleDropdown}
+      >
+        <FaList size={20} />
+      </CategoryButton>
+      <FilterContainer>
+        {isDropdownVisible &&
+          categories.map((category) => (
+            <FilterButton
+              key={category.id}
+              onClick={() => onFilterActivities(category.id)}
+              $filter={filter === category.id}
+            >
+              {category.name}
+            </FilterButton>
+          ))}
+      </FilterContainer>
+    </>
   );
 }
 
@@ -62,4 +78,16 @@ const FilterContainer = styled.section`
     align-items: center;
     gap: 1rem;
   }
+`;
+
+const CategoryButton = styled.button`
+  background-color: ${({ $isDropdownVisible }) =>
+    $isDropdownVisible ? "var(--coral)" : "var(--light-green)"};
+  box-shadow: var(--box-shadow-layout);
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid black;
+  cursor: pointer;
+  border-radius: 5px;
 `;

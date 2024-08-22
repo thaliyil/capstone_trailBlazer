@@ -26,35 +26,39 @@ export default function Notes({ activityId }) {
 
   return (
     <StyledNotesWrapper>
-      <StyledNotesHeading>My notes for this activity:</StyledNotesHeading>
-      <form onSubmit={handleSubmitNote}>
-        <StyledNotesInput
-          name="note"
-          type="text"
-          placeholder="Add note.."
-          aria-label="Add a note for this activity"
-        ></StyledNotesInput>
-        <StyledNotesSaveButton type="submit">Save</StyledNotesSaveButton>{" "}
-        <StyledNotesUl>
-          {notes.map((note) => (
-            <StyledNotesLi key={note.id}>
-              {note.content}
-              <StyledNotesDeleteButton
-                type="button"
-                onClick={() => handleDeleteNote(note)}
-              >
-                X
-              </StyledNotesDeleteButton>
-            </StyledNotesLi>
-          ))}
-        </StyledNotesUl>
-      </form>
+      <StyledFormNotes onSubmit={handleSubmitNote}>
+        <StyledNotesHeading>
+          <StyledNotesHeading>My notes for this Activity:</StyledNotesHeading>
+          <StyledNotesInput
+            name="note"
+            type="text"
+            placeholder="Add note.."
+            aria-label="Add a note for this activity"
+            maxLength={30}
+          ></StyledNotesInput>
+          <StyledNotesSaveButton type="submit">Save</StyledNotesSaveButton>{" "}
+          <StyledNotesUl>
+            {notes.map((note) => (
+              <StyledNotesLi key={note.id}>
+                {note.content}
+                <StyledNotesDeleteButton
+                  type="button"
+                  onClick={() => handleDeleteNote(note)}
+                >
+                  X
+                </StyledNotesDeleteButton>
+              </StyledNotesLi>
+            ))}
+          </StyledNotesUl>
+        </StyledNotesHeading>
+      </StyledFormNotes>
     </StyledNotesWrapper>
   );
 }
 
 const StyledNotesWrapper = styled.div`
-  height: 100px;
+  height: auto;
+  margin-bottom: 50px;
 `;
 
 const StyledNotesHeading = styled.h4`
@@ -77,7 +81,7 @@ const StyledNotesSaveButton = styled.button`
 `;
 
 const StyledNotesUl = styled.ul`
-  margin: 15px 100px 0 0;
+  margin: 15px 30% 0 0;
   padding: 0;
   list-style: none;
   display: flex;
@@ -86,12 +90,27 @@ const StyledNotesUl = styled.ul`
 `;
 
 const StyledNotesLi = styled.li`
-  line-height: 2;
-  font-size: 1.1rem;
+  line-height: 1.5;
+  font-size: 1rem;
 `;
 
 const StyledNotesDeleteButton = styled.button`
   background-color: var(--dijon);
   border-radius: 5px;
   margin: 5px;
+`;
+
+const StyledFormNotes = styled.form`
+  padding: 10px;
+  color: black;
+  border-radius: 10px;
+  background-color: var(--light-green);
+  margin-bottom: 30px;
+  height: auto;
+
+  @media (min-width: 992px) {
+    margin: 0;
+    width: 500px;
+    height: 600px;
+  }
 `;

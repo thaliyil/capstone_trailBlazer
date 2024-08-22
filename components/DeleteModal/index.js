@@ -24,7 +24,7 @@ const ModalBackground = styled.div`
   backdrop-filter: blur(8px);
   background-color: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
-  z-index: 2;
+  z-index: 4;
 `;
 const ModalContainer = styled.div`
   border: 1px solid black;

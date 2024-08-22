@@ -9,7 +9,6 @@ import Edit from "../../assets/svg/edit.svg";
 import { useEffect, useState } from "react";
 import Notes from "../Notes";
 
-
 export default function ActivityDetails({
   activity,
   onToggleBookmark,
@@ -38,8 +37,8 @@ export default function ActivityDetails({
       />
 
       <StyledImg
-        src={imageUrl}
         layout="responsive"
+        src={imageUrl}
         width={400}
         height={360}
         alt={title}
@@ -48,29 +47,7 @@ export default function ActivityDetails({
       <StyledDetailsSubtitle>
         {area}, {country}
       </StyledDetailsSubtitle>
-
-      {weather && (
-        <WeatherDetails>
-          <h4>
-            Weather in {weather.name}: {weather.weather[0].description}
-          </h4>
-          <p>
-            <WeatherIcon
-              src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
-              alt={weather.weather[0].description}
-            />
-          </p>
-          <p>Temperature: {Math.round(weather.main.temp)}°C</p>
-          <p>Humidity: {weather.main.humidity}%</p>
-          <p>Wind Speed: {weather.wind.speed} m/s</p>
-          {weather.rain && <p>Rain: {weather.rain["1h"]} mm (last hour)</p>}
-          {weather.snow && <p>Snow: {weather.snow["1h"]} mm (last hour)</p>}
-          <p>Visibility: {weather.visibility / 1000} km</p>
-        </WeatherDetails>
-      )}
-
-      <StyledDetailsDescription>{description}</StyledDetailsDescription>
-
+      <StyledDetailsPar>{description}</StyledDetailsPar>
       <StyledCateogriesUl>
         {filteredCategories.map((category) => (
           <StyledCategoryLi key={category.id}>{category.name}</StyledCategoryLi>
@@ -86,22 +63,61 @@ export default function ActivityDetails({
       <StyledEditLink href={`/activities/${activity.id}/update`}>
         <Edit />
       </StyledEditLink>
-      <Notes activityId={activity.id} />
+      <InfoSection>
+        {weather && (
+          <WeatherDetails>
+            <WeatherHeading>
+              Weather in {weather.name}: {weather.weather[0].description}
+            </WeatherHeading>
+            <StyledDetailsPar>
+              <WeatherIcon
+                src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
+                alt={weather.weather[0].description}
+              />
+            </StyledDetailsPar>
+            <StyledWeather>
+              Temperature: {Math.round(weather.main.temp)}°C
+            </StyledWeather>
+            <StyledWeather>Humidity: {weather.main.humidity}%</StyledWeather>
+            <StyledWeather>Wind Speed: {weather.wind.speed} m/s</StyledWeather>
+            {weather.rain && <p>Rain: {weather.rain["1h"]} mm (last hour)</p>}
+            {weather.snow && <p>Snow: {weather.snow["1h"]} mm (last hour)</p>}
+            <StyledWeather>
+              Visibility: {weather.visibility / 1000} km
+            </StyledWeather>
+          </WeatherDetails>
+        )}
+        <Notes activityId={activity.id} />
+      </InfoSection>
     </StyledCardDetails>
   );
 }
+
 const WeatherDetails = styled.section`
   background-color: var(--light-green);
   padding: 10px;
-  border-radius: 5px;
-  margin-top: 10px;
+  border-radius: 10px;
+  margin: 50px 0;
+  color: black;
+
+  @media (min-width: 992px) {
+    margin: 0;
+    width: 500px;
+    height: 600px;
+  }
 `;
+
+const WeatherHeading = styled.h4`
+  font-size: 1.2rem;
+  font-weight: 400;
+`;
+
 const WeatherIcon = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
 `;
+
 const DeleteButton = styled.button`
-  margin-bottom: 50px;
   margin-right: 5px;
   background-color: var(--coral);
   border-radius: 5px;
@@ -111,8 +127,8 @@ const StyledCardDetails = styled.div`
   position: relative;
   color: white;
   padding-bottom: 10px;
-  margin: 0 40px 200px;
-  max-width: 700px;
+  margin-bottom: 200px;
+  max-width: auto;
   font-family: var(--font-family);
   font-weight: 400;
 
@@ -154,8 +170,22 @@ const StyledDetailsSubtitle = styled.h3`
   margin-bottom: 50px;
 `;
 
-const StyledDetailsDescription = styled.p`
-  font-size: 1.4rem;
+const StyledDetailsPar = styled.p`
+  font-size: 1.2rem;
   font-weight: 400;
   line-height: 2;
+`;
+
+const StyledWeather = styled.p`
+  font-size: 1.2rem;
+`;
+
+const InfoSection = styled.section`
+  @media (min-width: 992px) {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px;
+  }
 `;

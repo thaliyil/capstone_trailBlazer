@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <>
       <StyledHeader>
-        <StyledHeading>TrailBlazer</StyledHeading>
+        <StyledHeading>T R A I L B L A Z E R</StyledHeading>
         <StyledLogo src={logo} />
         <StyledMenu>
           <Hamburger
@@ -24,17 +24,17 @@ export default function Header() {
       </StyledHeader>
       {isOpen && (
         <HamburgerMenu>
-          <MenuLink onClick={() => setIsOpen(false)} href="/bookmark">
-            My Bookmarks
-          </MenuLink>
           <MenuLink onClick={() => setIsOpen(false)} href="/">
-            Home
+            HOME
           </MenuLink>
           <MenuLink onClick={() => setIsOpen(false)} href="/spotlight">
-            Inspire me!
+            INSPIRE ME!
+          </MenuLink>
+          <MenuLink onClick={() => setIsOpen(false)} href="/bookmark">
+            MY BOOKMARKS
           </MenuLink>
           <MenuLink onClick={() => setIsOpen(false)} href="/createActivity">
-            Add new Activity
+            CREATE NEW ACTIVITY
           </MenuLink>
         </HamburgerMenu>
       )}
@@ -53,8 +53,13 @@ const StyledHeader = styled.div`
 `;
 
 const StyledHeading = styled.h1`
-  font-style: italic;
-  font-weight: 400;
+  font-weight: 500;
+  z-index: 60;
+  color: black;
+
+  @media (max-width: 767px) {
+    font-weight: 500;
+  }
 `;
 
 const StyledMenu = styled.div`
@@ -105,12 +110,17 @@ const MenuLink = styled(Link)`
 `;
 
 const StyledLogo = styled(Image)`
-  width: 50px;
+  width: 45px;
   height: 60px;
   position: absolute;
-  z-index: 50;
   position: fixed;
   left: 40px;
   border-radius: 5px;
   top: 10px;
+
+  @media (max-width: 767px) {
+    z-index: -1;
+    left: 43%;
+    opacity: 0.4;
+  }
 `;
