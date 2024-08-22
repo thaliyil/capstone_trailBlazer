@@ -16,13 +16,13 @@ const StyledFooter = styled.footer`
   bottom: 0px;
   right: 0px;
   left: 0px;
-  z-index: 1;
+  z-index: 3;
   background-color: var(--dijon);
   display: flex;
   justify-content: space-around;
   border: 1px solid black;
   padding: 5px;
-  height: 70px;
+  height: 75px;
   box-shadow: var(--box-shadow-layout);
   font-family: var(--font-family);
 
@@ -35,7 +35,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
   font-size: 1.2rem;
-  padding: 20px;
+  padding: 10px;
   font-weight: 500;
 
   &:hover {

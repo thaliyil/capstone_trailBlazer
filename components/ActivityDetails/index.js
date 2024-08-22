@@ -36,7 +36,13 @@ export default function ActivityDetails({
         isBookmarked={isBookmarked}
       />
 
-      <StyledImg src={imageUrl} width={400} height={360} alt={title} />
+      <StyledImg
+        layout="responsive"
+        src={imageUrl}
+        width={400}
+        height={360}
+        alt={title}
+      />
       <StyledDetailsTitle>{title}</StyledDetailsTitle>
       <StyledDetailsSubtitle>
         {area}, {country}
