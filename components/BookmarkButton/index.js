@@ -23,6 +23,7 @@ const StyledButton = styled.button`
   top: 10px;
   border: none;
   background-color: transparent;
+  z-index: 5;
 `;
 
 const StyledHeart = styled(Heart)`
