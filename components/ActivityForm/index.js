@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import categories from "@/assets/categories";
 import { useState } from "react";
 import Link from "next/link";
+import { StyledCard } from "../Styles";
 import { StyledButton } from "../ActivityDetails";
 import countries from "@/assets/countries";
 import Select from "react-select";
@@ -89,9 +90,9 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
     <form onSubmit={handleSubmit}>
       <StyledFormFieldset>
         {isUpdateMode ? (
-          <legend>Update Activity</legend>
+          <StyledFormHeading>Update Activity</StyledFormHeading>
         ) : (
-          <legend>Add new Activity</legend>
+          <StyledFormHeading>Add new Activity</StyledFormHeading>
         )}
         <label htmlFor="title">Title: </label>
         <StyledInputs
@@ -105,7 +106,7 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
         ></StyledInputs>
         <label htmlFor="imageUrl">
           <UploadImage width={20} height={20} />
-          <span>Upload image</span>{" "}
+          <span>Upload image:</span>{" "}
         </label>
         <StyledImageUploadInput
           id="imageUrl"
@@ -169,14 +170,18 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
           defaultValue={country}
           required
         />
-        {isUpdateMode ? (
-          <>
-            <Link href={`/activities/${activity.id}`}>Cancel</Link>
-            <StyledButtonSubmit type="submit">Save</StyledButtonSubmit>
-          </>
-        ) : (
-          <StyledButtonSubmit type="submit">Submit</StyledButtonSubmit>
-        )}
+        <StyledButtonDisplay>
+          {isUpdateMode ? (
+            <>
+              <StyledCancelLink href={`/activities/${activity.id}`}>
+                Cancel
+              </StyledCancelLink>
+              <StyledButtonSubmit type="submit">Save</StyledButtonSubmit>
+            </>
+          ) : (
+            <StyledButtonSubmit type="submit">Submit</StyledButtonSubmit>
+          )}
+        </StyledButtonDisplay>
       </StyledFormFieldset>
     </form>
   );
@@ -186,13 +191,24 @@ const StyledFormFieldset = styled.fieldset`
   display: flex;
   flex-direction: column;
   gap: 15px;
-
-  margin: 20px 30px 60px;
+  font-weight: 400;
+  font-size: 1.2rem;
+  margin: var(--media-queries-form-s);
   background-color: var(--light-green);
-  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
-    rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
-    rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+  box-shadow: var(--box-shadow-layout);
   border-radius: 10px;
+
+  @media (min-width: 768px) {
+    margin: var(--media-queries-form-m);
+  }
+
+  @media (min-width: 992px) {
+    margin: var(--media-queries-form-l);
+  }
+
+  @media (min-width: 1200px) {
+    margin: var(--media-queries-form-xl);
+  }
 `;
 
 const StyledFieldset = styled.fieldset`
@@ -227,8 +243,47 @@ const StyledSelect = styled(Select)`
 const StyledButtonSubmit = styled.button`
   background-color: var(--coral);
   border-radius: 5px;
-  height: 3rem;
-  font-size: 1rem;
+  height: 2.2rem;
+  font-size: 1.2rem;
+  font-family: var(--font-family);
+  font-weight: 400;
+  width: 150px;
+  margin-bottom: 15px;
+
+  &:hover {
+    width: 180px;
+    transition-duration: 0.5s;
+  }
+`;
+
+const StyledCancelLink = styled(Link)`
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 0.3rem;
+  font-size: 1.2rem;
+  background-color: var(--coral);
+  text-decoration: none;
+  color: black;
+  font-weight: 400;
+  width: 150px;
+  margin-bottom: 15px;
+
+  &:hover {
+    width: 180px;
+    transition-duration: 0.5s;
+  }
+`;
+
+const StyledButtonDisplay = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+`;
+
+const StyledFormHeading = styled.h3`
+  font-weight: 400;
+  font-size: 1.7rem;
 `;
 const ImagePreview = styled.div`
   margin: 10px;

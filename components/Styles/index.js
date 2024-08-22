@@ -26,11 +26,12 @@ export const StyledUl = styled.ul`
   background-color: var(--dark-green);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
 
   @media (min-width: 768px) {
     display: grid;
     grid-template-columns: auto auto;
+    justify-content: center;
     gap: 1.5rem;
   }
 `;
@@ -41,6 +42,15 @@ export const StyledLi = styled.li`
   margin: 20px;
   border-radius: 10px;
   box-shadow: var(--box-shadow-cards);
+  width: 370px;
+  height: 390px;
+
+  &:hover {
+    width: 390px;
+    height: 410px;
+    transition-duration: 0.5s;
+    margin: 10px;
+  }
 `;
 
 export const StyledAddLink = styled(Link)`
@@ -54,7 +64,7 @@ export const StyledAddLink = styled(Link)`
 `;
 
 export const StyledSection = styled.section`
-  padding-top: 5rem;
+  padding-top: 7rem;
 `;
 
 export const StyledCard = styled.div`
