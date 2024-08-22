@@ -50,9 +50,7 @@ export default function ActivityDetails({
       <StyledEditLink href={`/activities/${activity.id}/update`}>
         <Edit />
       </StyledEditLink>
-      <NotesWrapper>
-        <Notes activityId={activity.id} />
-      </NotesWrapper>
+      <Notes activityId={activity.id} />
     </StyledCardDetails>
   );
 }
@@ -68,7 +66,7 @@ const StyledCardDetails = styled.div`
   position: relative;
   color: white;
   padding-bottom: 10px;
-  margin: 0 40px;
+  margin: 0 40px 200px;
   max-width: 700px;
   font-family: var(--font-family);
   font-weight: 400;

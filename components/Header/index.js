@@ -12,6 +12,7 @@ export default function Header() {
     <>
       <StyledHeader>
         <StyledHeading>TrailBlazer</StyledHeading>
+        <StyledLogo src={logo} />
         <StyledMenu>
           <Hamburger
             toggled={isOpen}
