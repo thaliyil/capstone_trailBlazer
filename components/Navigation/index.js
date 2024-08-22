@@ -36,6 +36,8 @@ const StyledLink = styled(Link)`
   color: black;
   font-size: 1.2rem;
   padding: 20px;
+  font-weight: 500;
+
   &:hover {
     color: var(--dark-green);
     font-size: 1.3rem;

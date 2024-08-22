@@ -86,6 +86,14 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
     }
   }
 
+  function handleClear(event) {
+    event.preventDefault();
+    setSelectedCategoryIds([]);
+    setImagePreview(defaultImageUrl);
+    setCountry(null);
+    event.target.form.reset();
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <StyledFormFieldset>
@@ -105,8 +113,7 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
           defaultValue={activity?.title}
         ></StyledInputs>
         <label htmlFor="imageUrl">
-          <UploadImage width={20} height={20} />
-          <span>Upload image:</span>{" "}
+          <UploadImage width={40} height={40} />
         </label>
         <StyledImageUploadInput
           id="imageUrl"
@@ -167,7 +174,8 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
           options={countriesOptions}
           placeholder="Please choose country.."
           onChange={handleCountryChange}
-          defaultValue={country}
+          value={country}
+          isClearable={true}
           required
         />
         <StyledButtonDisplay>
@@ -179,7 +187,10 @@ export default function ActivityForm({ activity, onSubmit, isUpdateMode }) {
               <StyledButtonSubmit type="submit">Save</StyledButtonSubmit>
             </>
           ) : (
-            <StyledButtonSubmit type="submit">Submit</StyledButtonSubmit>
+            <>
+              <StyledClearButton onClick={handleClear}>Clear</StyledClearButton>
+              <StyledButtonSubmit type="submit">Submit</StyledButtonSubmit>
+            </>
           )}
         </StyledButtonDisplay>
       </StyledFormFieldset>
@@ -253,6 +264,7 @@ const StyledButtonSubmit = styled.button`
   &:hover {
     width: 180px;
     transition-duration: 0.5s;
+    color: white;
   }
 `;
 
@@ -261,7 +273,7 @@ const StyledCancelLink = styled(Link)`
   border-radius: 5px;
   padding: 0.3rem;
   font-size: 1.2rem;
-  background-color: var(--coral);
+  background-color: var(--light-green);
   text-decoration: none;
   color: black;
   font-weight: 400;
@@ -271,6 +283,7 @@ const StyledCancelLink = styled(Link)`
   &:hover {
     width: 180px;
     transition-duration: 0.5s;
+    color: white;
   }
 `;
 
@@ -279,6 +292,23 @@ const StyledButtonDisplay = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
+`;
+
+const StyledClearButton = styled.button`
+  background-color: var(--light-green);
+  border-radius: 5px;
+  height: 2.2rem;
+  font-size: 1.2rem;
+  font-family: var(--font-family);
+  font-weight: 400;
+  width: 150px;
+  margin-bottom: 15px;
+  color: black;
+  &:hover {
+    color: white;
+    width: 180px;
+    transition-duration: 0.5s;
+  }
 `;
 
 const StyledFormHeading = styled.h3`

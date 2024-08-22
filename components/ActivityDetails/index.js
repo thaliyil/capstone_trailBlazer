@@ -9,7 +9,6 @@ import Edit from "../../assets/svg/edit.svg";
 import { useEffect, useState } from "react";
 import Notes from "../Notes";
 
-
 export default function ActivityDetails({
   activity,
   onToggleBookmark,
@@ -48,29 +47,7 @@ export default function ActivityDetails({
       <StyledDetailsSubtitle>
         {area}, {country}
       </StyledDetailsSubtitle>
-
-      {weather && (
-        <WeatherDetails>
-          <h4>
-            Weather in {weather.name}: {weather.weather[0].description}
-          </h4>
-          <p>
-            <WeatherIcon
-              src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
-              alt={weather.weather[0].description}
-            />
-          </p>
-          <p>Temperature: {Math.round(weather.main.temp)}°C</p>
-          <p>Humidity: {weather.main.humidity}%</p>
-          <p>Wind Speed: {weather.wind.speed} m/s</p>
-          {weather.rain && <p>Rain: {weather.rain["1h"]} mm (last hour)</p>}
-          {weather.snow && <p>Snow: {weather.snow["1h"]} mm (last hour)</p>}
-          <p>Visibility: {weather.visibility / 1000} km</p>
-        </WeatherDetails>
-      )}
-
-      <StyledDetailsDescription>{description}</StyledDetailsDescription>
-
+      <StyledDetailsPar>{description}</StyledDetailsPar>
       <StyledCateogriesUl>
         {filteredCategories.map((category) => (
           <StyledCategoryLi key={category.id}>{category.name}</StyledCategoryLi>
@@ -87,14 +64,38 @@ export default function ActivityDetails({
         <Edit />
       </StyledEditLink>
       <Notes activityId={activity.id} />
+      {weather && (
+        <WeatherDetails>
+          <h4>
+            Weather in {weather.name}: {weather.weather[0].description}
+          </h4>
+          <StyledDetailsPar>
+            <WeatherIcon
+              src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
+              alt={weather.weather[0].description}
+            />
+          </StyledDetailsPar>
+          <StyledWeather>
+            Temperature: {Math.round(weather.main.temp)}°C
+          </StyledWeather>
+          <StyledWeather>Humidity: {weather.main.humidity}%</StyledWeather>
+          <StyledWeather>Wind Speed: {weather.wind.speed} m/s</StyledWeather>
+          {weather.rain && <p>Rain: {weather.rain["1h"]} mm (last hour)</p>}
+          {weather.snow && <p>Snow: {weather.snow["1h"]} mm (last hour)</p>}
+          <StyledWeather>
+            Visibility: {weather.visibility / 1000} km
+          </StyledWeather>
+        </WeatherDetails>
+      )}
     </StyledCardDetails>
   );
 }
 const WeatherDetails = styled.section`
   background-color: var(--light-green);
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   margin-top: 10px;
+  color: black;
 `;
 const WeatherIcon = styled.img`
   width: 100px;
@@ -154,8 +155,12 @@ const StyledDetailsSubtitle = styled.h3`
   margin-bottom: 50px;
 `;
 
-const StyledDetailsDescription = styled.p`
-  font-size: 1.4rem;
+const StyledDetailsPar = styled.p`
+  font-size: 1.2rem;
   font-weight: 400;
   line-height: 2;
+`;
+
+const StyledWeather = styled.p`
+  font-size: 1.2rem;
 `;

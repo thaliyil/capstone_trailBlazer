@@ -24,17 +24,17 @@ export default function Header() {
       </StyledHeader>
       {isOpen && (
         <HamburgerMenu>
-          <MenuLink onClick={() => setIsOpen(false)} href="/bookmark">
-            My Bookmarks
-          </MenuLink>
           <MenuLink onClick={() => setIsOpen(false)} href="/">
-            Home
+            HOME
           </MenuLink>
           <MenuLink onClick={() => setIsOpen(false)} href="/spotlight">
-            Inspire me!
+            INSPIRE ME!
+          </MenuLink>
+          <MenuLink onClick={() => setIsOpen(false)} href="/bookmark">
+            MY BOOKMARKS
           </MenuLink>
           <MenuLink onClick={() => setIsOpen(false)} href="/createActivity">
-            Add new Activity
+            CREATE NEW ACTIVITY
           </MenuLink>
         </HamburgerMenu>
       )}
