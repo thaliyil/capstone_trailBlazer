@@ -36,13 +36,7 @@ export default function ActivityDetails({
         isBookmarked={isBookmarked}
       />
 
-      <StyledImg
-        src={imageUrl}
-        layout="responsive"
-        width={400}
-        height={360}
-        alt={title}
-      />
+      <StyledImg src={imageUrl} width={400} height={360} alt={title} />
       <StyledDetailsTitle>{title}</StyledDetailsTitle>
       <StyledDetailsSubtitle>
         {area}, {country}
@@ -63,46 +57,61 @@ export default function ActivityDetails({
       <StyledEditLink href={`/activities/${activity.id}/update`}>
         <Edit />
       </StyledEditLink>
-      <Notes activityId={activity.id} />
-      {weather && (
-        <WeatherDetails>
-          <h4>
-            Weather in {weather.name}: {weather.weather[0].description}
-          </h4>
-          <StyledDetailsPar>
-            <WeatherIcon
-              src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
-              alt={weather.weather[0].description}
-            />
-          </StyledDetailsPar>
-          <StyledWeather>
-            Temperature: {Math.round(weather.main.temp)}°C
-          </StyledWeather>
-          <StyledWeather>Humidity: {weather.main.humidity}%</StyledWeather>
-          <StyledWeather>Wind Speed: {weather.wind.speed} m/s</StyledWeather>
-          {weather.rain && <p>Rain: {weather.rain["1h"]} mm (last hour)</p>}
-          {weather.snow && <p>Snow: {weather.snow["1h"]} mm (last hour)</p>}
-          <StyledWeather>
-            Visibility: {weather.visibility / 1000} km
-          </StyledWeather>
-        </WeatherDetails>
-      )}
+      <InfoSection>
+        {weather && (
+          <WeatherDetails>
+            <WeatherHeading>
+              Weather in {weather.name}: {weather.weather[0].description}
+            </WeatherHeading>
+            <StyledDetailsPar>
+              <WeatherIcon
+                src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}@4x.png`}
+                alt={weather.weather[0].description}
+              />
+            </StyledDetailsPar>
+            <StyledWeather>
+              Temperature: {Math.round(weather.main.temp)}°C
+            </StyledWeather>
+            <StyledWeather>Humidity: {weather.main.humidity}%</StyledWeather>
+            <StyledWeather>Wind Speed: {weather.wind.speed} m/s</StyledWeather>
+            {weather.rain && <p>Rain: {weather.rain["1h"]} mm (last hour)</p>}
+            {weather.snow && <p>Snow: {weather.snow["1h"]} mm (last hour)</p>}
+            <StyledWeather>
+              Visibility: {weather.visibility / 1000} km
+            </StyledWeather>
+          </WeatherDetails>
+        )}
+        <Notes activityId={activity.id} />
+      </InfoSection>
     </StyledCardDetails>
   );
 }
+
 const WeatherDetails = styled.section`
   background-color: var(--light-green);
   padding: 10px;
   border-radius: 10px;
-  margin-top: 10px;
+  margin: 50px 0;
   color: black;
+
+  @media (min-width: 992px) {
+    margin: 0;
+    width: 500px;
+    height: 600px;
+  }
 `;
+
+const WeatherHeading = styled.h4`
+  font-size: 1.2rem;
+  font-weight: 400;
+`;
+
 const WeatherIcon = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
 `;
+
 const DeleteButton = styled.button`
-  margin-bottom: 50px;
   margin-right: 5px;
   background-color: var(--coral);
   border-radius: 5px;
@@ -112,8 +121,8 @@ const StyledCardDetails = styled.div`
   position: relative;
   color: white;
   padding-bottom: 10px;
-  margin: 0 40px 200px;
-  max-width: 700px;
+  margin-bottom: 200px;
+  max-width: auto;
   font-family: var(--font-family);
   font-weight: 400;
 
@@ -141,6 +150,10 @@ const StyledEditLink = styled(Link)`
 const StyledImg = styled(Image)`
   border-radius: 20px;
   margin-top: 15px;
+
+  /* @media (min-width: 992px) {
+    width: 700px;
+    height: 500px; */
 `;
 
 const StyledDetailsTitle = styled.h2`
@@ -163,4 +176,14 @@ const StyledDetailsPar = styled.p`
 
 const StyledWeather = styled.p`
   font-size: 1.2rem;
+`;
+
+const InfoSection = styled.section`
+  @media (min-width: 992px) {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+  }
 `;

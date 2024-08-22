@@ -26,29 +26,31 @@ export default function Notes({ activityId }) {
 
   return (
     <StyledNotesWrapper>
-      <StyledNotesHeading>My notes for this activity:</StyledNotesHeading>
-      <form onSubmit={handleSubmitNote}>
-        <StyledNotesInput
-          name="note"
-          type="text"
-          placeholder="Add note.."
-          aria-label="Add a note for this activity"
-        ></StyledNotesInput>
-        <StyledNotesSaveButton type="submit">Save</StyledNotesSaveButton>{" "}
-        <StyledNotesUl>
-          {notes.map((note) => (
-            <StyledNotesLi key={note.id}>
-              {note.content}
-              <StyledNotesDeleteButton
-                type="button"
-                onClick={() => handleDeleteNote(note)}
-              >
-                X
-              </StyledNotesDeleteButton>
-            </StyledNotesLi>
-          ))}
-        </StyledNotesUl>
-      </form>
+      <StyledFormNotes onSubmit={handleSubmitNote}>
+        <StyledNotesHeading>
+          <StyledNotesHeading>My notes for this Activity:</StyledNotesHeading>
+          <StyledNotesInput
+            name="note"
+            type="text"
+            placeholder="Add note.."
+            aria-label="Add a note for this activity"
+          ></StyledNotesInput>
+          <StyledNotesSaveButton type="submit">Save</StyledNotesSaveButton>{" "}
+          <StyledNotesUl>
+            {notes.map((note) => (
+              <StyledNotesLi key={note.id}>
+                {note.content}
+                <StyledNotesDeleteButton
+                  type="button"
+                  onClick={() => handleDeleteNote(note)}
+                >
+                  X
+                </StyledNotesDeleteButton>
+              </StyledNotesLi>
+            ))}
+          </StyledNotesUl>
+        </StyledNotesHeading>
+      </StyledFormNotes>
     </StyledNotesWrapper>
   );
 }
@@ -94,4 +96,18 @@ const StyledNotesDeleteButton = styled.button`
   background-color: var(--dijon);
   border-radius: 5px;
   margin: 5px;
+`;
+
+const StyledFormNotes = styled.form`
+  padding: 10px;
+  color: black;
+  border-radius: 10px;
+  background-color: var(--light-green);
+  margin-bottom: 30px;
+
+  @media (min-width: 992px) {
+    margin: 0;
+    width: 500px;
+    height: 600px;
+  }
 `;

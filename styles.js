@@ -14,6 +14,7 @@ export default createGlobalStyle`
 
   body {
     margin: 0;
+    padding: 0;
     text-align: center;
     background-color: var(--dark-green);
     font-family: var(--font-family ),system-ui;

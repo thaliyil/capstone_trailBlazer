@@ -34,6 +34,13 @@ export const StyledUl = styled.ul`
     justify-content: center;
     gap: 1.5rem;
   }
+
+  @media (min-width: 992px) {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    gap: 1.5rem;
+  }
 `;
 
 export const StyledLi = styled.li`
