@@ -26,7 +26,7 @@ export default function UpdatePage({ activities, setActivities }) {
           : activity
       )
     );
-    console.log("updated activity is", updatedActivity);
+
     toast.success("Activity is updated successfully!", { delay: 9000 });
   }
 
