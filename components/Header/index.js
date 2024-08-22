@@ -11,7 +11,7 @@ export default function Header() {
   return (
     <>
       <StyledHeader>
-        <StyledHeading>TrailBlazer</StyledHeading>
+        <StyledHeading>T R A I L B L A Z E R</StyledHeading>
         <StyledLogo src={logo} />
         <StyledMenu>
           <Hamburger
@@ -53,8 +53,9 @@ const StyledHeader = styled.div`
 `;
 
 const StyledHeading = styled.h1`
-  font-style: italic;
   font-weight: 400;
+  z-index: 60;
+  color: black;
 `;
 
 const StyledMenu = styled.div`
@@ -105,12 +106,18 @@ const MenuLink = styled(Link)`
 `;
 
 const StyledLogo = styled(Image)`
-  width: 50px;
+  width: 45px;
   height: 60px;
   position: absolute;
-  z-index: 50;
+
   position: fixed;
   left: 40px;
   border-radius: 5px;
   top: 10px;
+
+  @media (max-width: 767px) {
+    left: 45%;
+    right: 45%;
+    opacity: 0.4;
+  }
 `;
